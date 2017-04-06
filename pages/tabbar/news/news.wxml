@@ -1,0 +1,5 @@
+<!--pages/tabbar/study/news.wxml-->
+<import src="../../../common/head.wxml" />
+<view class="container">
+  <template is="HeadInfo" data="{{...headinfo}}" />
+</view>

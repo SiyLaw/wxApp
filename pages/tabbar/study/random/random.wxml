@@ -1,0 +1,118 @@
+
+<!--pages/tabbar/study/random/random.wxml-->
+<import src="/common/foot.wxml" />
+<view class="container" bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd">
+  <view class="page-section">
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+        <label>
+          <label class="exerises_type">{{exerises[index].type == "single" ? "单选题" : "多选题"}}</label>
+          <label class="exerises_title">{{index+1}}、{{exerises[index].title}}</label>
+        </label>
+      </view>
+      <block wx:if="{{exerises[index].type == 'single'}}">
+        <radio-group name="rg{{exerises[index].ID}}" bindchange="selected">
+          <label class="weui-cell weui-check__label" wx:for="{{exerises[index].option}}" wx:key="{{item.op}}">
+            <view class="weui-cell__hd">
+              <radio value="{{item.op}}" checked="{{item.checked}}" />
+            </view>
+            <view class="weui-cell__bd op_text">{{item.op}}、{{item.text}}</view>
+          </label>
+        </radio-group>
+      </block>
+      <block wx:elif="{{exerises[index].type == 'multi'}}">
+        <checkbox-group name="cg{{exerises[index].ID}}" bindchange="selected">
+          <label class="weui-cell weui-check__label" wx:for="{{exerises[index].option}}" wx:key="{{item.op}}">
+            <view class="weui-cell__hd">
+              <checkbox value="{{item.op}}" checked="{{item.checked}}" />
+            </view>
+            <view class="weui-cell__bd op_text">{{item.op}}、{{item.text}}</view>
+          </label>
+        </checkbox-group>
+        <view class="btn-area">
+          <button type="primary" bindtap="submitVal" size="mini" plain="true">确认答案</button>
+        </view>
+      </block>
+    </view>
+  </view>
+  <view class="page-section" hidden="{{exerises[index].showItem >= 1 ? '' : true}}">
+    <label class="section_title">析题</label>
+    <label class="answer_list">{{exerises[index].answer}}</label>
+    <view class="que-tag">
+      <text wx:for="{{exerises[index].tag}}" wx:key="*this" class="tag">{{item.op}}</text>
+    </view>
+    <view>
+      <text class="anal-txt">{{exerises[index].analTxt}}
+      </text>
+    </view>
+    <view class="exerises-feed-bottom">
+    </view>
+  </view>
+  <view class="page-section" hidden="{{exerises[index].showItem >= 2 ? '' : true}}">
+    <label class="section_title">讨论</label>
+    <view wx:for="{{exerises[index].feeds}}" wx:for-index="idx" wx:key="{{id}}" class="exerises-feed">
+      <view class="feed-item">
+        <view class="feed-source">
+          <a class="" bindTap="">
+            <view class="avatar">
+              <image src="{{item.head_img}}"></image>
+            </view>
+            <text>{{item.user}}</text>
+          </a> 
+        </view>
+        <view class="feed-content">
+          <view class="answer-body">
+            <view>
+              <text class="answer-txt">{{item.feed_txt}}</text>
+            </view>
+            <view class="answer-actions">
+              <view class="time dot">
+                <a>{{item.time}}</a> 
+              </view>
+              <view class="comments dot">
+                <a>
+                  <image src="/image/Comments.png"></image>回复{{item.comments}}</a> 
+              </view>
+              <view class="like" data-idx="{{idx}}" bindtap="doLike">
+                <a style="color:{{item.isAgreed?'#1aad19':'inherit'}};">
+                  <image src="/image/{{item.isAgreed?'ThumbUped':'ThumbUp'}}.png"></image>赞{{item.agree}}</a> 
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="exerises-feed-bottom">
+    </view>
+  </view>
+  <view class="page-bottom">
+    <view class="top-tab flex-wrp flex-tab ">
+      <view class="flex-item bind" bindtap="doColl">
+        <image src="/image/{{exerises[index].is_coll?'Liked':'Like'}}.png"></image>
+        <label style="color:{{exerises[index].is_coll?'#1aad19':'inherit'}};">收藏</label>
+      </view>
+      <view class="flex-item">
+        <image src="/image/right.png"></image>
+        <label>{{right}}</label>
+      </view>
+      <view class="flex-item">
+        <image src="/image/error.png"></image>
+        <lable>{{error}}</lable>
+      </view>
+      <view class="flex-item bind" bindtap="doComments">
+        <image src="/image/Comments.png"></image>
+        <lable>评论</lable>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="commodity_screen" wx:if="{{showModalStatus}}">
+  <view class="comments-section">
+    <view class="cmts_label">可输入{{140-comm_len}}</view>
+    <textarea placeholder="请输入评论内容..." value="{{comm_text}}" bindinput="InputComm" auto-focus="{{showModalStatus}}" class="cmts_content" />
+    <view class="cmts_actions">
+      <a bindtap="SubmitComm">提交</a> 
+      <a bindtap="CloseComm">关闭</a> 
+    </view>
+  </view>
+</view>

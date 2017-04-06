@@ -1,0 +1,147 @@
+/**app.wxss**/
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0rpx 0rpx;
+  box-sizing: border-box;
+}
+
+.page-head{
+  padding: 60rpx 50rpx 60rpx;
+  text-align: center;
+  width:100%;
+  background: #3cc51f;
+}
+.page-head-title{
+  display: inline-block;
+  padding: 0 40rpx 10rpx 40rpx;
+  font-size: 32rpx;
+  color: #A0A0A0;
+}
+.page-head-line{
+  margin: 0 auto;
+  width: 180rpx;
+  height: 2rpx;
+  background-color: #D8D8D8;
+}
+.page-head-desc{
+  padding-top: 0rpx;
+  color: #fff;
+  font-size: 32rpx;
+  text-shadow: #555 0 1px 0;
+}
+.head-userinfo
+{
+  width: 150rpx;
+  height: 150rpx;
+  margin: 0rpx;
+  border-radius: 50%;
+  box-shadow:#555 0 1px 0;
+}
+
+.page-foot{
+  margin: 100rpx 0 30rpx 0;
+  text-align: center;
+  color: #1aad19;
+  font-size: 0;
+}
+.icon-foot{
+  width: 126rpx;
+  height: 23rpx;
+}
+
+
+.page-section {
+  width: 100%;
+  margin: 0 0 6rpx 0;
+  background: #ffffff;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  box-shadow: 0 2px 5px #eeeeee;
+}
+
+.page-section_center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.page-section:last-child {
+  margin-bottom: 0;
+}
+
+.page-section-gap {
+  box-sizing: border-box;
+  padding: 5rpx 0rpx 0rpx 0rpx;
+}
+
+.page-section-spacing {
+  box-sizing: border-box;
+  padding: 0 80rpx;
+}
+
+.page-section-title {
+  font-size: 28rpx;
+  color: #999;
+  margin-bottom: 10rpx;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+}
+
+.page-section-gap .page-section-title {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.userhead {
+  background-color: dodgerblue;
+  margin-top: 0rpx;
+  margin-bottom: 0;
+}
+
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  margin-top: 5px;
+}
+
+.userinfo-center {
+  align-items: center;
+}
+
+.userinfo-avatar {
+  width: 50rpx;
+  height: 50rpx;
+  margin: 0rpx;
+  border-radius: 50%;
+  box-shadow:#555 0 1px 0;
+}
+
+.userinfo-font {
+  color: white;
+  font-size: 12px;
+  text-shadow: #555 0 1px 0;
+}
+
+.userinfo-score {
+  line-height: 100rpx;
+  color: white;
+  font-size: 12px;
+}
+
+.btn-Update{
+  margin-top: 40rpx;  
+  width: 50%;
+}
+/* widget */
+.btn-area{
+  box-sizing: border-box;
+  width: 100%;
+  text-align: center;
+  margin: 20rpx auto;
+  }

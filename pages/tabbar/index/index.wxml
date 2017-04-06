@@ -1,0 +1,43 @@
+
+<!--index.wxml-->
+<import src="../../../common/head.wxml" />
+<view class="container">
+  <template is="HeadInfo" data="{{...headinfo}}" />
+  <view class="page-section page-section-gap">
+    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+      <block wx:for="{{background}}" wx:key="item.id">
+        <swiper-item>
+          <view class="swiper-item {{item}}">{{item.text}}</view>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <view class="page-section page-section-gap">
+    <canvas canvas-id="areaCanvas" class="canvas" />
+  </view>
+  <view class="page-section page-section-gap">
+    <view class="flex-wrp" style="flex-direction:row;">
+      <view class="flex-item">
+        <view class="item-desc">
+          <image class="item-desc-img" src="../../../image/Crown.png"></image>
+          <text class="item-desc-headtxt">名师析题</text>
+          <view class="item-desc-detailtxt">...</view>
+        </view>
+      </view>
+      <view class="flex-item">
+        <view class="item-desc">
+          <image class="item-desc-img" src="../../../image/Substr.png"></image>
+          <text class="item-desc-headtxt">题库丰富</text>
+          <view class="item-desc-detailtxt">...</view>
+        </view>
+      </view>
+      <view class="flex-item">
+        <view class="item-desc">
+          <image class="item-desc-img" src="../../../image/StarSelected.png"></image>
+          <text class="item-desc-headtxt">在线服务</text>
+          <view class="item-desc-detailtxt">...</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
