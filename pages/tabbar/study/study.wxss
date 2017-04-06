@@ -1,0 +1,40 @@
+/* pages/study/study.wxss */
+@import "../../../common/lib/weui.wxss";
+.flex-wrp {
+  display: flex;
+}
+
+.flex-column{
+  flex-direction:column;
+}
+
+.flex-row{
+  flex-direction:row;
+}
+
+.flex-item {
+  width: 34%;
+}
+
+.item-desc {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 220rpx;
+  padding-top: 30rpx;
+  color: #777;
+  text-shadow: #eee 0 1px 0;
+}
+.item-desc:hover {
+  background-color: #eee;
+  border-radius: 10rpx;
+}
+.item-desc-img{
+  width: 90rpx;
+  height: 90rpx;
+  margin: 15rpx;
+  border-radius: 20%;
+}
+.item-desc-headtxt {
+  font-size: 28rpx;
+}

@@ -1,0 +1,25 @@
+
+<!--
+  score: int
+  userinfo: userinfo
+-->
+<template name="HeadInfo">
+  <view class="page-section userhead">
+    <view class="weui-cell">
+      <view class="weui-cell__bd">
+        <view class="userinfo">
+          <text class="userinfo-font"> {{province}}/{{city}}</text>
+          <text class="userinfo-font"> 当前积分：{{score}}</text>
+        </view>
+      </view>
+      <view class="weui-cell__ft">
+        <navigator url="../../profile/profile">
+          <view class="userinfo userinfo-center">
+            <image class="userinfo-avatar" src="{{avatarUrl}}" background-size="cover"></image>
+            <text class="userinfo-font">{{nickName}}</text>
+          </view>
+        </navigator>
+      </view>
+    </view>
+  </view>
+</template>

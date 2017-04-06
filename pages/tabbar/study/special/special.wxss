@@ -1,0 +1,2 @@
+/* pages/tabbar/study/special/special.wxss */
+@import "../../../../common/lib/weui.wxss";

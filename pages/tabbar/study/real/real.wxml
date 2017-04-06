@@ -1,0 +1,60 @@
+<!--pages/tabbar/study/real/real.wxml-->
+<import src="/common/foot.wxml" />
+<view class="container">
+  <view class="top-tab flex-wrp flex-tab ">
+    <view class="toptab flex-item {{currentNavtab==idx ? 'active' : ''}}" wx:for="{{navTab}}" wx:for-index="idx" wx:key="*this" wx:for-item="itemName" data-idx="{{idx}}" bindtap="switchTab">
+      {{itemName}}
+    </view>
+  </view>
+  <view class="container" hidden="{{currentNavtab==0 ? '' : true}}">
+    <view class="page-head-title">{{exerises[index].type == "single"?"单项选择题":"多项选择题"}}</view>
+    <view class="page-head-line"></view>
+    <view class="page-section">
+      <view class="weui-cells__title">
+        <view class="que-tag">
+          <text class="tag">1999真题</text>
+          <text class="tag">卷一内容</text>
+          <text class="tag">民法</text>
+        </view>
+      </view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell">
+          {{index+1}}、{{exerises[index].title}}
+        </view>
+        <block wx:if="{{exerises[index].type == 'single'}}">
+          <radio-group bindchange="ctrlChange">
+            <label class="weui-cell weui-check__label" wx:for="{{exerises[index].option}}" wx:key="{{item.op}}">
+              <view class="weui-cell__hd">
+                <radio value="{{item.op}}" />
+              </view>
+              <view class="weui-cell__bd op_text">{{item.op}}、{{item.text}}</view>
+            </label>
+          </radio-group>
+        </block>
+        <block wx:elif="{{exerises[index].type == 'multi'}}">
+          <checkbox-group bindchange="ctrlChange">
+            <label class="weui-cell weui-check__label" wx:for="{{exerises[index].option}}" wx:key="{{item.op}}">
+              <view class="weui-cell__hd">
+                <checkbox value="{{item.op}}" />
+              </view>
+              <view class="weui-cell__bd op_text">{{item.op}}、{{item.text}}</view>
+            </label>
+          </checkbox-group>
+        </block>
+      </view>
+    </view>
+  </view>
+  <view class="container" hidden="{{currentNavtab==1 ? '' : true}}">
+    <text>析题</text>
+  </view>
+  <view class="container" hidden="{{currentNavtab==2 ? '' : true}}">
+    <text>讨论</text>
+  </view>
+  <view class="container" hidden="{{currentNavtab==3 ? '' : true}}">
+    <text>收藏</text>
+  </view>
+  <view class="refresh-block" wx:if="{{loading}}">
+    <image animation="{{refreshAnimation}}" src="/image/Refresh.png"></image>
+  </view>
+  <template is="foot" />
+</view>

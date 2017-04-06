@@ -1,0 +1,18 @@
+<!--pages/tabbar/study/realsimulate/realsimulate.wxml-->
+<view class="container">
+<view class="page-section">
+  <view class="weui-cells__title">地区选择器</view>
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">当前选择</view>
+      </view>
+      <view class="weui-cell__bd">
+        <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+          <view class="weui-input">{{array[index]}}</view>
+        </picker>
+      </view>
+    </view>
+  </view>
+  </view>
+</view>

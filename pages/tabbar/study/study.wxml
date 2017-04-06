@@ -1,0 +1,22 @@
+
+<!--pages/tabbar/study/study.wxml-->
+<import src="../../../common/head.wxml" />
+<view class="container">
+  <template is="HeadInfo" data="{{...headinfo}}" />
+  <view class="page-section page-section-gap">
+    <view class="flex-wrp flex-column">
+      <block wx:for="{{Items}}" wx:key="*this">
+        <view class="flex-wrp flex-row">
+          <block wx:for-items="{{item}}" wx:key="{{item.id}}">
+            <navigator url="{{item.page}}/{{item.page}}" class="flex-item">
+              <view id="{{item.id}}" class="item-desc" bindtouchstart="selectedTap">
+                <image class="item-desc-img" src="{{item.open ? item.selectBkImg:item.bkImg }}"></image>
+                <text class="item-desc-headtxt" style="{{item.open ? 'color: #3cc51f;':''}}">{{item.text}}</text>
+              </view>
+            </navigator>
+          </block>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>

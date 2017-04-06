@@ -1,0 +1,73 @@
+
+<!--pages/profile/profile.wxml-->
+<import src="../../common/pagehead.wxml" />
+<import src="../../common/foot.wxml" />
+<view class="container">
+  <template is="pagehead" data="{{avatarUrl: userInfo.avatarUrl,nickName:userInfo.nickName}}" />
+  <form catchsubmit="formSubmit">
+    <view class="page-section">
+      <view class="weui-cells__title">基本信息</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">帐 户</view>
+          </view>
+          <view class="weui-cell__bd">
+            <view class="weui-input">
+              <input class="weui-input" name="USER_CDE" disabled="{{MODE!='ADD'?true:false}}" bindinput="bindKeyInput" placeholder="" value="{{USER_CDE}}" auto-focus bindchange="checkUser" />
+            </view>
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">性 别</view>
+          </view>
+          <view class="weui-cell__bd">
+            <view class="weui-input">
+              <radio-group name="radio" name="USER_SEX" value="{{USER_SEX}}" bindchange="bindKeyInput">
+                <label>
+                  <radio value="male" checked="{{USER_SEX=='male' ? true:false}}" disabled="{{MODE=='VIEW'?true:false}}" />男</label>
+                <label>
+                  <radio value="female" checked="{{USER_SEX=='female' ? true:false}}"  disabled="{{MODE=='VIEW'?true:false}}" />女</label>
+              </radio-group>
+            </view>
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">手 机</view>
+          </view>
+          <view class="weui-cell__bd">
+            <view class="weui-input">
+              <input class="weui-input" name="TEL" type="number" disabled="{{MODE=='VIEW'?true:false}}" value="{{TEL}}" maxlength="11" bindinput="bindKeyInput" placeholder="" />
+            </view>
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">邮 箱</view>
+          </view>
+          <view class="weui-cell__bd">
+            <view class="weui-input">
+              <input class="weui-input" name="E_MAIL" type="text" disabled="{{MODE=='VIEW'?true:false}}" value="{{E_MAIL}}" bindinput="bindKeyInput" placeholder="" />
+            </view>
+          </view>
+        </view>
+        <view wx:if="{{MODE=='VIEW'}}" class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">积 分</view>
+          </view>
+          <view class="weui-cell__bd">
+            <view class="weui-input">
+              {{USER_SCORE}}
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="btn-area">
+      <button type="primary" formType="submit" disabled="{{BTN_STATUS}}" loading="{{BTN_STATUS}}" class="btn-Update" plain="true" id="{{MODE=='VIEW'?'EDIT':(MODE=='EDIT'?'UPDATE':'ADD')}}">{{MODE=="VIEW"?"编 辑":(MODE=="EDIT"?"更 新":"注 册")}}</button>
+    </view>
+  </form>
+  <template is="foot" />
+</view>

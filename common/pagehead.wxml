@@ -1,0 +1,8 @@
+<template name="pagehead">
+  <view class="page-head">
+    <view class="page-head-title">
+      <image class="head-userinfo" src="{{avatarUrl}}" background-size="cover"></image>
+    </view>
+    <view class="page-head-desc">{{nickName}}</view>
+  </view>
+</template>
