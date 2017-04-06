@@ -65,6 +65,24 @@ Page({
       { id: '2', user: 'Jack', head_img: '/image/Male50.png', feed_txt: '....哈哈... ', isAgreed: false, agree: 2, comments: 4, time: '2个星期前' },
       { id: '3', user: 'Jim', head_img: '/image/Male50.png', feed_txt: '..哈哈..... ', isAgreed: true, agree: 2, comments: 4, time: '1个月前' }]
       , is_coll: false
+    }, {
+      ID: 'ID_TITLE4'
+      , type: 'multi'
+      , title: '我国市辖区的人大常委会是由本级人民代表大会在代表中选举出的哪些人组成？222'
+      , option: [{ op: 'A', text: '主任2' }
+        , { op: 'B', text: '副主任若干人2' }
+        , { op: 'C', text: '秘书长2' }
+        , { op: 'D', text: '委员若干人2' }]
+      , answer: 'ABD'
+      , u_answer: ''
+      , tag: [{ op: '2011真题' }, { op: '卷二内容' }]
+      , showItem: 0
+      , analTxt: '。..............'
+      , feeds: [{ id: '1', user: 'Lucy', head_img: '/image/Female50.png', feed_txt: '.哈哈....... ', isAgreed: true, agree: 2, comments: 4, time: '1天前' },
+      { id: '2', user: 'Jack', head_img: '/image/Male50.png', feed_txt: '....哈哈... ', isAgreed: false, agree: 2, comments: 4, time: '2个星期前' },
+      { id: '3', user: 'sJack', head_img: '/image/Male50.png', feed_txt: '..代表大会在代表中选举出的. ', isAgreed: false, agree: 2, comments: 4, time: '2个星期前' },
+      { id: '4', user: 'Jim', head_img: '/image/Male50.png', feed_txt: '..哈哈..... ', isAgreed: true, agree: 2, comments: 4, time: '1个月前' }]
+      , is_coll: false
     }],
     index: 0,
     right: 0,
