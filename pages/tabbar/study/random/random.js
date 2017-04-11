@@ -48,41 +48,6 @@ Page({
       { id: '2', user: 'Jack', head_img: '/image/Male50.png', feed_txt: '....... ', isAgreed: false, agree: 2, comments: 4, time: '2个星期前' },
       { id: '3', user: 'Jim', head_img: '/image/Male50.png', feed_txt: '....... ', isAgreed: false, agree: 2, comments: 4, time: '1个月前' }]
       , is_coll: true
-    }, {
-      ID: 'ID_TITLE3'
-      , type: '1'
-      , title: '我国市辖区的人大常委会是由本级人民代表大会在代表中选举出的哪些人组成？'
-      , options: [{ op: 'A', text: '主任' }
-        , { op: 'B', text: '副主任若干人' }
-        , { op: 'C', text: '秘书长' }
-        , { op: 'D', text: '委员若干人' }]
-      , answer: 'ABD'
-      , u_answer: ''
-      , tag: [{ op: '2013真题' }, { op: '卷一内容' }]
-      , show_item: 0
-      , desc: '。..............'
-      , feeds: [{ id: '1', user: 'Lucy', head_img: '/image/Female50.png', feed_txt: '.哈哈....... ', isAgreed: true, agree: 2, comments: 4, time: '1天前' },
-      { id: '2', user: 'Jack', head_img: '/image/Male50.png', feed_txt: '....哈哈... ', isAgreed: false, agree: 2, comments: 4, time: '2个星期前' },
-      { id: '3', user: 'Jim', head_img: '/image/Male50.png', feed_txt: '..哈哈..... ', isAgreed: true, agree: 2, comments: 4, time: '1个月前' }]
-      , is_coll: false
-    }, {
-      ID: 'ID_TITLE4'
-      , type: '1'
-      , title: '我国市辖区的人大常委会是由本级人民代表大会在代表中选举出的哪些人组成？222'
-      , options: [{ op: 'A', text: '主' }
-        , { op: 'B', text: '副干人2' }
-        , { op: 'C', text: '秘书长2' }
-        , { op: 'D', text: '委员若干人2' }]
-      , answer: 'ABD'
-      , u_answer: ''
-      , tag: [{ op: '2011真题' }, { op: '卷二内容' }]
-      , show_item: 0
-      , desc: '。..............'
-      , feeds: [{ id: '1', user: 'Lucy', head_img: '/image/Female50.png', feed_txt: '.哈哈....... ', isAgreed: true, agree: 2, comments: 4, time: '1天前' },
-      { id: '2', user: 'Jack', head_img: '/image/Male50.png', feed_txt: '....哈哈... ', isAgreed: false, agree: 2, comments: 4, time: '2个星期前' },
-      { id: '3', user: 'sJack', head_img: '/image/Male50.png', feed_txt: '..代表大会在代表中选举出的. ', isAgreed: false, agree: 2, comments: 4, time: '2个星期前' },
-      { id: '4', user: 'Jim', head_img: '/image/Male50.png', feed_txt: '..哈哈..... ', isAgreed: true, agree: 2, comments: 4, time: '1个月前' }]
-      , is_coll: false
     }],
     index: 0,
     right: 0,
@@ -98,13 +63,13 @@ Page({
     sUtil.submitMultiAnswer(e, this)
   },
   touchStart: function (e) {
-    sUtil.touchStart(e);
+    sUtil.touchStart(e)
   },
   touchMove: function (e) {
-    sUtil.touchMove(e);
+    sUtil.touchMove(e)
   },
   touchEnd: function (e) {
-    sUtil.touchEnd(e, this)
+    sUtil.touchEnd(e, this,function(that){Post.call(this,that)})
   },
   doLike: function (e) {
     sUtil.like(e, this)
@@ -150,24 +115,22 @@ Page({
         userInfo: userInfo
       })
     })
-
-    var jsPost = new util.jsonRow()
-    jsPost.AddCell("PAGE", that.data.PAGE)
-    util._post(app.globalData.url, jsPost, function (res) {
-      if (res && res.data && res.data.data) {
-        //更新数据
-         that.setData({
-           exerises:that.data.exerises.concat(res.data.data.exerises)
-         })
-         console.log(res.data.data)
-      }
-      else {
-        console.log('error')
-        // that.setData({
-        //   MODE: "ADD",
-        //   BTN_STATUS: false
-        // })
-      }
-    })
+    Post.call(this,this)
   }
 })
+
+function Post(that) {
+  var jsPost = new util.jsonRow()
+  jsPost.AddCell("PAGE", that.data.PAGE)
+  util._post(app.globalData.url, jsPost, function (res) {
+    if (res && res.data && res.data.data) {
+      //更新数据
+      that.setData({
+        exerises: that.data.exerises.concat(res.data.data.exerises)
+      })
+    }
+    else {
+      console.log('error')
+    }
+  })
+}
