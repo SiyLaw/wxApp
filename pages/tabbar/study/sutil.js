@@ -15,18 +15,23 @@ function touchMove(e) {
 }
 
 // 触摸结束事件
-function touchEnd(e,that) {
+function touchEnd(e, that, next) {
     var diffX = Math.abs(endDot.x - startDot.x)
     var diffY = Math.abs(endDot.y - startDot.y)
     if (diffX - diffY > 0) {
         if (endDot.x - startDot.x <= -100) {
             //向右滑动
             let iIndex = that.data.index
-            if (iIndex == that.data.exerises.length - 1) {
-                wx.showToast({
-                    title: '加载中...',
-                    icon: 'loading',
-                    duration: 1000
+            if (iIndex == that.data.exerises.length - 2) {
+                // wx.showToast({
+                //     title: '加载中...',
+                //     icon: 'loading',
+                //     duration: 1000
+                // })
+                typeof next == "function" && next(that)
+                iIndex += 1
+                that.setData({
+                    index: iIndex
                 })
             } else {
                 iIndex += 1
@@ -57,7 +62,7 @@ function touchEnd(e,that) {
                 wx.hideNavigationBarLoading()
                 let iIndex = that.data.index
                 let sExe = that.data.exerises
-                sExe[iIndex].showItem += 1
+                sExe[iIndex].show_item += 1
                 that.setData({
                     exerises: sExe
                 })
@@ -67,7 +72,7 @@ function touchEnd(e,that) {
 }
 
 //收藏题目
-function collect(e,that) {
+function collect(e, that) {
     let iIndex = that.data.index
     let sExe = that.data.exerises
     sExe[iIndex].is_coll = !sExe[iIndex].is_coll;
@@ -93,7 +98,7 @@ function like(e, that) {
 }
 
 //多选提交答案
-function submitMultiAnswer(e,that) {
+function submitMultiAnswer(e, that) {
     let iIndex = that.data.index
     let sExe = that.data.exerises
     let exAnswer = sExe[iIndex].answer
@@ -108,7 +113,7 @@ function submitMultiAnswer(e,that) {
             iError += 1
         }
     }
-    sExe[iIndex].showItem = 1
+    sExe[iIndex].show_item = 1
     sExe[iIndex].isAnswered = true
     that.setData({
         exerises: sExe,
@@ -126,17 +131,17 @@ function selectedOptions(e, that) {
     let val = e.detail.value.toString().replace(new RegExp(/(,)/g), '')
 
     let sVal = ""
-    let options = sExe[iIndex].option
+    let options = sExe[iIndex].options
     for (var i = 0; i < options.length; i++) {
         if (val.includes(options[i].op)) {
             sVal += options[i].op
-            sExe[iIndex].option[i].checked = true
+            sExe[iIndex].options[i].checked = true
         } else {
-            sExe[iIndex].option[i].checked = false
+            sExe[iIndex].options[i].checked = false
         }
     }
     sExe[iIndex].u_answer = sVal
-    if (exType == "single") {
+    if (exType == "0") {
         let iRight = that.data.right
         let iError = that.data.error
         //未做答
@@ -147,7 +152,7 @@ function selectedOptions(e, that) {
                 iError += 1
             }
         }
-        sExe[iIndex].showItem = 1
+        sExe[iIndex].show_item = 1
         sExe[iIndex].isAnswered = true
         that.setData({
             exerises: sExe,
@@ -167,6 +172,6 @@ module.exports = {
     touchEnd: touchEnd,
     collect: collect,
     like: like,
-    selectedOptions:selectedOptions,
+    selectedOptions: selectedOptions,
     submitMultiAnswer: submitMultiAnswer
 }
