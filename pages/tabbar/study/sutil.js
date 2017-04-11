@@ -57,7 +57,7 @@ function touchEnd(e,that) {
                 wx.hideNavigationBarLoading()
                 let iIndex = that.data.index
                 let sExe = that.data.exerises
-                sExe[iIndex].showItem += 1
+                sExe[iIndex].show_item += 1
                 that.setData({
                     exerises: sExe
                 })
@@ -108,7 +108,7 @@ function submitMultiAnswer(e,that) {
             iError += 1
         }
     }
-    sExe[iIndex].showItem = 1
+    sExe[iIndex].show_item = 1
     sExe[iIndex].isAnswered = true
     that.setData({
         exerises: sExe,
@@ -126,17 +126,17 @@ function selectedOptions(e, that) {
     let val = e.detail.value.toString().replace(new RegExp(/(,)/g), '')
 
     let sVal = ""
-    let options = sExe[iIndex].option
+    let options = sExe[iIndex].options
     for (var i = 0; i < options.length; i++) {
         if (val.includes(options[i].op)) {
             sVal += options[i].op
-            sExe[iIndex].option[i].checked = true
+            sExe[iIndex].options[i].checked = true
         } else {
-            sExe[iIndex].option[i].checked = false
+            sExe[iIndex].options[i].checked = false
         }
     }
     sExe[iIndex].u_answer = sVal
-    if (exType == "single") {
+    if (exType == "0") {
         let iRight = that.data.right
         let iError = that.data.error
         //未做答
@@ -147,7 +147,7 @@ function selectedOptions(e, that) {
                 iError += 1
             }
         }
-        sExe[iIndex].showItem = 1
+        sExe[iIndex].show_item = 1
         sExe[iIndex].isAnswered = true
         that.setData({
             exerises: sExe,
