@@ -72,17 +72,18 @@ function touchEnd(e, that, next) {
 }
 
 //收藏题目
-function collect(e, that) {
+function collect(e, that,update) {
     let iIndex = that.data.index
     let sExe = that.data.exerises
     sExe[iIndex].is_coll = !sExe[iIndex].is_coll;
+    typeof update == "function" && update(that)
     that.setData({
         exerises: sExe
     })
 }
 
 //点赞
-function like(e, that) {
+function like(e, that,update) {
     let iIndex = that.data.index
     let sExe = that.data.exerises
     let iFeedIndex = e.currentTarget.dataset.idx
@@ -92,6 +93,8 @@ function like(e, that) {
         sExe[iIndex].feeds[iFeedIndex].agree += 1
     }
     sExe[iIndex].feeds[iFeedIndex].isAgreed = !sExe[iIndex].feeds[iFeedIndex].isAgreed
+    
+    typeof update == "function" && update(that,sExe[iIndex].feeds[iFeedIndex].id)
     that.setData({
         exerises: sExe
     })

@@ -69,13 +69,21 @@ Page({
     sUtil.touchMove(e)
   },
   touchEnd: function (e) {
-    sUtil.touchEnd(e, this,function(that){Post.call(this,that)})
+    sUtil.touchEnd(e, this, function (that) { Post.call(this, that, "NEXT") })
   },
   doLike: function (e) {
-    sUtil.like(e, this)
+    sUtil.like(e, this, function (that) {
+      var jsPost = new util.jsonRow()
+      jsPost.AddCell("ID", that.data.exerises[that.data.index].ID)
+      Post.call(this, that, "LIKE", jsPost)
+    })
   },
   doColl: function (e) {
-    sUtil.collect(e, this)
+    sUtil.collect(e, this, function (that) {
+      var jsPost = new util.jsonRow()
+      jsPost.AddCell("ID", that.data.exerises[that.data.index].ID)
+      Post.call(this, that, "COLL", jsPost)
+    })
   },
   InputComm: function (e) {
     this.setData({
@@ -91,8 +99,6 @@ Page({
   },
   CloseComm: function (e) {
     this.hideModal()
-  },
-  onLoad: function (options) {
   },
   showModal: function () {
     // 显示遮罩层
@@ -115,19 +121,22 @@ Page({
         userInfo: userInfo
       })
     })
-    Post.call(this,this)
+    Post.call(this, this, "LOAD")
   }
 })
 
-function Post(that) {
-  var jsPost = new util.jsonRow()
+function Post(that, action, data) {
+  var jsPost = data || new util.jsonRow()
   jsPost.AddCell("PAGE", that.data.PAGE)
+  jsPost.AddCell("ACTION", action)
   util._post(app.globalData.url, jsPost, function (res) {
     if (res && res.data && res.data.data) {
       //更新数据
-      that.setData({
-        exerises: that.data.exerises.concat(res.data.data.exerises)
-      })
+      if (jsPost.arrjson.ACTION == "LOAD" || jsPost.arrjson.ACTION == "NEXT") {
+        that.setData({
+          exerises: that.data.exerises.concat(res.data.data.exerises)
+        })
+      }
     }
     else {
       console.log('error')

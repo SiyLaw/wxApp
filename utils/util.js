@@ -46,7 +46,7 @@ function _get(url, success, fail) {
 * fail 失败的回调
 */
 function _post_json(url, jsPost, success, fail) {
-    console.log("----_post--start-------");
+    //console.log("----_post--start-------");
     wx.showToast({
         title: "正在加载...",
         icon: "loading",
@@ -67,9 +67,11 @@ function _post_json(url, jsPost, success, fail) {
             if (res.data.msg == "err") {
                 console.log(res.data.data);
             } else {
-                wx.showToast({
-                    title: res.data.msg || "错误"
-                })
+                if (res.data.msg != "") {
+                    wx.showToast({
+                        title: res.data.msg || "错误"
+                    })
+                }
                 success(res);
             }
         },
