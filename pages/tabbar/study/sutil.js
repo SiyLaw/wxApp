@@ -76,7 +76,7 @@ function collect(e, that,update) {
     let iIndex = that.data.index
     let sExe = that.data.exerises
     sExe[iIndex].is_coll = !sExe[iIndex].is_coll;
-    typeof update == "function" && update(that)
+    typeof update == "function" && update(that,sExe[iIndex].id)
     that.setData({
         exerises: sExe
     })

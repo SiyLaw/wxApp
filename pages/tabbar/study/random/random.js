@@ -7,7 +7,7 @@ Page({
     userInfo: {},
     PAGE: "RANDOM",
     exerises: [{
-      ID: 'ID_TITLE1'
+      id: 'ID_TITLE1'
       , type: '0'
       , title: '下列有关公民权利能力的表述，有哪一项是错误的？'
       , options: [{ op: 'A', text: '权利能力是公民构成法律关系主体的一种资格' }
@@ -32,7 +32,7 @@ Page({
       //是否收藏
       , is_coll: false
     }, {
-      ID: 'ID_TITLE2'
+      id: 'ID_TITLE2'
       , type: '1'
       , title: '学者们认为，法律不是万能的，其作用是有限的，其理由在于：①法律重视程序，不讲效率；②法律调整外在行为，不干预人的思想观念；③法律强调稳定性，避免灵活性；④法律反映客观规律，不体现人的意志。下列哪些选项是正确的？'
       , options: [{ op: 'A', text: '④③①' }
@@ -72,16 +72,16 @@ Page({
     sUtil.touchEnd(e, this, function (that) { Post.call(this, that, "NEXT") })
   },
   doLike: function (e) {
-    sUtil.like(e, this, function (that) {
+    sUtil.like(e, this, function (that,sId) {
       var jsPost = new util.jsonRow()
-      jsPost.AddCell("ID", that.data.exerises[that.data.index].ID)
+      jsPost.AddCell("ID", sId)
       Post.call(this, that, "LIKE", jsPost)
     })
   },
   doColl: function (e) {
-    sUtil.collect(e, this, function (that) {
+    sUtil.collect(e, this, function (that,sId) {
       var jsPost = new util.jsonRow()
-      jsPost.AddCell("ID", that.data.exerises[that.data.index].ID)
+      jsPost.AddCell("ID", sId)
       Post.call(this, that, "COLL", jsPost)
     })
   },
