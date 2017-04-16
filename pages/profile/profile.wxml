@@ -5,6 +5,7 @@
 <view class="container">
   <template is="pagehead" data="{{avatarUrl: userInfo.avatarUrl,nickName:userInfo.nickName}}" />
   <form catchsubmit="formSubmit">
+    <input style="display:none;" name="HEAD_IMG" type="text" value="{{HEAD_IMG}}" />
     <view class="page-section">
       <view class="weui-cells__title">基本信息</view>
       <view class="weui-cells weui-cells_after-title">
@@ -14,7 +15,7 @@
           </view>
           <view class="weui-cell__bd">
             <view class="weui-input">
-              <input class="weui-input" name="USER_CDE" disabled="{{MODE!='ADD'?true:false}}" bindinput="bindKeyInput" placeholder="" value="{{USER_CDE}}" auto-focus bindchange="checkUser" />
+              <input class="weui-input" name="USER_CDE" disabled="{{MODE!='ADD'?true:false}}" placeholder="" value="{{USER_CDE}}" auto-focus bindchange="checkUser" />
             </view>
           </view>
         </view>
@@ -24,11 +25,11 @@
           </view>
           <view class="weui-cell__bd">
             <view class="weui-input">
-              <radio-group name="radio" name="USER_SEX" value="{{USER_SEX}}" bindchange="bindKeyInput">
+              <radio-group name="radio" name="USER_SEX" value="{{USER_SEX}}">
                 <label>
                   <radio value="male" checked="{{USER_SEX=='male' ? true:false}}" disabled="{{MODE=='VIEW'?true:false}}" />男</label>
                 <label>
-                  <radio value="female" checked="{{USER_SEX=='female' ? true:false}}"  disabled="{{MODE=='VIEW'?true:false}}" />女</label>
+                  <radio value="female" checked="{{USER_SEX=='female' ? true:false}}" disabled="{{MODE=='VIEW'?true:false}}" />女</label>
               </radio-group>
             </view>
           </view>
@@ -39,7 +40,7 @@
           </view>
           <view class="weui-cell__bd">
             <view class="weui-input">
-              <input class="weui-input" name="TEL" type="number" disabled="{{MODE=='VIEW'?true:false}}" value="{{TEL}}" maxlength="11" bindinput="bindKeyInput" placeholder="" />
+              <input class="weui-input" name="TEL" type="number" disabled="{{MODE=='VIEW'?true:false}}" value="{{TEL}}" maxlength="11" placeholder="" />
             </view>
           </view>
         </view>
@@ -49,7 +50,7 @@
           </view>
           <view class="weui-cell__bd">
             <view class="weui-input">
-              <input class="weui-input" name="E_MAIL" type="text" disabled="{{MODE=='VIEW'?true:false}}" value="{{E_MAIL}}" bindinput="bindKeyInput" placeholder="" />
+              <input class="weui-input" name="E_MAIL" type="text" disabled="{{MODE=='VIEW'?true:false}}" value="{{E_MAIL}}" placeholder="" />
             </view>
           </view>
         </view>

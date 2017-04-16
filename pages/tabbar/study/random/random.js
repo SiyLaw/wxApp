@@ -21,6 +21,10 @@ Page({
       , isAnswered: false
       //标签、关键字
       , tag: [{ op: '2016真题' }, { op: '卷一内容' }, { op: '宪法' }]
+      //关联法条
+      , rlaw: [{ id: 'id1', op: 'test1', de: 'test2', ve: 'test3', co: 'test4' }, { id: 'id2', op: 'tse1', de: 'tse1', ve: 'tse1', co: 'tse1' }]
+      //关联考纲
+      , rsub: [{ id: 'id1', year: '2017', op: 'sfsd2' }, { id: 'id2', year: '2017', op: 'sfsd2' }]
       //当前显示项
       , show_item: 0
       //解析
@@ -72,14 +76,14 @@ Page({
     sUtil.touchEnd(e, this, function (that) { Post.call(this, that, "NEXT") })
   },
   doLike: function (e) {
-    sUtil.like(e, this, function (that,sId) {
+    sUtil.like(e, this, function (that, sId) {
       var jsPost = new util.jsonRow()
       jsPost.AddCell("ID", sId)
       Post.call(this, that, "LIKE", jsPost)
     })
   },
   doColl: function (e) {
-    sUtil.collect(e, this, function (that,sId) {
+    sUtil.collect(e, this, function (that, sId) {
       var jsPost = new util.jsonRow()
       jsPost.AddCell("ID", sId)
       Post.call(this, that, "COLL", jsPost)
@@ -95,6 +99,25 @@ Page({
     this.showModal()
   },
   SubmitComm: function (e) {
+    var that = this
+    let iIndex = that.data.index
+    let sExe = that.data.exerises
+    var sId = sExe[iIndex].qid
+    if (!sId) {
+      wx.showToast({
+        title: '前两题无法评论',
+        duration: 1000
+      })
+    } else {
+      var jsPost = new util.jsonRow()
+      jsPost.AddCell("ID", sId)
+      jsPost.AddCell("TEXT", that.data.comm_text)
+      Post.call(this, that, "COMM", jsPost)
+    }
+    this.setData({
+      comm_text: '',
+      comm_len: 0
+    })
     this.hideModal()
   },
   CloseComm: function (e) {

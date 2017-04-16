@@ -47,11 +47,12 @@ function _get(url, success, fail) {
 */
 function _post_json(url, jsPost, success, fail) {
     //console.log("----_post--start-------");
-    wx.showToast({
-        title: "正在加载...",
-        icon: "loading",
-        duration: 5000
-    })
+    // wx.showToast({
+    //     title: "正在加载...",
+    //     icon: "loading",
+    //     duration: 5000
+    // })
+    wx.showNavigationBarLoading()
     var user = wx.getStorageSync('user')
     if (jsPost == null) jsPost = new jsonRow();
     jsPost.AddCell("OPEN_ID", user.openid)
@@ -63,7 +64,8 @@ function _post_json(url, jsPost, success, fail) {
         method: 'POST',
         data: jsPost.GetStr(),
         success: function (res) {
-            wx.hideToast()
+            //wx.hideToast()
+            wx.hideNavigationBarLoading()
             if (res.data.msg == "err") {
                 console.log(res.data.data);
             } else {
