@@ -7,13 +7,16 @@ Page({
   data: {
     background: [{
       id: "item-1",
-      text: "item-1"
+      text: "item-1",
+      url:"https://www.mssco.net/wx/images/1.png"
     }, {
       id: "item-2",
-      text: "item-2"
+      text: "item-2",
+      url:""
     }, {
       id: "item-3",
-      text: "item-3"
+      text: "item-3",
+      url:""
     }],
     indicatorDots: true,
     autoplay: true,

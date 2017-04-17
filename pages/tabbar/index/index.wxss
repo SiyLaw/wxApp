@@ -1,9 +1,13 @@
 /**index.wxss**/
 @import "../../../common/lib/weui.wxss";
-
+.swiper{
+  height: 150rpx;
+  width: 100%;
+}
 .swiper-item {
   display: block;
   height: 150px;
+  width: 100%;
   text-align: center;
 }
 
