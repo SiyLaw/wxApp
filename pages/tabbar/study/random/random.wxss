@@ -5,8 +5,28 @@ page {
   height: 100%;
 }
 
-.op_text {
+.text32 {
+  font-size: 32rpx;
+}
+
+.text28 {
   font-size: 28rpx;
+}
+
+.text24 {
+  font-size: 24rpx;
+}
+
+.textblock {
+  display: block;
+  text-indent: 40rpx;
+}
+
+.padding10 {
+  padding: 10px 10px;
+  margin: 7rpx 0 6rpx 0;
+  background: #fff;
+  border-top: 1px solid #eee;
 }
 
 .que-tag {
@@ -21,7 +41,6 @@ page {
   margin: 0 5rpx;
   background: #eef5f8;
   color: #2186e0;
-  font-size: 24rpx;
   vertical-align: middle;
 }
 
@@ -34,7 +53,7 @@ page {
   box-sizing: border-box;
 }
 
-.exerises_type {
+.text_label {
   width: 100rpx;
   font-size: 24rpx;
   border: 1rpx solid #2186e0;
@@ -43,23 +62,21 @@ page {
   margin-right: 10rpx;
 }
 
-.exerises_title {
-  font-size: 32rpx;
-  text-indent: 50rpx;
-  word-break: break-all;
+.section_head {
+  background: linear-gradient(to top right, #fff, #eee, #fff);
 }
 
 .section_title {
-  border-left: 4rpx solid #2186e0;
+  border-left: 6rpx solid #2186e0;
   padding: 6rpx 4rpx;
-  font-size: 24rpx;
+  font-size: 28rpx;
   font-weight: bolder;
   color: cornflowerblue;
 }
 
-.comments-section{  
-  height:470rpx;
-  width:97%;
+.comments-section {
+  height: 470rpx;
+  width: 97%;
   margin: 20rpx auto;
   border-radius: 5rpx;
   background-color: #fff;
@@ -73,22 +90,23 @@ page {
   color: #5b5b5b;
 }
 
-.cmts_actions{
+.cmts_actions {
   font-size: 28rpx;
   text-align: center;
-  margin-top:20rpx; 
+  margin-top: 20rpx;
 }
-.cmts_actions a{
-  width:50rpx;
+
+.cmts_actions a {
+  width: 50rpx;
   border: 1rpx solid #1aad19;
   border-radius: 5rpx;
   padding: 10rpx 10rpx;
-  margin:0 10rpx; 
+  margin: 0 10rpx;
 }
 
 .cmts_content {
   font-size: 28rpx;
-  position:relative;
+  position: relative;
   height: 330rpx;
   width: 100%;
   padding: 5rpx 5rpx;
@@ -101,7 +119,7 @@ page {
 .page-bottom {
   position: fixed;
   bottom: 0rpx;
-  width: 100%;
+  width: 100%; 
 }
 
 .page-bottom image {
@@ -128,7 +146,7 @@ page {
   width: 100%;
   height: 80rpx;
   background: #f1f1f1;
-  color: #323232;
+  color: #666666;
   font-size: 28rpx;
   line-height: 80rpx;
   box-shadow: 0 -2rpx 2rpx #bebebe;
@@ -153,29 +171,22 @@ page {
   box-shadow: 0 2px 5px #eee;
 }
 
-.page-section .feed-item .feed-source {
-  width: 690rpx;
-  left: 0;
-  height: 50rpx;
-}
-
 .page-section .feed-item .feed-source .avatar {
   position: relative;
   display: inline-block;
 }
 
-.page-section .feed-item .feed-source a {
-  display: inline-block;
-  height: 40rpx;
-}
-
 .page-section .feed-item .feed-source .avatar image {
   /*position: absolute;*/
   display: inline-block;
-  width: 45rpx;
-  height: 45rpx;
-  border-radius: 45rpx;
-  top: 10rpx;
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 40rpx;
+  top: 0rpx;
+  margin-right: 10rpx;
+  vertical-align: middle;
+}
+.slabel {
   vertical-align: middle;
 }
 
@@ -185,16 +196,8 @@ page {
   height: 40rpx;
   line-height: 40rpx;
   vertical-align: middle;
-  margin: 0 0 0 15rpx;
   color: #a0acac;
   font-size: 26rpx;
-}
-
-.page-section .feed-item .feed-source .item-more {
-  display: inline-block;
-  width: 40rpx;
-  height: 45rpx;
-  float: right;
 }
 
 .page-section .feed-item .feed-content {
@@ -219,7 +222,7 @@ page {
 .page-section .feed-item .feed-content .answer-actions {
   width: 690rpx;
   padding: 10rpx 0 0;
-  color: #a0acac;
+  color: #666666;
 }
 
 .page-section .feed-item .feed-content .answer-actions view {
@@ -244,12 +247,6 @@ page {
   margin-bottom: 90rpx;
 }
 
-.anal-txt {
-  font-size: 24rpx;
-  text-indent: 40rpx;
-  display: block;
-}
-
 .answer_list {
   padding-left: 40rpx;
   font-size: 26rpx;
@@ -258,24 +255,25 @@ page {
 }
 
 .commodity_screen {
- width: 100%;
- height: 100%;
- position: fixed;
- top: 0;
- left: 0;
- background: #e0e0e0;
- opacity: 1;
- overflow: hidden;
- z-index: 1000;
- margin: auto 0;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #e0e0e0;
+  opacity: 1;
+  overflow: hidden;
+  z-index: 1000;
+  margin: auto 0;
 }
+
 .commodity_attr_box {
- width: 100%;
- overflow: hidden;
- position: fixed;
- bottom: 0;
- left: 0;
- z-index: 2000;
- background: #fff;
- padding-top: 20rpx;
+  width: 100%;
+  overflow: hidden;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 2000;
+  background: #fff;
+  padding-top: 20rpx;
 }

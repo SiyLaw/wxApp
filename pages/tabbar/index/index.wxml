@@ -6,8 +6,9 @@
   <view class="page-section page-section-gap">
     <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
       <block wx:for="{{background}}" wx:key="item.id">
-        <swiper-item>
-          <view class="swiper-item {{item}}">{{item.text}}</view>
+        <swiper-item>        
+          <label class="swiper-text">{{item.text}}</label>
+          <image src="{{item.url}}" class="swiper-item" mode="aspectFill"/>
         </swiper-item>
       </block>
     </swiper>

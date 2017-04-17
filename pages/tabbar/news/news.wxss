@@ -1,2 +1,113 @@
 /* pages/tabbar/study/news.wxss */
 @import "../../../common/lib/weui.wxss";
+
+.serach{
+    margin-top: 15rpx;
+    margin-left: 25rpx;
+    margin-right: 25rpx;
+    padding-left: 25rpx;
+    background-color: #F3F3F3;
+    border-radius: 12rpx;
+    margin-bottom: 25rpx;
+
+}
+.serach_view_show{
+    display: block;
+    color: #808080;
+    margin-top: 15rpx;
+    margin-left: 25rpx;
+    margin-right: 25rpx;
+    padding-left: 275rpx;
+    background-color: #F3F3F3;
+    border-radius: 12rpx;
+}
+
+
+.exerises-feed {
+  padding: 0;
+  font-size: 14rpx;
+  background: #f0f4f3;
+  color: #000;
+}
+
+.page-section .feed-item {
+  width: 690rpx;
+  padding: 30rpx 30rpx 20rpx;
+  margin: 7rpx 0 6rpx 0;
+  background: #fff;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  box-shadow: 0 2px 5px #eee;
+}
+
+.page-section .feed-item .feed-source .avatar {
+  position: relative;
+  display: inline-block;
+}
+
+.page-section .feed-item .feed-source .avatar image {
+  /*position: absolute;*/
+  display: inline-block;
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 40rpx;
+  top: 0rpx;
+  margin-right: 10rpx;
+  vertical-align: middle;
+}
+.slabel {
+  vertical-align: middle;
+}
+
+.page-section .feed-item .feed-source {
+  /*position: absolute;*/
+  display: inline-block;
+  height: 40rpx;
+  line-height: 40rpx;
+  vertical-align: middle;
+  color: #a0acac;
+  font-size: 26rpx;
+}
+
+.page-section .feed-item .feed-content {
+  padding: 10rpx 0 0 0;
+}
+
+.page-section .feed-item .feed-content .question text {
+  font-size: 28rpx;
+  font-weight: 600px;
+  line-height: 40rpx;
+  text-space: 5rpx;
+}
+
+.page-section .feed-item .feed-content .answer-body {
+  padding: 10rpx 0 0 0;
+  /*height: 10rpx;*/
+  font-size: 24rpx;
+  line-height: 28rpx;
+  color: #5b5b5b;
+}
+
+.page-section .feed-item .feed-content .answer-actions {
+  width: 690rpx;
+  padding: 10rpx 0 0;
+  color: #666666;
+}
+
+.page-section .feed-item .feed-content .answer-actions view {
+  display: inline-block;
+  vertical-align: text-bottom;
+  padding: 0 10rpx 0 0;
+  font-size: 24rpx;
+}
+
+.page-section .feed-item .feed-content .answer-actions .dot ::after {
+  padding: 0 0 0 10rpx;
+  content: "•";
+}
+
+.page-section .feed-item .feed-content .answer-actions image {
+  width: 36rpx;
+  height: 36rpx;
+  margin-bottom: -10rpx;
+}

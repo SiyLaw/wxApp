@@ -7,13 +7,16 @@ Page({
   data: {
     background: [{
       id: "item-1",
-      text: "item-1"
+      text: "司煜法务平台",
+      url:"https://www.mssco.net/wx/images/101.png"
     }, {
       id: "item-2",
-      text: "item-2"
+      text: "名师析题",
+      url:"https://www.mssco.net/wx/images/102.png"
     }, {
       id: "item-3",
-      text: "item-3"
+      text: "24小时在线服务",
+      url:"https://www.mssco.net/wx/images/103.png"
     }],
     indicatorDots: true,
     autoplay: true,
