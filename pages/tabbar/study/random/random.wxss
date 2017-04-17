@@ -5,12 +5,28 @@ page {
   height: 100%;
 }
 
-.op_text {
+.text32 {
+  font-size: 32rpx;
+}
+.text28 {
   font-size: 28rpx;
+}
+.text24 {
+  font-size: 24rpx;
+}
+.textblock{
+  display: block;
+  text-indent: 40rpx;
+}
+.padding10{
+  padding: 10px 10px;
+  margin: 7rpx 0 6rpx 0;
+  background: #fff;
+  border-top: 1px solid #eee;
 }
 
 .que-tag {
-  border-top: 1px solid #eee;
+  border-top: 1px solid #eee;  
   padding: 10rpx 10rpx;
 }
 
@@ -21,7 +37,6 @@ page {
   margin: 0 5rpx;
   background: #eef5f8;
   color: #2186e0;
-  font-size: 24rpx;
   vertical-align: middle;
 }
 
@@ -34,7 +49,7 @@ page {
   box-sizing: border-box;
 }
 
-.exerises_type {
+.text_label {
   width: 100rpx;
   font-size: 24rpx;
   border: 1rpx solid #2186e0;
@@ -43,11 +58,6 @@ page {
   margin-right: 10rpx;
 }
 
-.exerises_title {
-  font-size: 32rpx;
-  text-indent: 50rpx;
-  word-break: break-all;
-}
 
 .section_title {
   border-left: 4rpx solid #2186e0;
@@ -242,12 +252,6 @@ page {
 
 .exerises-feed-bottom {
   margin-bottom: 90rpx;
-}
-
-.anal-txt {
-  font-size: 24rpx;
-  text-indent: 40rpx;
-  display: block;
 }
 
 .answer_list {

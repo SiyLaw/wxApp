@@ -7,7 +7,7 @@ Page({
     userInfo: {},
     PAGE: "RANDOM",
     exerises: [{
-      ID: 'ID_TITLE1'
+      id: 'ID_TITLE1'
       , type: '0'
       , title: '下列有关公民权利能力的表述，有哪一项是错误的？'
       , options: [{ op: 'A', text: '权利能力是公民构成法律关系主体的一种资格' }
@@ -21,6 +21,10 @@ Page({
       , isAnswered: false
       //标签、关键字
       , tag: [{ op: '2016真题' }, { op: '卷一内容' }, { op: '宪法' }]
+      //关联法条
+      , rlaw: [{ id: 'id1', op: 'test1', de: 'test2', ve: 'test3', co: 'test4' }, { id: 'id2', op: 'tse1', de: 'tse1', ve: 'tse1', co: 'tse1' }]
+      //关联考纲
+      , rsub: [{ id: 'id1', year: '2017', op: 'sfsd2' }, { id: 'id2', year: '2017', op: 'sfsd2' }]
       //当前显示项
       , show_item: 0
       //解析
@@ -32,7 +36,7 @@ Page({
       //是否收藏
       , is_coll: false
     }, {
-      ID: 'ID_TITLE2'
+      id: 'ID_TITLE2'
       , type: '1'
       , title: '学者们认为，法律不是万能的，其作用是有限的，其理由在于：①法律重视程序，不讲效率；②法律调整外在行为，不干预人的思想观念；③法律强调稳定性，避免灵活性；④法律反映客观规律，不体现人的意志。下列哪些选项是正确的？'
       , options: [{ op: 'A', text: '④③①' }
@@ -69,13 +73,21 @@ Page({
     sUtil.touchMove(e)
   },
   touchEnd: function (e) {
-    sUtil.touchEnd(e, this,function(that){Post.call(this,that)})
+    sUtil.touchEnd(e, this, function (that) { Post.call(this, that, "NEXT") })
   },
   doLike: function (e) {
-    sUtil.like(e, this)
+    sUtil.like(e, this, function (that, sId) {
+      var jsPost = new util.jsonRow()
+      jsPost.AddCell("ID", sId)
+      Post.call(this, that, "LIKE", jsPost)
+    })
   },
   doColl: function (e) {
-    sUtil.collect(e, this)
+    sUtil.collect(e, this, function (that, sId) {
+      var jsPost = new util.jsonRow()
+      jsPost.AddCell("ID", sId)
+      Post.call(this, that, "COLL", jsPost)
+    })
   },
   InputComm: function (e) {
     this.setData({
@@ -87,12 +99,29 @@ Page({
     this.showModal()
   },
   SubmitComm: function (e) {
+    var that = this
+    let iIndex = that.data.index
+    let sExe = that.data.exerises
+    var sId = sExe[iIndex].qid
+    if (!sId) {
+      wx.showToast({
+        title: '前两题无法评论',
+        duration: 1000
+      })
+    } else {
+      var jsPost = new util.jsonRow()
+      jsPost.AddCell("ID", sId)
+      jsPost.AddCell("TEXT", that.data.comm_text)
+      Post.call(this, that, "COMM", jsPost)
+    }
+    this.setData({
+      comm_text: '',
+      comm_len: 0
+    })
     this.hideModal()
   },
   CloseComm: function (e) {
     this.hideModal()
-  },
-  onLoad: function (options) {
   },
   showModal: function () {
     // 显示遮罩层
@@ -115,19 +144,22 @@ Page({
         userInfo: userInfo
       })
     })
-    Post.call(this,this)
+    Post.call(this, this, "LOAD")
   }
 })
 
-function Post(that) {
-  var jsPost = new util.jsonRow()
+function Post(that, action, data) {
+  var jsPost = data || new util.jsonRow()
   jsPost.AddCell("PAGE", that.data.PAGE)
+  jsPost.AddCell("ACTION", action)
   util._post(app.globalData.url, jsPost, function (res) {
     if (res && res.data && res.data.data) {
       //更新数据
-      that.setData({
-        exerises: that.data.exerises.concat(res.data.data.exerises)
-      })
+      if (jsPost.arrjson.ACTION == "LOAD" || jsPost.arrjson.ACTION == "NEXT") {
+        that.setData({
+          exerises: that.data.exerises.concat(res.data.data.exerises)
+        })
+      }
     }
     else {
       console.log('error')

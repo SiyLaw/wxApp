@@ -12,28 +12,8 @@ Page({
     USER_SCORE: "",
     TEL: "",
     E_MAIL: "",
+    HEAD_IMG: "",
     BTN_STATUS: true
-  },
-  bindKeyInput: function (e) {
-    if (e.target.id == "USER_CDE") {
-      this.setData({
-        USER_CDE: e.detail.value
-      })
-    } else if (e.target.id == "USER_SEX") {
-      this.setData({
-        USER_SEX: e.detail.value
-      })
-    }
-    else if (e.target.id == "TEL") {
-      this.setData({
-        TEL: e.detail.value
-      })
-    }
-    else if (e.target.id == "E_MAIL") {
-      this.setData({
-        E_MAIL: e.detail.value
-      })
-    }
   },
   checkUser: function (e) {
     console.log(e)
@@ -73,7 +53,8 @@ Page({
     app.getUserInfo(function (userInfo) {
       //更新数据
       that.setData({
-        userInfo: userInfo
+        userInfo: userInfo,
+        HEAD_IMG: userInfo.avatarUrl
       })
     })
 
