@@ -8,17 +8,21 @@ page {
 .text32 {
   font-size: 32rpx;
 }
+
 .text28 {
   font-size: 28rpx;
 }
+
 .text24 {
   font-size: 24rpx;
 }
-.textblock{
+
+.textblock {
   display: block;
   text-indent: 40rpx;
 }
-.padding10{
+
+.padding10 {
   padding: 10px 10px;
   margin: 7rpx 0 6rpx 0;
   background: #fff;
@@ -26,7 +30,7 @@ page {
 }
 
 .que-tag {
-  border-top: 1px solid #eee;  
+  border-top: 1px solid #eee;
   padding: 10rpx 10rpx;
 }
 
@@ -58,18 +62,21 @@ page {
   margin-right: 10rpx;
 }
 
+.section_head {
+  background: linear-gradient(to top right, #fff, #eee, #fff);
+}
 
 .section_title {
-  border-left: 4rpx solid #2186e0;
+  border-left: 6rpx solid #2186e0;
   padding: 6rpx 4rpx;
-  font-size: 24rpx;
+  font-size: 28rpx;
   font-weight: bolder;
   color: cornflowerblue;
 }
 
-.comments-section{  
-  height:470rpx;
-  width:97%;
+.comments-section {
+  height: 470rpx;
+  width: 97%;
   margin: 20rpx auto;
   border-radius: 5rpx;
   background-color: #fff;
@@ -83,22 +90,23 @@ page {
   color: #5b5b5b;
 }
 
-.cmts_actions{
+.cmts_actions {
   font-size: 28rpx;
   text-align: center;
-  margin-top:20rpx; 
+  margin-top: 20rpx;
 }
-.cmts_actions a{
-  width:50rpx;
+
+.cmts_actions a {
+  width: 50rpx;
   border: 1rpx solid #1aad19;
   border-radius: 5rpx;
   padding: 10rpx 10rpx;
-  margin:0 10rpx; 
+  margin: 0 10rpx;
 }
 
 .cmts_content {
   font-size: 28rpx;
-  position:relative;
+  position: relative;
   height: 330rpx;
   width: 100%;
   padding: 5rpx 5rpx;
@@ -186,6 +194,7 @@ page {
   height: 45rpx;
   border-radius: 45rpx;
   top: 10rpx;
+  margin-right: 10rpx;
   vertical-align: middle;
 }
 
@@ -262,24 +271,25 @@ page {
 }
 
 .commodity_screen {
- width: 100%;
- height: 100%;
- position: fixed;
- top: 0;
- left: 0;
- background: #e0e0e0;
- opacity: 1;
- overflow: hidden;
- z-index: 1000;
- margin: auto 0;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #e0e0e0;
+  opacity: 1;
+  overflow: hidden;
+  z-index: 1000;
+  margin: auto 0;
 }
+
 .commodity_attr_box {
- width: 100%;
- overflow: hidden;
- position: fixed;
- bottom: 0;
- left: 0;
- z-index: 2000;
- background: #fff;
- padding-top: 20rpx;
+  width: 100%;
+  overflow: hidden;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 2000;
+  background: #fff;
+  padding-top: 20rpx;
 }

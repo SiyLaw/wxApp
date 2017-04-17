@@ -36,35 +36,38 @@
     </view>
   </view>
   <view class="page-section" hidden="{{exerises[index].show_item >= 1 ? '' : true}}">
-    <label class="section_title">析题</label>
-    <label class="answer_list">{{exerises[index].answer}}</label>
-    <view wx:if="{{exerises[index].tag.length > 0}}"  class="que-tag">
+    <view class="section_head">
+      <label class="section_title">析题</label>
+      <label class="answer_list">{{exerises[index].answer}}</label>
+    </view>
+    <view wx:if="{{exerises[index].tag.length > 0}}" class="que-tag">
       <text wx:for="{{exerises[index].tag}}" wx:key="*this" class="tag text24">{{item.op}}</text>
     </view>
     <view class="padding10">
       <label class="text_label">解析</label>
       <label class="text24">{{exerises[index].desc}}</label>
     </view>
-    <view wx:if="{{exerises[index].rlaw.length > 0}}"  class="padding10">
+    <view wx:if="{{exerises[index].rlaw.length > 0}}" class="padding10">
       <label class="text_label">关联法条</label>
       <label wx:for="{{exerises[index].rlaw}}" wx:key="*this" class="text24 textblock">{{(index+1)+'、'+item.op+':'+item.co}}</label>
-
     </view>
     <view wx:if="{{exerises[index].rsub.length > 0}}" class="padding10">
       <label class="text_label">关联考纲</label>
-     <label wx:for="{{exerises[index].rsub}}" wx:key="*this" class="text24 textblock">{{(index+1)+'、'+item.year+':'+item.op}}</label>
+      <label wx:for="{{exerises[index].rsub}}" wx:key="*this" class="text24 textblock">{{(index+1)+'、'+item.year+':'+item.op}}</label>
     </view>
   </view>
   <view class="page-section" hidden="{{exerises[index].show_item >= 1 ? '' : true}}">
-    <label class="section_title">讨论</label>
+    <view class="section_head">
+      <label class="section_title">讨论</label>
+    </view>
     <view wx:for="{{exerises[index].feeds}}" wx:for-index="idx" wx:key="{{id}}" class="exerises-feed">
       <view class="feed-item">
         <view class="feed-source">
           <a class="" bindTap="">
             <view class="avatar">
               <image src="{{item.head_img}}"></image>
+              <text>{{item.user}}</text>
             </view>
-            <text>{{item.user}}</text>
           </a> 
         </view>
         <view class="feed-content">
