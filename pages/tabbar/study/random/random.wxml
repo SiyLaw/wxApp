@@ -63,12 +63,10 @@
     <view wx:for="{{exerises[index].feeds}}" wx:for-index="idx" wx:key="{{id}}" class="exerises-feed">
       <view class="feed-item">
         <view class="feed-source">
-          <a class="" bindTap="">
-            <view class="avatar">
-              <image src="{{item.head_img}}"></image>
-              <text>{{item.user}}</text>
-            </view>
-          </a> 
+          <view class="avatar">
+            <image src="{{item.head_img}}"></image>
+            <label class="slabel">{{item.user}}</label>
+          </view>
         </view>
         <view class="feed-content">
           <view class="answer-body">
@@ -76,10 +74,10 @@
               <text class="answer-txt">{{item.feed_txt}}</text>
             </view>
             <view class="answer-actions">
-              <view class="time dot">
+              <view class="dot">
                 <a>{{item.time}}</a> 
               </view>
-              <view class="comments dot">
+              <view>
                 <a>
                   <image src="/image/Comments.png"></image>回复{{item.comments}}</a> 
               </view>

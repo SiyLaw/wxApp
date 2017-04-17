@@ -2,7 +2,15 @@
 var app = getApp();
 Page({
   data: {
-    headinfo: {}
+    headinfo: {},
+    exerises: [{
+      id: 'ID_TITLE1'
+      //评论
+      , feeds: [{ id: '1', user: 'Lucy', head_img: '/image/Female50.png', feed_txt: '不小心选错了... ', isAgreed: false, agree: 2, comments: 4, time: '1天前' },
+      { id: '2', user: 'Jack', head_img: '/image/Male50.png', feed_txt: '不小心选错了... ', isAgreed: true, agree: 2, comments: 4, time: '2个星期前' },
+      { id: '3', user: 'Jim', head_img: '/image/Male50.png', feed_txt: '不小心选错了... ', isAgreed: false, agree: 2, comments: 4, time: '1个月前' }]
+    }],
+    index: 0
   },
   onLoad: function (options) {
     //调用应用实例的方法获取全局数据

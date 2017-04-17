@@ -5,10 +5,16 @@
   width: 100%;
 }
 .swiper-item {
-  display: block;
   height: 150px;
   width: 100%;
   text-align: center;
+}
+.swiper-text{
+  position:absolute;
+  left:10%;
+  top:12%;
+  text-shadow: #eee 0 2rpx 0;
+  color: #336699;
 }
 
 .flex-wrp {

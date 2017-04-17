@@ -119,7 +119,7 @@ page {
 .page-bottom {
   position: fixed;
   bottom: 0rpx;
-  width: 100%;
+  width: 100%; 
 }
 
 .page-bottom image {
@@ -146,7 +146,7 @@ page {
   width: 100%;
   height: 80rpx;
   background: #f1f1f1;
-  color: #323232;
+  color: #666666;
   font-size: 28rpx;
   line-height: 80rpx;
   box-shadow: 0 -2rpx 2rpx #bebebe;
@@ -171,30 +171,22 @@ page {
   box-shadow: 0 2px 5px #eee;
 }
 
-.page-section .feed-item .feed-source {
-  width: 690rpx;
-  left: 0;
-  height: 50rpx;
-}
-
 .page-section .feed-item .feed-source .avatar {
   position: relative;
   display: inline-block;
 }
 
-.page-section .feed-item .feed-source a {
-  display: inline-block;
-  height: 40rpx;
-}
-
 .page-section .feed-item .feed-source .avatar image {
   /*position: absolute;*/
   display: inline-block;
-  width: 45rpx;
-  height: 45rpx;
-  border-radius: 45rpx;
-  top: 10rpx;
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 40rpx;
+  top: 0rpx;
   margin-right: 10rpx;
+  vertical-align: middle;
+}
+.slabel {
   vertical-align: middle;
 }
 
@@ -204,16 +196,8 @@ page {
   height: 40rpx;
   line-height: 40rpx;
   vertical-align: middle;
-  margin: 0 0 0 15rpx;
   color: #a0acac;
   font-size: 26rpx;
-}
-
-.page-section .feed-item .feed-source .item-more {
-  display: inline-block;
-  width: 40rpx;
-  height: 45rpx;
-  float: right;
 }
 
 .page-section .feed-item .feed-content {
@@ -238,7 +222,7 @@ page {
 .page-section .feed-item .feed-content .answer-actions {
   width: 690rpx;
   padding: 10rpx 0 0;
-  color: #a0acac;
+  color: #666666;
 }
 
 .page-section .feed-item .feed-content .answer-actions view {
