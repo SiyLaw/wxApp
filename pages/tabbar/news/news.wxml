@@ -9,9 +9,6 @@
     </view>
   </view>
   <view class="page-section">
-    <view class="section_head">
-      <label class="section_title">讨论</label>
-    </view>
     <view wx:for="{{exerises[index].feeds}}" wx:for-index="idx" wx:key="{{id}}" class="exerises-feed">
       <view class="feed-item">
         <view class="feed-source">

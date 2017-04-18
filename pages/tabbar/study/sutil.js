@@ -18,6 +18,7 @@ function touchMove(e) {
 function touchEnd(e, that, next) {
     var diffX = Math.abs(endDot.x - startDot.x)
     var diffY = Math.abs(endDot.y - startDot.y)
+    console.log(diffX,diffY,diffX - diffY)
     if (diffX - diffY > 0) {
         if (endDot.x - startDot.x <= -100) {
             //向右滑动
