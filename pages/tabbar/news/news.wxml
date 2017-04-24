@@ -9,35 +9,17 @@
     </view>
   </view>
   <view class="page-section">
-    <view wx:for="{{exerises[index].feeds}}" wx:for-index="idx" wx:key="{{id}}" class="exerises-feed">
-      <view class="feed-item">
-        <view class="feed-source">
-          <view class="avatar">
-            <image src="{{item.head_img}}"></image>
-            <label class="slabel">{{item.user}}</label>
-          </view>
+    <view wx:for="{{exerises[index].feeds}}" wx:for-index="idx" wx:key="{{id}}" class="hot-item hot-item2 flex-wrp">
+      <view class="avatar">
+        <image src="{{item.head_img}}"></image>
+      </view>
+      <view class="hot-content">
+        <view class="hot-source">
+          <text class="hotmate">{{item.feed_title}}</text>
+          <text class="lasttime">{{item.time}}</text>
         </view>
-        <view class="feed-content">
-          <view class="answer-body">
-            <view>
-              <text class="answer-txt">{{item.feed_txt}}</text>
-            </view>
-            <view class="answer-actions">
-              <view class="dot">
-                <a>{{item.time}}</a> 
-              </view>
-              <view>
-                <a>
-                  <image src="/image/Comments.png"></image>回复{{item.comments}}</a> 
-              </view>
-              <view class="like" data-idx="{{idx}}" bindtap="doLike">
-                <a style="color:{{item.isAgreed?'#1aad19':'inherit'}};">
-                  <image src="/image/{{item.isAgreed?'ThumbUped':'ThumbUp'}}.png"></image>赞{{item.agree}}</a> 
-              </view>
-            </view>
-          </view>
-        </view>
+        <text class="hot-txt">{{item.feed_txt}}</text>
       </view>
     </view>
   </view>
-  </view>
+</view>

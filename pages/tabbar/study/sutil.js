@@ -18,8 +18,7 @@ function touchMove(e) {
 function touchEnd(e, that, next) {
     var diffX = Math.abs(endDot.x - startDot.x)
     var diffY = Math.abs(endDot.y - startDot.y)
-    console.log(diffX,diffY,diffX - diffY)
-    if (diffX - diffY > 0) {
+    if (diffX > 130 && diffY < 60) {
         if (endDot.x - startDot.x <= -100) {
             //向右滑动
             let iIndex = that.data.index
@@ -61,30 +60,30 @@ function touchEnd(e, that, next) {
             wx.showNavigationBarLoading()
             setTimeout(function () {
                 wx.hideNavigationBarLoading()
-                let iIndex = that.data.index
-                let sExe = that.data.exerises
-                sExe[iIndex].show_item += 1
-                that.setData({
-                    exerises: sExe
-                })
             }, 1000);
+            let iIndex = that.data.index
+            let sExe = that.data.exerises
+            sExe[iIndex].show_item += 1
+            that.setData({
+                exerises: sExe
+            })
         }
     }
 }
 
 //收藏题目
-function collect(e, that,update) {
+function collect(e, that, update) {
     let iIndex = that.data.index
     let sExe = that.data.exerises
     sExe[iIndex].is_coll = !sExe[iIndex].is_coll;
-    typeof update == "function" && update(that,sExe[iIndex].id)
+    typeof update == "function" && update(that, sExe[iIndex].id)
     that.setData({
         exerises: sExe
     })
 }
 
 //点赞
-function like(e, that,update) {
+function like(e, that, update) {
     let iIndex = that.data.index
     let sExe = that.data.exerises
     let iFeedIndex = e.currentTarget.dataset.idx
@@ -94,8 +93,8 @@ function like(e, that,update) {
         sExe[iIndex].feeds[iFeedIndex].agree += 1
     }
     sExe[iIndex].feeds[iFeedIndex].isAgreed = !sExe[iIndex].feeds[iFeedIndex].isAgreed
-    
-    typeof update == "function" && update(that,sExe[iIndex].feeds[iFeedIndex].id)
+
+    typeof update == "function" && update(that, sExe[iIndex].feeds[iFeedIndex].id)
     that.setData({
         exerises: sExe
     })

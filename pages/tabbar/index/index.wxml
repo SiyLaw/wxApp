@@ -6,37 +6,91 @@
   <view class="page-section page-section-gap">
     <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
       <block wx:for="{{background}}" wx:key="item.id">
-        <swiper-item>        
+        <swiper-item>
           <label class="swiper-text">{{item.text}}</label>
-          <image src="{{item.url}}" class="swiper-item" mode="aspectFill"/>
+          <image src="{{item.url}}" class="swiper-item" mode="aspectFill" />
         </swiper-item>
       </block>
+      <swiper-item>
+          <canvas canvas-id="areaCanvas" class="canvas" />
+        </swiper-item>
     </swiper>
   </view>
-  <view class="page-section page-section-gap">
+
+  <!--<view class="page-section page-section-gap">
     <canvas canvas-id="areaCanvas" class="canvas" />
+  </view>-->
+  <view class="page-section">
+    <view class="hot-item flex-wrp">
+      <view class="avatar">
+        <image src="../../../image/one.png"></image>
+      </view>
+      <view class="hot-content">
+        <view class="hot-source">
+          <text class="hotmate">公民权利</text>
+          <text class="lasttime">2分钟前</text>
+        </view>
+        <text class="hot-txt">关于公民权利的问题...</text>
+      </view>
+    </view>
+    <view class="hot-item flex-wrp">
+      <view class="avatar">
+        <image src="../../../image/two.png"></image>
+      </view>
+      <view class="hot-content">
+        <view class="hot-source">
+          <text class="hotmate">法律重视程序，不讲效率</text>
+          <text class="lasttime">半小时前</text>
+        </view>
+        <text class="hot-txt">探讨·法律重视程序，不讲效率?</text>
+      </view>
+    </view>
+    <view class="hot-item flex-wrp">
+      <view class="avatar">
+        <image src="../../../image/three.png"></image>
+      </view>
+      <view class="hot-content">
+        <view class="hot-source">
+          <text class="hotmate">法律不是万能的！</text>
+          <text class="lasttime">5小时前</text>
+        </view>
+        <text class="hot-txt">法律不是万能的，其作用是有限的~</text>
+      </view>
+    </view>
+    <view class="hot-item flex-wrp">
+      <view class="avatar">
+        <image src="../../../image/four.png"></image>
+      </view>
+      <view class="hot-content">
+        <view class="hot-source">
+          <text class="hotmate">律反映客观规律</text>
+          <text class="lasttime">1天前</text>
+        </view>
+        <text class="hot-txt">法律反映客观规律，不体现人的意志... ~</text>
+      </view>
+    </view>
   </view>
   <view class="page-section page-section-gap">
     <view class="flex-wrp" style="flex-direction:row;">
       <view class="flex-item">
         <view class="item-desc">
-          <image class="item-desc-img" src="../../../image/Crown.png"></image>
-          <text class="item-desc-headtxt">名师析题</text>
-          <view class="item-desc-detailtxt">...</view>
+          <image class="item-desc-img" src="../../../image/School.png"></image>
+          <text class="item-desc-headtxt">课堂</text>
+          <!--<view class="item-desc-detailtxt">...</view>-->
         </view>
       </view>
       <view class="flex-item">
         <view class="item-desc">
-          <image class="item-desc-img" src="../../../image/Substr.png"></image>
-          <text class="item-desc-headtxt">题库丰富</text>
-          <view class="item-desc-detailtxt">...</view>
+          <image class="item-desc-img" src="../../../image/Courses.png"></image>
+          <text class="item-desc-headtxt">法条</text>
+          <!--<view class="item-desc-detailtxt">...</view>-->
         </view>
       </view>
       <view class="flex-item">
         <view class="item-desc">
-          <image class="item-desc-img" src="../../../image/StarSelected.png"></image>
-          <text class="item-desc-headtxt">在线服务</text>
-          <view class="item-desc-detailtxt">...</view>
+          <image class="item-desc-img" src="../../../image/FAQ.png"></image>
+          <text class="item-desc-headtxt">互动</text>
+          <!--<view class="item-desc-detailtxt">...</view>-->
         </view>
       </view>
     </view>

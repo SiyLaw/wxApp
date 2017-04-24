@@ -1,5 +1,6 @@
 /**index.wxss**/
 @import "../../../common/lib/weui.wxss";
+@import "../../../common/lib/hot.wxss";
 .swiper{
   height: 150rpx;
   width: 100%;
@@ -35,10 +36,9 @@
   border-radius: 10rpx;
 }
 .item-desc-img{
-  width: 90rpx;
-  height: 90rpx;
+  width: 80rpx;
+  height: 80rpx;
   margin: 10rpx;
-  border-radius: 20%;
 }
 .item-desc-headtxt {
   color: #222;
@@ -53,8 +53,9 @@
   height: 60rpx;
   padding: 0 5rpx;
 }
-.canvas {
+/*.canvas {
   width: 100%;
-  height: 200px;
+  height: 150px;
   background-color: #fff;
-}
+}*/
+

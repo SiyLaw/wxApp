@@ -20,7 +20,7 @@ Page({
     }],
     indicatorDots: true,
     autoplay: true,
-    interval: 2000,
+    interval: 5000,
     duration: 500,
     headinfo: {}
   },
@@ -80,7 +80,7 @@ Page({
         }
       },
       width: vwith,
-      height: 210
+      height: 150
     });
   }
 });

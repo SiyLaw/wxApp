@@ -1,6 +1,9 @@
 /* pages/tabbar/study/news.wxss */
 @import "../../../common/lib/weui.wxss";
-
+@import "../../../common/lib/hot.wxss";
+.flex-wrp {
+  display: flex;
+}
 .serach{
     margin-top: 15rpx;
     margin-left: 25rpx;
