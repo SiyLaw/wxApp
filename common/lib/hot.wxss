@@ -1,0 +1,48 @@
+.hot-item{
+  width: 100%;
+  background: #ffffff;
+  padding-top: 10rpx;
+  padding-bottom: 10rpx;
+  border-bottom: solid 1px #ebebeb;
+}
+
+.hot-item2{
+  padding-top: 25rpx;
+  padding-bottom: 25rpx;
+}
+
+.hot-item  image{
+  width: 80rpx;
+  height: 80rpx;
+  padding-left: 10rpx;
+  border-radius: 80rpx;
+}
+.hot-item .avatar{
+  flex: 1;
+}
+.hot-item .hot-content{
+  flex: 6;
+  text-align: left;
+}
+.hot-item .hot-content .hot-source{
+  color: #818A8F;
+  font-size: 28rpx;
+  padding: 4rpx 4rpx 8rpx 0;
+}
+.hot-item .hot-content .hot-source .hotmate{
+  font-size: 34rpx;
+  color: #000000;
+  text-align: left;
+}
+.hot-item .hot-content .hot-source .lasttime{
+  flex: 1;
+  font-size: 22rpx;
+  float: right;
+  vertical-align: text-bottom;
+}
+.hot-item .hot-content .hot-txt{
+  display: block;
+  color: #7b7b7b;
+  font-size: 26rpx;
+  line-height: 34rpx;
+}

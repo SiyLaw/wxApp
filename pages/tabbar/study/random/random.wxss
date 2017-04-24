@@ -57,7 +57,7 @@ page {
   width: 100rpx;
   font-size: 24rpx;
   border: 1rpx solid #2186e0;
-  padding: 4rpx 4rpx;
+  padding: 2rpx 4rpx;
   color: #2186e0;
   margin-right: 10rpx;
 }

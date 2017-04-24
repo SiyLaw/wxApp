@@ -6,12 +6,11 @@ Page({
     exerises: [{
       id: 'ID_TITLE1'
       //评论
-      , feeds: [{ id: '1', user: 'Lucy', head_img: '/image/Female50.png', feed_txt: '关于公民权利的问题1... ', isAgreed: false, agree: 2, comments: 4, time: '1天前' },
-      { id: '2', user: 'Jack', head_img: '/image/Male50.png', feed_txt: '关于公民权利的问题2... ', isAgreed: true, agree: 2, comments: 4, time: '2个星期前' },
-      { id: '3', user: 'Jim', head_img: '/image/Male50.png', feed_txt: '关于公民权利的问题3... ', isAgreed: false, agree: 2, comments: 4, time: '1个月前' },
-      { id: '4', user: 'Jim', head_img: '/image/Male50.png', feed_txt: '关于公民权利的问题4... ', isAgreed: false, agree: 2, comments: 4, time: '1个月前' },
-      { id: '5', user: 'Jim', head_img: '/image/Male50.png', feed_txt: '关于公民权利的问题5... ', isAgreed: false, agree: 2, comments: 4, time: '1个月前' },
-      { id: '6', user: 'Jim', head_img: '/image/Male50.png', feed_txt: '关于公民权利的问题6... ', isAgreed: false, agree: 2, comments: 4, time: '1个月前' }]
+      , feeds: [{ id: '1', user: 'Lucy', head_img: '/image/Collaboration.png', feed_title: '公民权利', feed_txt: '关于公民权利的问题1... ', time: '1天前' }
+      ,{ id: '2', user: 'Lucy', head_img: '/image/Crown.png', feed_title: '法律重视程序，不讲效率？', feed_txt: '关于公民权利的问题1... ', time: '1天前' }
+      ,{ id: '3', user: 'Lucy', head_img: '/image/StarSelected.png', feed_title: '法律不是万能的？', feed_txt: '法律不是万能的，其作用是有限的？ ', time: '3天前' }
+      ,{ id: '4', user: 'Lucy', head_img: '/image/Law.png', feed_title: '法律强调稳定性', feed_txt: '法律强调稳定性，避免灵活性... ', time: '1个月前' }
+      ,{ id: '5', user: 'Lucy', head_img: '/image/Peptide.png', feed_title: '法律反映客观规律', feed_txt: '法律反映客观规律，不体现人的意志... ', time: '5天前' },]
     }],
     index: 0
   },
