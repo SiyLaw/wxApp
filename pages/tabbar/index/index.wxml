@@ -5,15 +5,15 @@
   <template is="HeadInfo" data="{{...headinfo}}" />
   <view class="page-section page-section-gap">
     <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+      <!--<swiper-item>
+        <canvas canvas-id="areaCanvas" class="canvas" />
+      </swiper-item>-->
       <block wx:for="{{background}}" wx:key="item.id">
         <swiper-item>
           <label class="swiper-text">{{item.text}}</label>
           <image src="{{item.url}}" class="swiper-item" mode="aspectFill" />
         </swiper-item>
       </block>
-      <swiper-item>
-          <canvas canvas-id="areaCanvas" class="canvas" />
-        </swiper-item>
     </swiper>
   </view>
 
@@ -76,6 +76,7 @@
         <view class="item-desc">
           <image class="item-desc-img" src="../../../image/School.png"></image>
           <text class="item-desc-headtxt">课堂</text>
+
           <!--<view class="item-desc-detailtxt">...</view>-->
         </view>
       </view>
@@ -83,6 +84,7 @@
         <view class="item-desc">
           <image class="item-desc-img" src="../../../image/Courses.png"></image>
           <text class="item-desc-headtxt">法条</text>
+
           <!--<view class="item-desc-detailtxt">...</view>-->
         </view>
       </view>
@@ -90,6 +92,7 @@
         <view class="item-desc">
           <image class="item-desc-img" src="../../../image/FAQ.png"></image>
           <text class="item-desc-headtxt">互动</text>
+
           <!--<view class="item-desc-detailtxt">...</view>-->
         </view>
       </view>
