@@ -7,18 +7,21 @@ Page({
   data: {
     background: [{
       id: "item-1",
-      text: "司煜法务平台",
-      url:"https://www.mssco.net/wx/images/101.png"
+      text: "律法学习有何难点?",
+      color:"#800000",
+      url: "https://www.mssco.net/wx/images/101.png"
     }, {
       id: "item-2",
-      text: "名师析题",
-      url:"https://www.mssco.net/wx/images/102.png"
+      text: "考生应该注意的问题...",
+      color: "#483D8B",
+      url: "https://www.mssco.net/wx/images/102.png"
     }, {
       id: "item-3",
-      text: "24小时在线服务",
-      url:"https://www.mssco.net/wx/images/103.png"
+      text: "刑事案件实例分析...",
+      color: "#2F4F4F",
+      url: "https://www.mssco.net/wx/images/103.png"
     }],
-    indicatorDots: true,
+    indicatorDots: false,
     autoplay: true,
     interval: 5000,
     duration: 500,
@@ -53,35 +56,35 @@ Page({
         vwith = res.windowWidth;
       }
     });
-    new wxCharts({
-      canvasId: 'areaCanvas',
-      type: 'area',
-      categories: ['2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016'],
-      series: [{
-        name: '参考人数',
-        data: [35.3, 32.6, 34.7, 33.2, 33.5, 35.3, 37.5, 43.8],
-        format: function (val) {
-          return val + '';
-        }
-      }, {
-        name: '通过人数',
-        data: [9.02, 8.58, 6.64, 4.8, 4.796, 4.994, 4.88, 6],
-        format: function (val) {
-          if (val == 6) {
-            return '6 ?';
-          } else {
-            return val;
-          }
-        }
-      }],
-      yAxis: {
-        format: function (val) {
-          return val + '万';
-        }
-      },
-      width: vwith,
-      height: 150
-    });
+    // new wxCharts({
+    //   canvasId: 'areaCanvas',
+    //   type: 'area',
+    //   categories: ['2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016'],
+    //   series: [{
+    //     name: '参考人数',
+    //     data: [35.3, 32.6, 34.7, 33.2, 33.5, 35.3, 37.5, 43.8],
+    //     format: function (val) {
+    //       return val + '';
+    //     }
+    //   }, {
+    //     name: '通过人数',
+    //     data: [9.02, 8.58, 6.64, 4.8, 4.796, 4.994, 4.88, 6],
+    //     format: function (val) {
+    //       if (val == 6) {
+    //         return '6 ?';
+    //       } else {
+    //         return val;
+    //       }
+    //     }
+    //   }],
+    //   yAxis: {
+    //     format: function (val) {
+    //       return val + '万';
+    //     }
+    //   },
+    //   width: vwith,
+    //   height: 150
+    // });
   }
 });
 

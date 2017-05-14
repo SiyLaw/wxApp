@@ -8,8 +8,8 @@
     <view class="weui-cell">
       <view class="weui-cell__bd">
         <view class="userinfo">
-          <text class="userinfo-font"> {{province}}/{{city}}</text>
-          <text class="userinfo-font"> 当前积分：{{score}}</text>
+          <!--<text class="userinfo-font"> {{province}}/{{city}}</text>
+          <text class="userinfo-font"> 当前积分：{{score}}</text>-->
         </view>
       </view>
       <view class="weui-cell__ft">

@@ -1,8 +1,8 @@
 
 <!--pages/tabbar/study/study.wxml-->
-<import src="../../../common/head.wxml" />
+<!--<import src="../../../common/head.wxml" />-->
 <view class="container">
-  <template is="HeadInfo" data="{{...headinfo}}" />
+  <!--<template is="HeadInfo" data="{{...headinfo}}" />-->
   <view class="page-section page-section-gap">
     <view class="flex-wrp flex-column">
       <block wx:for="{{Items}}" wx:key="*this">

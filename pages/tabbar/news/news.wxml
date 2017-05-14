@@ -1,8 +1,8 @@
 
 <!--pages/tabbar/study/news.wxml-->
-<import src="../../../common/head.wxml" />
+<!--<import src="../../../common/head.wxml" />-->
 <view class="container">
-  <template is="HeadInfo" data="{{...headinfo}}" />
+  <!--<template is="HeadInfo" data="{{...headinfo}}" />-->
   <view stytle=" overflow-x: hidden; overflow-y: auto;margin-bottom:30rpx;">
     <view class="serach">
       <view class="serach_view_show">搜索</view>
