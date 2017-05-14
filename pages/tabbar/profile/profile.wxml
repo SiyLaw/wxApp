@@ -1,0 +1,41 @@
+<!--pages/profile/profile.wxml-->
+<import src="../../../common/pagehead.wxml" />
+<import src="../../../common/foot.wxml" />
+<view class="container">
+  <template is="pagehead" data="{{avatarUrl: userInfo.avatarUrl,nickName:userInfo.nickName}}" />
+  <view class="page-section page-section-gap">
+    <view class="item-total">
+      <view class="titem">
+        <view class="item-head">1小时20分</view>
+        <view class="item-desc">学习时间</view>
+      </view>
+      <view class="titem">
+        <view class="item-head">0条</view>
+        <view class="item-desc">参与讨论</view>
+      </view>
+      <view class="titem">
+        <view class="item-head">1天</view>
+        <view class="item-desc">连续学习</view>
+      </view>
+    </view>
+  </view>
+  <view class="page-section page-section-gap" wx:for="{{items}}" wx:key="item.id">
+    <navigator open-type="navigate" url="{{item.url}}" hover-class="none">
+      <view class="item">
+        <view class="item-image" style="background-color:{{item.color}};">
+          <image src="{{item.img}}"></image>
+        </view>
+        <view class="item-txt">
+          {{item.txt}}
+        </view>
+      </view>
+    </navigator>
+  </view>
+
+  <form catchsubmit="formSubmit">
+    <input style="display:none;" name="HEAD_IMG" type="text" value="{{HEAD_IMG}}" />
+    <view class="page-section">
+    </view>
+  </form>
+  <template is="foot" />
+</view>

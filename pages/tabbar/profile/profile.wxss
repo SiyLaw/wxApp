@@ -1,0 +1,52 @@
+/* pages/services/services.wxss */
+@import "../../../common/lib/weui.wxss";
+
+.item-total {
+  display: flex;
+  flex-direction: row;
+  padding:30rpx 10rpx;
+}
+
+.titem{  
+  flex-grow:1;
+  text-align: center;
+}
+.titem .item-head{
+  font-size: 32rpx;
+  color: #000;
+}
+
+.titem .item-desc{
+  font-size: 24rpx;
+  color: #888;
+}
+
+.item {
+  display: flex;
+  padding: 15rpx 10rpx;
+}
+
+
+
+.item-image {
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50rpx;
+  margin-left: 20rpx;
+}
+
+.item-image image {
+  width: 35rpx;
+  height: 35rpx;
+  padding: 8rpx 8rpx;
+}
+
+.item-txt {
+  flex: 8;
+  font-size: 28rpx;
+  padding: 5rpx 40rpx;
+}
+
+form {
+  width: 100%;
+}

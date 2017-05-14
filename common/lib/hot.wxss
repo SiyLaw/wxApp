@@ -1,48 +1,67 @@
 .hot-item{
   width: 100%;
   background: #ffffff;
-  padding-top: 10rpx;
-  padding-bottom: 10rpx;
+  padding-top: 6rpx;
   border-bottom: solid 1px #ebebeb;
 }
 
 .hot-item2{
-  padding-top: 25rpx;
-  padding-bottom: 25rpx;
+  padding-top: 10rpx;
+  padding-bottom: 10rpx;
 }
 
 .hot-item  image{
-  width: 80rpx;
-  height: 80rpx;
-  padding-left: 10rpx;
-  border-radius: 80rpx;
+  width: 60rpx;
+  height: 60rpx;
+  padding-left: 20rpx;
+  padding-top: 5rpx;
 }
+
+.hot-item .head{
+ font-size: 28rpx;
+ font-weight: bold;
+ flex: 1;
+ text-align: left;
+ padding-left: 20rpx;
+ padding-top:10rpx;
+ padding-bottom: 10rpx;
+}
+.hot-item .link{
+  font-size: 26rpx;
+  flex:1;
+  text-align: right;
+  color:#7b7b7b;
+  padding-right: 20rpx;
+  padding-top: 10rpx;
+}
+
 .hot-item .avatar{
   flex: 1;
+  height: 70rpx;
 }
 .hot-item .hot-content{
   flex: 6;
-  text-align: left;
+  display: flex;
+  flex-direction: column;
 }
 .hot-item .hot-content .hot-source{
-  color: #818A8F;
-  font-size: 28rpx;
-  padding: 4rpx 4rpx 8rpx 0;
+  display: flex;
+  flex-direction: row;
 }
 .hot-item .hot-content .hot-source .hotmate{
-  font-size: 34rpx;
+  flex: 1;
+  font-size: 24rpx;
   color: #000000;
   text-align: left;
 }
 .hot-item .hot-content .hot-source .lasttime{
   flex: 1;
+  color: #7b7b7b;
+  text-align: right;
   font-size: 22rpx;
-  float: right;
-  vertical-align: text-bottom;
+  padding-right: 18rpx;
 }
 .hot-item .hot-content .hot-txt{
-  display: block;
   color: #7b7b7b;
-  font-size: 26rpx;
-  line-height: 34rpx;
+  font-size: 22rpx;
 }

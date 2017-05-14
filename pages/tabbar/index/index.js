@@ -7,18 +7,21 @@ Page({
   data: {
     background: [{
       id: "item-1",
-      text: "司煜法务平台",
+      text: "律法学习有何难点?",
+      color:"#800000",
       url: "https://www.mssco.net/wx/images/101.png"
     }, {
       id: "item-2",
-      text: "名师析题",
+      text: "考生应该注意的问题...",
+      color: "#483D8B",
       url: "https://www.mssco.net/wx/images/102.png"
     }, {
       id: "item-3",
-      text: "24小时在线服务",
+      text: "刑事案件实例分析...",
+      color: "#2F4F4F",
       url: "https://www.mssco.net/wx/images/103.png"
     }],
-    indicatorDots: true,
+    indicatorDots: false,
     autoplay: true,
     interval: 5000,
     duration: 500,
