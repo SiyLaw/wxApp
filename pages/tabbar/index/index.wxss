@@ -3,13 +3,13 @@
 @import "../../../common/lib/hot.wxss";
 
 swiper {
-  height: 200rpx;
+  height: 160rpx;
   width: 100%;
   letter-spacing: 5rpx;
 }
 
 .swiper-item {
-  height: 150px;
+  height: 160px;
   width: 100%;
   text-align: center;
 }
@@ -78,9 +78,9 @@ swiper {
 }
 
 .ad-item {
+  height: 200rpx;
   margin: 10rpx 10rpx;
   background-color: #eee8aa;
-  height: 190rpx;
   border-radius: 10rpx;
   display: flex;
   flex-direction: row;
@@ -95,7 +95,7 @@ swiper {
 
 .ad-item .head {
   padding-left: 50rpx;
-  padding-top: 40rpx;
+  padding-top: 50rpx;
   font-size: 32rpx;
   font-weight: bold;
 }
@@ -108,17 +108,17 @@ swiper {
 }
 
 .ad-item .img {
-  height: 160rpx;
-  width: 160rpx;
-  border-radius: 160rpx;
+  height: 170rpx;
+  width: 170rpx;
+  border-radius: 170rpx;
   background-color: #fffff0;
-  margin: 15rpx 15rpx;
+  margin: 15rpx 16rpx;
 }
 
 .ad-item image {
-  padding: 5rpx 5rpx;
-  height: 150rpx;
-  width: 150rpx;
+  padding: 6rpx 5rpx;
+  height: 160rpx;
+  width: 160rpx;
   image-rendering: auto;
 }
 

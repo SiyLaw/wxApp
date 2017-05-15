@@ -4,19 +4,19 @@
 <import src="../../../common/foot.wxml" />
 <view class="container">
   <!--<template is="HeadInfo" data="{{...headinfo}}" />-->
+
   <view class="page-section page-section-gap">
-    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
-      <!--<swiper-item>
-        <canvas canvas-id="areaCanvas" class="canvas" />
-      </swiper-item>-->
-      <block wx:for="{{background}}" wx:key="item.id">
-        <swiper-item>
-          <label class="swiper-text" style="color:{{item.color}};" >{{item.text}}</label>
-          <view class="swiper-click">戳此了解</view>
-          <image src="{{item.url}}" class="swiper-item" mode="aspectFill" />
-        </swiper-item>
-      </block>
-    </swiper>
+    <view class="ad-item">
+      <view class="txt">
+        <view class="head">司煜律法学习
+        </view>
+        <view class="sub-head">『一站式开方平台』
+        </view>
+      </view>
+      <view class="img">
+        <image src="/image/log60.png"></image>
+      </view>
+    </view>
   </view>
 
   <!--<view class="page-section page-section-gap">
@@ -57,19 +57,20 @@
     </view>
   </view>
 
-  <view class="page-section page-section-gap">
-    <view class="ad-item">
-      <view class="txt">
-        <view class="head">司煜律法学习 APP
-        </view>
-        <view class="sub-head">『一站式开方平台』
-        </view>
-      </view>
-      <view class="img">
-        <image src="/image/log60.png"></image>
-      </view>
 
-    </view>
+  <view class="page-section page-section-gap">
+    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+      <!--<swiper-item>
+        <canvas canvas-id="areaCanvas" class="canvas" />
+      </swiper-item>-->
+      <block wx:for="{{background}}" wx:key="item.id">
+        <swiper-item>
+          <label class="swiper-text" style="color:{{item.color}};">{{item.text}}</label>
+          <view class="swiper-click">戳此了解</view>
+          <image src="{{item.url}}" class="swiper-item" mode="aspectFill" />
+        </swiper-item>
+      </block>
+    </swiper>
   </view>
 
   <view class="page-section">
@@ -130,5 +131,30 @@
       </view>
     </view>
   </view>
+  <view class="page-section">
+    <view class="hot-item flex-wrp">
+      <view class="head">
+        专题探讨
+      </view>
+      <view class="link">
+       换一换
+      </view>
+    </view>
+    <view class="hot-item flex-wrp">
+      <view class="desc-img">
+        <view class="img">
+        <image src="../../../image/tmp1.png"></image>
+        </view>
+      </view>
+      <view class="desc-txt">
+        <view class="desc-head">
+          公民权利
+        </view>
+        <view class="detail">关于公民权利的问题...</view>
+        <view class="detail">1小时前更新</view>
+      </view>
+    </view>
+  </view>
+
   <template is="foot" />
 </view>

@@ -12,7 +12,7 @@ Page({
       url: "https://www.mssco.net/wx/images/101.png"
     }, {
       id: "item-2",
-      text: "考生应该注意的问题...",
+      text: "律法考试应该注意的问题...",
       color: "#483D8B",
       url: "https://www.mssco.net/wx/images/102.png"
     }, {
