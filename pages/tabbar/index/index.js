@@ -7,7 +7,7 @@ Page({
   data: {
     background: [{
       id: "item-1",
-      text: "律法学习有何难点?",
+      text: "法律学习有何难点?",
       color:"#800000",
       url: "https://www.mssco.net/wx/images/101.png"
     }, {
