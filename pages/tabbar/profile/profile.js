@@ -9,17 +9,17 @@ Page({
     items: [{
       txt: "学习进度",
       color: "#cd853f",
-      img: "../../../image/Reading.png",
+      img: "/image/Reading.png",
       url: ".."
     }, {
       txt: "消息中心",
       color: "#008B8B",
-      img: "../../../image/sms.png",
+      img: "/image/message.png",
       url: ".."
     }, {
       txt: "帐号",
       color: "#3CB371",
-      img: "../../../image/user.png",
+      img: "/image/user.png",
       url: "/pages/profile/profile"
     }]
   },
