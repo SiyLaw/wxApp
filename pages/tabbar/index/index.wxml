@@ -57,6 +57,20 @@
     </view>
   </view>
 
+<<<<<<< HEAD
+  <view class="page-section page-section-gap">
+    <view class="ad-item">
+      <view class="txt">
+        <view class="head">司煜宝-法律学习
+        </view>
+        <view class="sub-head">『一站式开方平台』
+        </view>
+      </view>
+      <view class="img">
+        <image src="/image/log60.png"></image>
+      </view>
+=======
+>>>>>>> 817a654d64b6984d7f4e76609412eb237e4c4988
 
   <view class="page-section page-section-gap">
     <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
