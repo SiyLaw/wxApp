@@ -1,10 +1,6 @@
 <!--index.wxml-->
-<!--<import src="../../../common/head.wxml" />-->
-
 <import src="../../../common/foot.wxml" />
 <view class="container">
-  <!--<template is="HeadInfo" data="{{...headinfo}}" />-->
-
   <view class="page-section page-section-gap">
     <view class="ad-item">
       <view class="txt">
@@ -18,10 +14,6 @@
       </view>
     </view>
   </view>
-
-  <!--<view class="page-section page-section-gap">
-    <canvas canvas-id="areaCanvas" class="canvas" />
-  </view>-->
   <view class="page-section page-section-gap">
     <view class="flex-wrp" style="flex-direction:row;">
       <view class="flex-item">
@@ -30,7 +22,6 @@
             <image src="../../../image/Literature_50px.png"></image>
           </view>
           <text class="item-desc-headtxt">课堂</text>
-
           <!--<view class="item-desc-detailtxt">...</view>-->
         </view>
       </view>
@@ -40,7 +31,6 @@
             <image src="../../../image/Order.png"></image>
           </view>
           <text class="item-desc-headtxt">法条</text>
-
           <!--<view class="item-desc-detailtxt">...</view>-->
         </view>
       </view>
@@ -50,33 +40,13 @@
             <image src="../../../image/Collaboration_50px.png"></image>
           </view>
           <text class="item-desc-headtxt">互动</text>
-
           <!--<view class="item-desc-detailtxt">...</view>-->
         </view>
       </view>
     </view>
   </view>
-
-<<<<<<< HEAD
-  <view class="page-section page-section-gap">
-    <view class="ad-item">
-      <view class="txt">
-        <view class="head">司煜宝-法律学习
-        </view>
-        <view class="sub-head">『一站式开方平台』
-        </view>
-      </view>
-      <view class="img">
-        <image src="/image/log60.png"></image>
-      </view>
-=======
->>>>>>> 817a654d64b6984d7f4e76609412eb237e4c4988
-
   <view class="page-section page-section-gap">
     <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
-      <!--<swiper-item>
-        <canvas canvas-id="areaCanvas" class="canvas" />
-      </swiper-item>-->
       <block wx:for="{{background}}" wx:key="item.id">
         <swiper-item>
           <label class="swiper-text" style="color:{{item.color}};">{{item.text}}</label>
@@ -86,7 +56,6 @@
       </block>
     </swiper>
   </view>
-
   <view class="page-section">
     <view class="hot-item flex-wrp">
       <view class="head">
@@ -151,13 +120,13 @@
         专题探讨
       </view>
       <view class="link">
-       换一换
+        换一换
       </view>
     </view>
     <view class="hot-item flex-wrp">
       <view class="desc-img">
         <view class="img">
-        <image src="../../../image/tmp1.png"></image>
+          <image src="../../../image/tmp1.png"></image>
         </view>
       </view>
       <view class="desc-txt">
@@ -169,6 +138,5 @@
       </view>
     </view>
   </view>
-
   <template is="foot" />
 </view>
