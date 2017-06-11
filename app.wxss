@@ -11,7 +11,8 @@
 }
 
 .page-head{
-  padding: 60rpx 50rpx 60rpx;
+  padding-top: 60rpx;
+  padding-bottom: 60rpx;
   text-align: center;
   width:100%;
   background: #3cc51f;

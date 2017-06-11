@@ -1,6 +1,34 @@
-
 <!--pages/tabbar/study/random/random.wxml-->
+<import src="/common/pagehead.wxml" />
 <import src="/common/foot.wxml" />
+<view class="module-bg-layer" wx:if="{{show_start_module}}">
+  <view class="dv-module">
+    <template is="pagehead" data="{{avatarUrl: userInfo.avatarUrl,nickName:userInfo.nickName}}" />
+    <view class="vertical content">
+      <view>
+        <image class="icon-foot" src="/image/icon_foot.png"></image>
+      </view>
+      <view class="txt">
+        <label>{{week[1]+"月份 第"+week[2]+"周"}}</label>
+        <label></label>
+      </view>
+      <view class="txt-date">{{week[0]}}</view>
+      <view class="page-section page-section-gap" wx:for="{{items}}" wx:key="item.id">
+        <view class="item">
+          <view class="item-image" style="background-color:{{item.color}};">
+            <image src="{{item.img}}"></image>
+          </view>
+          <view class="item-txt">
+            {{item.txt}}：{{item.val}}
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="cust-btn">
+      <a bindtap="startTran">开始练习</a>
+    </view>
+  </view>
+</view>
 <view class="container" bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd">
   <view class="page-section">
     <view class="weui-cells weui-cells_after-title">
@@ -75,15 +103,15 @@
             </view>
             <view class="answer-actions">
               <view class="dot">
-                <a>{{item.time}}</a> 
+                <a>{{item.time}}</a>
               </view>
               <view>
                 <a>
-                  <image src="/image/Comments.png"></image>回复{{item.comments}}</a> 
+                  <image src="/image/Comments.png"></image>回复{{item.comments}}</a>
               </view>
               <view class="like" data-idx="{{idx}}" bindtap="doLike">
                 <a style="color:{{item.isAgreed?'#1aad19':'inherit'}};">
-                  <image src="/image/{{item.isAgreed?'ThumbUped':'ThumbUp'}}.png"></image>赞{{item.agree}}</a> 
+                  <image src="/image/{{item.isAgreed?'ThumbUped':'ThumbUp'}}.png"></image>赞{{item.agree}}</a>
               </view>
             </view>
           </view>
@@ -114,13 +142,13 @@
     </view>
   </view>
 </view>
-<view class="commodity_screen" wx:if="{{showModalStatus}}">
-  <view class="comments-section">
+<view class="module-bg-layer" wx:if="{{show_comment_module}}">
+  <view class="dv-module">
     <view class="cmts_label">可输入{{140-comm_len}}</view>
-    <textarea placeholder="请输入评论内容..." value="{{comm_text}}" bindinput="InputComm" auto-focus="{{showModalStatus}}" class="cmts_content" />
-    <view class="cmts_actions">
-      <a bindtap="SubmitComm">提交</a> 
-      <a bindtap="CloseComm">关闭</a> 
+    <textarea placeholder="请输入评论内容..." value="{{comm_text}}" bindinput="InputComm" auto-focus="{{show_comment_module}}" class="cmts_content" />
+    <view class="cust-btn">
+      <a bindtap="SubmitComm">提交</a>
+      <a bindtap="CloseComm">关闭</a>
     </view>
   </view>
 </view>
