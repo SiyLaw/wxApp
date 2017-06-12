@@ -110,9 +110,10 @@ page {
 
 .cust-btn a {
   border: 1rpx solid #1aad19;
-  border-radius: 5rpx;
+  border-radius: 10rpx;
   padding: 15rpx 30rpx;
   margin: 0 20rpx;
+  color: #1aad19;
 }
 
 /*--------------------------1.通用 遮罩层 start----------------------*/
@@ -345,7 +346,7 @@ page {
 }
 
 .exerises-feed-bottom {
-  margin-bottom: 90rpx;
+  padding: 45rpx;
 }
 
 .answer_list {

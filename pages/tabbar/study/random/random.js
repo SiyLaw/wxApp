@@ -23,6 +23,7 @@ Page({
       img: "/image/time.png"
     }],
     PAGE: "RANDOM",
+    q_type: ["单选题", "多选题", "不定项题", "判断题", "主观题","其他"],
     exerises: [],
     // exerises: [{
     //   id: 'ID_TITLE1'

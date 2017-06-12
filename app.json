@@ -1,12 +1,12 @@
 {
   "pages":[
-    "pages/tabbar/study/random/random",
     "pages/tabbar/index/index",
     "pages/tabbar/study/study",
     "pages/tabbar/news/news",
     "pages/tabbar/profile/profile",
 
     "pages/profile/profile",
+    "pages/tabbar/study/random/random",
     "pages/tabbar/study/special/special",
     "pages/tabbar/study/realsimulate/realsimulate",
     "pages/tabbar/study/favorite/favorite",

@@ -1,40 +1,14 @@
 <!--pages/tabbar/study/random/random.wxml-->
 <import src="/common/pagehead.wxml" />
 <import src="/common/foot.wxml" />
-<view class="module-bg-layer" wx:if="{{show_start_module}}">
-  <view class="dv-module">
-    <template is="pagehead" data="{{avatarUrl: userInfo.avatarUrl,nickName:userInfo.nickName}}" />
-    <view class="vertical content">
-      <view>
-        <image class="icon-foot" src="/image/icon_foot.png"></image>
-      </view>
-      <view class="txt">
-        <label>{{week[1]+"月份 第"+week[2]+"周"}}</label>
-        <label></label>
-      </view>
-      <view class="txt-date">{{week[0]}}</view>
-      <view class="page-section page-section-gap" wx:for="{{items}}" wx:key="item.id">
-        <view class="item">
-          <view class="item-image" style="background-color:{{item.color}};">
-            <image src="{{item.img}}"></image>
-          </view>
-          <view class="item-txt">
-            {{item.txt}}：{{item.val}}
-          </view>
-        </view>
-      </view>
-    </view>
-    <view class="cust-btn">
-      <a bindtap="startTran">开始练习</a>
-    </view>
-  </view>
-</view>
+<!--主体-->
 <view class="container" bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd">
+  <!--题目-->
   <view class="page-section">
     <view class="weui-cells weui-cells_after-title">
       <view class="weui-cell">
         <label>
-          <label class="text_label">{{exerises[index].type == "0" ? "单选题" : "多选题"}}</label>
+          <label class="text_label">{{q_type[exerises[index].type]}}</label>
           <label class="text32">{{index+1}}、{{exerises[index].title}}</label>
         </label>
       </view>
@@ -48,7 +22,7 @@
           </label>
         </radio-group>
       </block>
-      <block wx:elif="{{exerises[index].type == '1'}}">
+      <block wx:elif="{{exerises[index].type != '0'}}">
         <checkbox-group name="cg{{exerises[index].id}}" bindchange="selected">
           <label class="weui-cell weui-check__label" wx:for="{{exerises[index].options}}" wx:key="{{item.op}}">
             <view class="weui-cell__hd">
@@ -63,6 +37,7 @@
       </block>
     </view>
   </view>
+  <!--析题 解析-->
   <view class="page-section" hidden="{{exerises[index].show_item >= 1 ? '' : true}}">
     <view class="section_head">
       <label class="section_title">析题</label>
@@ -84,6 +59,7 @@
       <label wx:for="{{exerises[index].rsub}}" wx:key="*this" class="text24 textblock">{{(index+1)+'、'+item.year+':'+item.op}}</label>
     </view>
   </view>
+  <!--讨论-->
   <view class="page-section" hidden="{{exerises[index].show_item >= 1 ? '' : true}}">
     <view class="section_head">
       <label class="section_title">讨论</label>
@@ -118,30 +94,62 @@
         </view>
       </view>
     </view>
-    <view class="exerises-feed-bottom">
-    </view>
   </view>
-  <view class="page-bottom">
-    <view class="top-tab flex-wrp flex-tab ">
-      <view class="flex-item bind" bindtap="doColl">
-        <image src="/image/{{exerises[index].is_coll?'Liked':'Like'}}.png"></image>
-        <label style="color:{{exerises[index].is_coll?'#1aad19':'inherit'}};">收藏</label>
-      </view>
-      <view class="flex-item">
-        <image src="/image/right.png"></image>
-        <label>{{right}}</label>
-      </view>
-      <view class="flex-item">
-        <image src="/image/error.png"></image>
-        <lable>{{error}}</lable>
-      </view>
-      <view class="flex-item bind" bindtap="doComments">
-        <image src="/image/Comments.png"></image>
-        <lable>评论</lable>
-      </view>
+  <view class="exerises-feed-bottom">
+    <label> </label>
+  </view>
+</view>
+<!--底层-->
+<view class="page-bottom">
+  <view class="top-tab flex-wrp flex-tab ">
+    <view class="flex-item bind" bindtap="doColl">
+      <image src="/image/{{exerises[index].is_coll?'Liked':'Like'}}.png"></image>
+      <label style="color:{{exerises[index].is_coll?'#1aad19':'inherit'}};">收藏</label>
+    </view>
+    <view class="flex-item">
+      <image src="/image/right.png"></image>
+      <label>{{right}}</label>
+    </view>
+    <view class="flex-item">
+      <image src="/image/error.png"></image>
+      <lable>{{error}}</lable>
+    </view>
+    <view class="flex-item bind" bindtap="doComments">
+      <image src="/image/Comments.png"></image>
+      <lable>评论</lable>
     </view>
   </view>
 </view>
+<!--开始弹出窗-->
+<view class="module-bg-layer" wx:if="{{show_start_module}}">
+  <view class="dv-module">
+    <template is="pagehead" data="{{avatarUrl: userInfo.avatarUrl,nickName:userInfo.nickName}}" />
+    <view class="vertical content">
+      <view>
+        <image class="icon-foot" src="/image/icon_foot.png"></image>
+      </view>
+      <view class="txt">
+        <label>{{week[1]+"月份 第"+week[2]+"周"}}</label>
+        <label></label>
+      </view>
+      <view class="txt-date">{{week[0]}}</view>
+      <view class="page-section page-section-gap" wx:for="{{items}}" wx:key="item.id">
+        <view class="item">
+          <view class="item-image" style="background-color:{{item.color}};">
+            <image src="{{item.img}}"></image>
+          </view>
+          <view class="item-txt">
+            {{item.txt}}：{{item.val}}
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="cust-btn">
+      <a bindtap="startTran">开始练习</a>
+    </view>
+  </view>
+</view>
+<!--评论弹出窗-->
 <view class="module-bg-layer" wx:if="{{show_comment_module}}">
   <view class="dv-module">
     <view class="cmts_label">可输入{{140-comm_len}}</view>
