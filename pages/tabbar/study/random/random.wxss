@@ -238,9 +238,16 @@ page {
   align-items: stretch;
 }
 
+.flex-justify {
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
 .flex-item {
   display: inline-flex;
   align-items: center;
+  padding: 10rpx 50rpx;
 }
 
 .top-tab {

@@ -6,20 +6,21 @@ Page({
   data: {
     userInfo: {},
     week: ["", "", ""],
-    items: [{
+    summaryValues:[],
+    summaryItems: [{
       txt: "练习量",
-      val: "5",
       color: "#cd853f",
+      val:"BATCH_COUNT",
       img: "/image/exam.png"
     }, {
       txt: "覆盖率",
-      val: "0.5%",
       color: "#008B8B",
+      val: "RATE",
       img: "/image/crate.png"
     }, {
       txt: "总用时",
-      val: "10分钟",
       color: "#3CB371",
+      val: "USE_SECOND",
       img: "/image/time.png"
     }],
     PAGE: "RANDOM",
@@ -37,7 +38,7 @@ Page({
     //   , answer: 'B'
     //   //用户选择
     //   , u_answer: ''
-    //   , isAnswered: false
+    //   , is_answered: false
     //   //标签、关键字
     //   , tag: [{ op: '2016真题' }, { op: '卷一内容' }, { op: '宪法' }]
     //   //关联法条
@@ -55,19 +56,36 @@ Page({
     //   //是否收藏
     //   , is_coll: false
     // }],
+    start_time:null,
     index: 0,
-    right: 0,
-    error: 0,
+    // right: 0,
+    // error: 0,
     comm_text: '',
     comm_len: 0,
     show_comment_module: false,
     show_start_module: true
   },
   selected: function (e) {
-    sUtil.selectedOptions(e, this)
+    //选择项确定
+    sUtil.selectedOptions(e, this, function (that, objExamItem) {
+      //单项选择时回调有效
+      var jsPost = new util.jsonRow()
+      jsPost.AddCell("ID", objExamItem.id)
+      jsPost.AddCell("u_answer", objExamItem.u_answer)
+      jsPost.AddCell("u_second", objExamItem.u_second)
+      Post.call(this, that, "ANSWERED", jsPost)
+    })
   },
   submitMultiVal: function (e) {
-    sUtil.submitMultiAnswer(e, this)
+    //多选、不定项提交答案
+    sUtil.submitMultiAnswer(e, this, function (that, objExamItem) {
+      //非单项选择时回调
+      var jsPost = new util.jsonRow()
+      jsPost.AddCell("ID", objExamItem.id)
+      jsPost.AddCell("u_answer", objExamItem.u_answer)
+      jsPost.AddCell("u_second", objExamItem.u_second)
+      Post.call(this, that, "ANSWERED", jsPost)
+    })
   },
   touchStart: function (e) {
     sUtil.touchStart(e)
@@ -79,6 +97,7 @@ Page({
     sUtil.touchEnd(e, this, function (that) { Post.call(this, that, "NEXT") })
   },
   doLike: function (e) {
+    //点赞
     sUtil.like(e, this, function (that, sId) {
       var jsPost = new util.jsonRow()
       jsPost.AddCell("ID", sId)
@@ -86,6 +105,7 @@ Page({
     })
   },
   doColl: function (e) {
+    //收藏
     sUtil.collect(e, this, function (that, sId) {
       var jsPost = new util.jsonRow()
       jsPost.AddCell("ID", sId)
@@ -93,22 +113,25 @@ Page({
     })
   },
   InputComm: function (e) {
+    //输入评论时执行，显示长度
     this.setData({
       comm_text: e.detail.value,
       comm_len: e.detail.value.length
     })
   },
   doComments: function (e) {
+    //显示评论窗口
     this.showModal()
   },
   startTran: function (e) {
     //开始练习
     this.setData({
-      show_start_module: false
+      show_start_module: false,
+      start_time:new Date()
     })
-    console.log(e)
   },
   SubmitComm: function (e) {
+    //提交评论
     var that = this
     let iIndex = that.data.index
     let sExe = that.data.exerises
@@ -131,6 +154,7 @@ Page({
     this.hideModal()
   },
   CloseComm: function (e) {
+    //关闭评论
     this.hideModal()
   },
   showModal: function () {
@@ -146,6 +170,7 @@ Page({
     })
   },
   onLoad: function (options) {
+    //加载时执行
     var that = this
     //调用应用实例的方法获取全局数据
     app.getUserInfo(function (userInfo) {
@@ -160,6 +185,7 @@ Page({
 })
 
 function Post(that, action, data) {
+  //数据请求执行方法
   var jsPost = data || new util.jsonRow()
   jsPost.AddCell("PAGE", that.data.PAGE)
   jsPost.AddCell("ACTION", action)
@@ -169,7 +195,10 @@ function Post(that, action, data) {
       if (jsPost.arrjson.ACTION == "LOAD" || jsPost.arrjson.ACTION == "NEXT") {
         that.setData({
           exerises: that.data.exerises.concat(res.data.data.exerises)
+          , summaryValues: res.data.data.summaries
         })
+      } else if (jsPost.arrjson.ACTION == "ANSWERED"){
+        //答题
       }
     }
     else {

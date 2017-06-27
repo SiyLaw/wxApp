@@ -19,16 +19,31 @@ function currentWeekInfo() {
   var now = new Date()
   var nowDayOfWeek = now.getDay() //今天本周的第几天
   var nowDay = now.getDate() //当前日
-  var nowMonth = now.getMonth() + 1 //当前月
+  var nowMonth = now.getMonth() //当前月
   var nowYear = now.getYear() //当前年
   var weekStartDate = new Date(nowYear, nowMonth, nowDay - nowDayOfWeek)
   var weekEndDate = new Date(nowYear, nowMonth, nowDay + (6 - nowDayOfWeek))
-  var sweek = formatNumber(weekStartDate.getMonth()) + '月' + formatNumber(weekStartDate.getDate()) + '日'
-  var eweek = formatNumber(weekEndDate.getMonth()) + '月' + formatNumber(weekEndDate.getDate()) + '日'
+  var sweek = formatNumber(weekStartDate.getMonth() + 1) + '月' + formatNumber(weekStartDate.getDate()) + '日'
+  var eweek = formatNumber(weekEndDate.getMonth() + 1) + '月' + formatNumber(weekEndDate.getDate()) + '日'
 
   var num = Math.ceil((nowDay + 6 - nowDayOfWeek) / 7).toString();
 
-  return [sweek + ' ～ ' + eweek, nowMonth.toString(), num]
+  return [sweek + ' ～ ' + eweek, (nowMonth + 1).toString(), num]
+
+  // var leave = mSec % (12 * 30 * 24 * 3600 * 1000);
+  // var months = Math.floor(leave / (30 * 24 * 3600 * 1000));
+  // //计算出相差天数
+  // var leave0 = leave % (30 * 24 * 3600 * 1000);
+  // var days = Math.floor(leave0 / (24 * 3600 * 1000));
+  // //计算出小时数
+  // var leave1 = leave0 % (24 * 3600 * 1000);     //计算天数后剩余的毫秒数
+  // var hours = Math.floor(leave1 / (3600 * 1000));
+  // //计算相差分钟数
+  // var leave2 = leave1 % (3600 * 1000);         //计算小时数后剩余的毫秒数
+  // var minutes = Math.floor(leave2 / (60 * 1000));
+  // //计算相差秒数
+  // var leave3 = leave2 % (60 * 1000);       //计算分钟数后剩余的毫秒数
+  // var seconds = Math.round(leave3 / 1000);
 }
 
 /**

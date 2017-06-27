@@ -16,7 +16,7 @@
         <radio-group name="rg{{exerises[index].id}}" bindchange="selected">
           <label class="weui-cell weui-check__label" wx:for="{{exerises[index].options}}" wx:key="{{item.op}}">
             <view class="weui-cell__hd">
-              <radio value="{{item.op}}" checked="{{item.checked}}" />
+              <radio value="{{item.op}}" checked="{{item.check}}"/>
             </view>
             <view class="weui-cell__bd text28">{{item.op}}、{{item.text}}</view>
           </label>
@@ -26,7 +26,7 @@
         <checkbox-group name="cg{{exerises[index].id}}" bindchange="selected">
           <label class="weui-cell weui-check__label" wx:for="{{exerises[index].options}}" wx:key="{{item.op}}">
             <view class="weui-cell__hd">
-              <checkbox value="{{item.op}}" checked="{{item.checked}}" />
+              <checkbox value="{{item.op}}" checked="{{item.check}}"/>
             </view>
             <view class="weui-cell__bd text28">{{item.op}}、{{item.text}}</view>
           </label>
@@ -101,19 +101,19 @@
 </view>
 <!--底层-->
 <view class="page-bottom">
-  <view class="top-tab flex-wrp flex-tab ">
+  <view class="top-tab flex-wrp flex-justify ">
     <view class="flex-item bind" bindtap="doColl">
       <image src="/image/{{exerises[index].is_coll?'Liked':'Like'}}.png"></image>
       <label style="color:{{exerises[index].is_coll?'#1aad19':'inherit'}};">收藏</label>
     </view>
-    <view class="flex-item">
+    <!--<view class="flex-item">
       <image src="/image/right.png"></image>
       <label>{{right}}</label>
     </view>
     <view class="flex-item">
       <image src="/image/error.png"></image>
       <lable>{{error}}</lable>
-    </view>
+    </view>-->
     <view class="flex-item bind" bindtap="doComments">
       <image src="/image/Comments.png"></image>
       <lable>评论</lable>
@@ -133,13 +133,13 @@
         <label></label>
       </view>
       <view class="txt-date">{{week[0]}}</view>
-      <view class="page-section page-section-gap" wx:for="{{items}}" wx:key="item.id">
+      <view class="page-section page-section-gap" wx:for="{{summaryItems}}" wx:key="item.id">
         <view class="item">
           <view class="item-image" style="background-color:{{item.color}};">
             <image src="{{item.img}}"></image>
           </view>
           <view class="item-txt">
-            {{item.txt}}：{{item.val}}
+            {{item.txt}}：{{ summaryValues[0][item.val]}}
           </view>
         </view>
       </view>
