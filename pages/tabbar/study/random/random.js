@@ -6,11 +6,11 @@ Page({
   data: {
     userInfo: {},
     week: ["", "", ""],
-    summaryValues:[],
+    summaryValues: [],
     summaryItems: [{
       txt: "练习量",
       color: "#cd853f",
-      val:"BATCH_COUNT",
+      val: "BATCH_COUNT",
       img: "/image/exam.png"
     }, {
       txt: "覆盖率",
@@ -24,7 +24,7 @@ Page({
       img: "/image/time.png"
     }],
     PAGE: "RANDOM",
-    q_type: ["单选题", "多选题", "不定项题", "判断题", "主观题","其他"],
+    q_type: ["单选题", "多选题", "不定项题", "判断题", "主观题", "其他"],
     exerises: [],
     // exerises: [{
     //   id: 'ID_TITLE1'
@@ -56,7 +56,7 @@ Page({
     //   //是否收藏
     //   , is_coll: false
     // }],
-    start_time:null,
+    start_time: null,
     index: 0,
     // right: 0,
     // error: 0,
@@ -127,29 +127,16 @@ Page({
     //开始练习
     this.setData({
       show_start_module: false,
-      start_time:new Date()
+      start_time: new Date()
     })
   },
   SubmitComm: function (e) {
     //提交评论
-    var that = this
-    let iIndex = that.data.index
-    let sExe = that.data.exerises
-    var sId = sExe[iIndex].qid
-    if (!sId) {
-      wx.showToast({
-        title: '前两题无法评论',
-        duration: 1000
-      })
-    } else {
+    sUtil.comment(e, this, function (that, sId) {
       var jsPost = new util.jsonRow()
       jsPost.AddCell("ID", sId)
       jsPost.AddCell("TEXT", that.data.comm_text)
-      Post.call(this, that, "COMM", jsPost)
-    }
-    this.setData({
-      comm_text: '',
-      comm_len: 0
+      Post.call(this, that, "COMMENT", jsPost)
     })
     this.hideModal()
   },
@@ -197,8 +184,13 @@ function Post(that, action, data) {
           exerises: that.data.exerises.concat(res.data.data.exerises)
           , summaryValues: res.data.data.summaries
         })
-      } else if (jsPost.arrjson.ACTION == "ANSWERED"){
-        //答题
+      } else if (jsPost.arrjson.ACTION == "COMMENT") {
+        //题目评论
+        let cExes = that.data.exerises
+        cExes[that.data.index].feeds = res.data.data.feeds
+        that.setData({
+          exerises: cExes
+        })
       }
     }
     else {

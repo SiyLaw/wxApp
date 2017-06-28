@@ -14,9 +14,9 @@
       </view>
       <block wx:if="{{exerises[index].type == '0'}}">
         <radio-group name="rg{{exerises[index].id}}" bindchange="selected">
-          <label class="weui-cell weui-check__label" wx:for="{{exerises[index].options}}" wx:key="{{item.op}}">
+          <label class="weui-cell weui-check__label" wx:for="{{exerises[index].options}}" wx:for-index="idx" wx:key="{{item.op}}">
             <view class="weui-cell__hd">
-              <radio value="{{item.op}}" checked="{{item.check}}"/>
+              <radio value="{{item.op}}" checked="{{item.check}}" disabled="{{exerises[index].is_answered}}"/>
             </view>
             <view class="weui-cell__bd text28">{{item.op}}、{{item.text}}</view>
           </label>
@@ -24,9 +24,9 @@
       </block>
       <block wx:elif="{{exerises[index].type != '0'}}">
         <checkbox-group name="cg{{exerises[index].id}}" bindchange="selected">
-          <label class="weui-cell weui-check__label" wx:for="{{exerises[index].options}}" wx:key="{{item.op}}">
+          <label class="weui-cell weui-check__label" wx:for="{{exerises[index].options}}" wx:for-index="idx"  wx:key="{{item.op}}">
             <view class="weui-cell__hd">
-              <checkbox value="{{item.op}}" checked="{{item.check}}"/>
+              <checkbox value="{{item.op}}" checked="{{item.check}}" disabled="{{exerises[index].is_answered}}"/>
             </view>
             <view class="weui-cell__bd text28">{{item.op}}、{{item.text}}</view>
           </label>

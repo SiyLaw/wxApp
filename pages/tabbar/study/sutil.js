@@ -77,9 +77,21 @@ function collect(e, that, update) {
   let iIndex = that.data.index
   let sExe = that.data.exerises
   sExe[iIndex].is_coll = !sExe[iIndex].is_coll;
-  typeof update == "function" && update(that, sExe[iIndex].id)
+  typeof update == "function" && update(that, sExe[iIndex].qid)
   that.setData({
     exerises: sExe
+  })
+}
+
+
+//评论
+function comment(e, that, update) {
+  let iIndex = that.data.index
+  let sExe = that.data.exerises
+  typeof update == "function" && update(that, sExe[iIndex].qid)
+  that.setData({
+    comm_text: '',
+    comm_len: 0
   })
 }
 
@@ -188,6 +200,7 @@ module.exports = {
   touchMove: touchMove,
   touchEnd: touchEnd,
   collect: collect,
+  comment: comment,
   like: like,
   selectedOptions: selectedOptions,
   submitMultiAnswer: submitMultiAnswer
