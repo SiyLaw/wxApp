@@ -15,6 +15,30 @@ function formatNumber(n) {
   return n[1] ? n : '0' + n
 }
 
+function formatString(n) {
+  var leave = n % (12 * 30 * 24 * 3600)
+  var months = Math.floor(leave / (30 * 24 * 3600))
+  // //计算出相差天数
+  var leave0 = leave % (30 * 24 * 3600)
+  var days = Math.floor(leave0 / (24 * 3600))
+  // //计算出小时数
+  var leave1 = leave0 % (24 * 3600)     //计算天数后剩余的毫秒数
+  var hours = Math.floor(leave1 / (3600))
+  // //计算相差分钟数
+  var leave2 = leave1 % (3600)         //计算小时数后剩余的毫秒数
+  var minutes = Math.floor(leave2 / (60))
+  // //计算相差秒数
+  var leave3 = leave2 % (60)    //计算分钟数后剩余的毫秒数
+  var seconds = Math.round(leave3)
+  var strFormat = ""
+  if (months > 0) { strFormat += months.toString() + "个月" }
+  if (days > 0) { strFormat += days.toString() + "天" }
+  if (hours > 0) { strFormat += hours.toString() + "小时" }
+  if (minutes > 0) { strFormat += minutes.toString() + "分" }
+  if (seconds > 0) { strFormat += seconds.toString() + "秒" }
+  return strFormat
+}
+
 function currentWeekInfo() {
   var now = new Date()
   var nowDayOfWeek = now.getDay() //今天本周的第几天
@@ -29,21 +53,6 @@ function currentWeekInfo() {
   var num = Math.ceil((nowDay + 6 - nowDayOfWeek) / 7).toString();
 
   return [sweek + ' ～ ' + eweek, (nowMonth + 1).toString(), num]
-
-  // var leave = mSec % (12 * 30 * 24 * 3600 * 1000);
-  // var months = Math.floor(leave / (30 * 24 * 3600 * 1000));
-  // //计算出相差天数
-  // var leave0 = leave % (30 * 24 * 3600 * 1000);
-  // var days = Math.floor(leave0 / (24 * 3600 * 1000));
-  // //计算出小时数
-  // var leave1 = leave0 % (24 * 3600 * 1000);     //计算天数后剩余的毫秒数
-  // var hours = Math.floor(leave1 / (3600 * 1000));
-  // //计算相差分钟数
-  // var leave2 = leave1 % (3600 * 1000);         //计算小时数后剩余的毫秒数
-  // var minutes = Math.floor(leave2 / (60 * 1000));
-  // //计算相差秒数
-  // var leave3 = leave2 % (60 * 1000);       //计算分钟数后剩余的毫秒数
-  // var seconds = Math.round(leave3 / 1000);
 }
 
 /**
@@ -173,6 +182,7 @@ function updateRefreshIcon() {
 
 module.exports = {
   formatTime: formatTime,
+  formatString: formatString,
   currentWeekInfo: currentWeekInfo,
   _get: _get,
   _post: _post_json,

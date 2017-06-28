@@ -28,7 +28,7 @@ function touchEnd(e, that, next) {
         //     icon: 'loading',
         //     duration: 1000
         // })
-        typeof next == "function" && next(that)
+        typeof next == "function" && next(that, that.data.exerises[iIndex])
         iIndex += 1
         that.setData({
           index: iIndex,
@@ -115,6 +115,7 @@ function like(e, that, update) {
 
 //多选提交答案
 function submitMultiAnswer(e, that, update) {
+  let iEcnt = that.data.ecnt
   let iIndex = that.data.index
   let sExe = that.data.exerises
   if (!sExe[iIndex].is_answered) {
@@ -130,10 +131,12 @@ function submitMultiAnswer(e, that, update) {
     //     iError += 1
     //   }
     // }
+    sExe[iIndex].seq = ++iEcnt
     sExe[iIndex].show_item = 1
     sExe[iIndex].is_answered = true
     that.setData({
       exerises: sExe
+      , ecnt: iEcnt
       // ,
       // right: iRight,
       // error: iError
@@ -149,6 +152,7 @@ function selectedOptions(e, that, update) {
   let start_time = that.data.start_time
   var mSec = current_time.getTime() - start_time.getTime()
 
+  let iEcnt = that.data.ecnt
   let iIndex = that.data.index
   let sExe = that.data.exerises
   let exType = sExe[iIndex].type
@@ -178,10 +182,12 @@ function selectedOptions(e, that, update) {
     //     iError += 1
     //   }
     // }
+    sExe[iIndex].seq = ++iEcnt
     sExe[iIndex].show_item = 1
     sExe[iIndex].is_answered = true
     that.setData({
       exerises: sExe
+      , ecnt: iEcnt
       // ,
       // right: iRight,
       // error: iError
