@@ -34,6 +34,7 @@ Page({
     // error: 0,
     comm_text: '',
     comm_len: 0,
+    r_id: '',//评论ID
     show_comment_module: false,
     show_start_module: true
   },
@@ -84,11 +85,22 @@ Page({
       Post.call(this, that, "NEXT", jsPost)
     })
   },
+  doDisComm: function (e) {
+    //评论-评论
+    let iIndex = this.data.index
+    let sExe = this.data.exerises
+    let iFeedIndex = e.currentTarget.dataset.idx
+    let rid = sExe[iIndex].feeds[iFeedIndex].id
+    this.setData({
+      r_id: rid,
+      show_comment_module: true
+    })
+  },
   doLike: function (e) {
     //评论点赞
     sUtil.like(e, this, function (that, sId) {
       var jsPost = new util.jsonRow()
-      jsPost.AddCell("ID", sId)
+      jsPost.AddCell("DID", sId)
       Post.call(this, that, "LIKE", jsPost)
     })
   },
@@ -109,7 +121,10 @@ Page({
   },
   doComments: function (e) {
     //显示评论窗口
-    this.showModal()
+    this.setData({
+      r_id: '',
+      show_comment_module: true
+    })
   },
   startTran: function (e) {
     //开始练习
@@ -123,24 +138,19 @@ Page({
     sUtil.comment(e, this, function (that, sId) {
       var jsPost = new util.jsonRow()
       jsPost.AddCell("QID", sId)
+      jsPost.AddCell("RID", that.data.r_id)
       jsPost.AddCell("TEXT", that.data.comm_text)
       Post.call(this, that, "COMMENT", jsPost)
     })
-    this.hideModal()
+    this.setData({
+      r_id: '',
+      show_comment_module: false
+    })
   },
   CloseComm: function (e) {
     //关闭评论
-    this.hideModal()
-  },
-  showModal: function () {
-    // 显示遮罩层
     this.setData({
-      show_comment_module: true
-    })
-  },
-  hideModal: function () {
-    // 隐藏遮罩层
-    this.setData({
+      r_id: '',
       show_comment_module: false
     })
   },

@@ -100,12 +100,12 @@ function like(e, that, update) {
   let iIndex = that.data.index
   let sExe = that.data.exerises
   let iFeedIndex = e.currentTarget.dataset.idx
-  if (sExe[iIndex].feeds[iFeedIndex].isAgreed) {
+  if (sExe[iIndex].feeds[iFeedIndex].is_agreed) {
     sExe[iIndex].feeds[iFeedIndex].agree -= 1
   } else {
     sExe[iIndex].feeds[iFeedIndex].agree += 1
   }
-  sExe[iIndex].feeds[iFeedIndex].isAgreed = !sExe[iIndex].feeds[iFeedIndex].isAgreed
+  sExe[iIndex].feeds[iFeedIndex].is_agreed = !sExe[iIndex].feeds[iFeedIndex].is_agreed
 
   typeof update == "function" && update(that, sExe[iIndex].feeds[iFeedIndex].id)
   that.setData({

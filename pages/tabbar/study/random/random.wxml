@@ -81,12 +81,27 @@
               <view class="dot">
                 <a>{{item.time}}</a>
               </view>
-              <view class="dot">
+              <view class="dot" data-idx="{{idx}}" bindtap="doDisComm">
                 <a>回复{{item.comments}}</a>
               </view>
               <view class="like" data-idx="{{idx}}" bindtap="doLike">
-                <a style="color:{{item.isAgreed?'#1aad19':'inherit'}};">
-                  <image src="/image/{{item.isAgreed?'ThumbUped':'ThumbUp'}}.png"></image>赞{{item.agree}}</a>
+                <a style="color:{{item.is_agreed?'#1aad19':'inherit'}};">
+                  <image src="/image/{{item.is_agreed?'ThumbUped':'ThumbUp'}}.png"></image>赞{{item.agree}}</a>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="feed-item" wx:if="{{exerises[index].feeds[idx].rel_feed}}">
+          <view class="feed-source">
+            <view class="avatar">
+              <image src="{{exerises[index].feeds[idx].rel_feed.head_img}}"></image>
+              <label class="slabel">{{exerises[index].feeds[idx].rel_feed.user}}</label>
+            </view>
+          </view>
+          <view class="feed-content">
+            <view class="answer-body">
+              <view>
+                <text class="answer-txt">{{exerises[index].feeds[idx].rel_feed.feed_txt}}</text>
               </view>
             </view>
           </view>
