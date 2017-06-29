@@ -26,10 +26,10 @@ Page({
     PAGE: "RANDOM",
     q_type: ["单选题", "多选题", "不定项题", "判断题", "主观题", "其他"],
     exerises: [],
-    ecnt: 0,
+    ecnt: 0,//有效答题数
     start_time: null,
-    index: 0,
-    auto_next: true,
+    index: 0,//当前答题数量
+    auto_next: true,//自动下一题
     // right: 0,
     // error: 0,
     comm_text: '',
@@ -172,8 +172,10 @@ function Post(that, action, data) {
         if (res.data.data.exerises.length > 5) {
           iIndex = 2
         }
+        //格式化练习时间
         let objSummaries = res.data.data.summaries
         objSummaries[0].USE_SECOND = util.formatString(objSummaries[0].USE_SECOND)
+
         that.setData({
           exerises: that.data.exerises.concat(res.data.data.exerises)
           , summaryValues: objSummaries
@@ -196,6 +198,7 @@ function Post(that, action, data) {
       }
     }
     else if (jsPost.arrjson.ACTION == "ANSWERED" && that.data.auto_next) {
+      //答题后，自动下一题的情况下处理
       var iIndex = that.data.index
       if (iIndex == that.data.exerises.length - 2) {
         var jsPost1 = new util.jsonRow()

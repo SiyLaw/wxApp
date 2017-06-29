@@ -81,9 +81,8 @@
               <view class="dot">
                 <a>{{item.time}}</a>
               </view>
-              <view>
-                <a>
-                  <image src="/image/Comments.png"></image>回复{{item.comments}}</a>
+              <view class="dot">
+                <a>回复{{item.comments}}</a>
               </view>
               <view class="like" data-idx="{{idx}}" bindtap="doLike">
                 <a style="color:{{item.isAgreed?'#1aad19':'inherit'}};">
