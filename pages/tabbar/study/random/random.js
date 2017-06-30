@@ -13,7 +13,7 @@ Page({
       val: "BATCH_COUNT",
       img: "/image/exam.png"
     }, {
-      txt: "覆盖率",
+      txt: "正确率",
       color: "#008B8B",
       val: "RATE",
       img: "/image/crate.png"
@@ -44,6 +44,7 @@ Page({
       auto_next: !that.data.auto_next
     })
   },
+  //------------------------START-----答题---------------------------
   selected: function (e) {
     //选择项确定
     sUtil.selectedOptions(e, this, function (that, objExamItem) {
@@ -72,6 +73,9 @@ Page({
       Post.call(this, that, "ANSWERED", jsPost)
     })
   },
+  //------------------------END-----答题---------------------------
+
+  //------------------------START-----左右滑动控制------------------
   touchStart: function (e) {
     sUtil.touchStart(e)
   },
@@ -85,6 +89,16 @@ Page({
       Post.call(this, that, "NEXT", jsPost)
     })
   },
+  //------------------------END-----左右滑动控制--------------------
+
+  //------------------------START-----评论-------------------------
+  doComments: function (e) {
+    //评论题目窗口
+    this.setData({
+      r_id: '',
+      show_comment_module: true
+    })
+  },
   doDisComm: function (e) {
     //评论-评论
     let iIndex = this.data.index
@@ -96,41 +110,11 @@ Page({
       show_comment_module: true
     })
   },
-  doLike: function (e) {
-    //评论点赞
-    sUtil.like(e, this, function (that, sId) {
-      var jsPost = new util.jsonRow()
-      jsPost.AddCell("DID", sId)
-      Post.call(this, that, "LIKE", jsPost)
-    })
-  },
-  doColl: function (e) {
-    //收藏
-    sUtil.collect(e, this, function (that, sId) {
-      var jsPost = new util.jsonRow()
-      jsPost.AddCell("QID", sId)
-      Post.call(this, that, "COLL", jsPost)
-    })
-  },
   InputComm: function (e) {
-    //输入评论时执行，显示长度
+    //输入评论时，实时显示长度
     this.setData({
       comm_text: e.detail.value,
       comm_len: e.detail.value.length
-    })
-  },
-  doComments: function (e) {
-    //显示评论窗口
-    this.setData({
-      r_id: '',
-      show_comment_module: true
-    })
-  },
-  startTran: function (e) {
-    //开始练习
-    this.setData({
-      show_start_module: false,
-      start_time: new Date()
     })
   },
   SubmitComm: function (e) {
@@ -152,6 +136,30 @@ Page({
     this.setData({
       r_id: '',
       show_comment_module: false
+    })
+  },
+  doLike: function (e) {
+    //评论点赞
+    sUtil.like(e, this, function (that, sId) {
+      var jsPost = new util.jsonRow()
+      jsPost.AddCell("DID", sId)
+      Post.call(this, that, "LIKE", jsPost)
+    })
+  },
+  //------------------------END-----评论---------------------------
+  doColl: function (e) {
+    //收藏
+    sUtil.collect(e, this, function (that, sId) {
+      var jsPost = new util.jsonRow()
+      jsPost.AddCell("QID", sId)
+      Post.call(this, that, "COLL", jsPost)
+    })
+  },
+  startTran: function (e) {
+    //开始练习
+    this.setData({
+      show_start_module: false,
+      start_time: new Date()
     })
   },
   onLoad: function (options) {

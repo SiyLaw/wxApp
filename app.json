@@ -7,10 +7,10 @@
 
     "pages/profile/profile",
     "pages/tabbar/study/random/random",
+    "pages/tabbar/study/real/real",
     "pages/tabbar/study/special/special",
     "pages/tabbar/study/realsimulate/realsimulate",
     "pages/tabbar/study/favorite/favorite",
-    "pages/tabbar/study/real/real",
     "pages/tabbar/study/evaluation/evaluation"
   ],
   "window":{

@@ -1,138 +1,181 @@
 // pages/tabbar/study/real/real.js
 var util = require('../../../../utils/util.js')
+var sUtil = require('../sutil.js')
+var app = getApp()
 Page({
   data: {
-    navTab: ["题目", "析题", "讨论", "收藏"],
-    currentNavtab: "0",
-    exerises: [{
-      ID: 'ID_TITLE'
-      , type: 'multi'
-      , seq: '1'
-      , title: '下列有关公民权利能力的表述，有哪一项是错误的？'
-      , option: [{ op: 'A', text: '权利能力是公民构成法律关系主体的一种资格' }
-        , { op: 'B', text: '所有公民的权利能力都是相同的' }
-        , { op: 'C', text: '公民具有权利能力，并不必然具有行为能力' }
-        , { op: 'D', text: '权利能力也包括公民承担义务的能力或资格' }]
-      , answer: 'B'
-    }],
-    index: 0,
-    refreshAnimation:{},
-    loading:false,
-    words:[{}]
+    userInfo: {},
+    PAGE: "REAL",
+    batches:[],
   },
-  ctrlChange: function (e) {
-    console.log(e)
-    // var items = this.data.items;
-    // for (var i = 0, len = items.length; i < len; ++i) {
-    //   items[i].checked = items[i].value == e.detail.value
-    // }
-  },
-  switchTab: function (e) {
-    this.setData({
-      currentNavtab: e.currentTarget.dataset.idx
-    });
-  },
-  upper: function () {
-    wx.showNavigationBarLoading()
-    this.refresh();
-    console.log("upper");
-    setTimeout(function () { wx.hideNavigationBarLoading(); wx.stopPullDownRefresh(); }, 2000);
-  },
-  lower: function (e) {
-    wx.showNavigationBarLoading();
-    var that = this;
-    setTimeout(function () { wx.hideNavigationBarLoading(); that.nextLoad(); }, 1000);
-    console.log("lower")
-  },
-  //网络请求数据, 实现刷新
-  refresh0: function () {
-    var index_api = '';
-    util.getData(index_api)
-      .then(function (data) {
-        //this.setData({
-        //
-        //});
-        console.log(data);
-      });
-  },
-  //使用本地 fake 数据实现刷新效果
-  refresh: function () {
-    var feed = util.exerisesNext();
-    console.log("loaddata");
-    var feed_data = feed.data;
-    this.setData({
-      feed: feed_data,
-      feed_length: feed_data.length
-    });
-  },
-
-  //使用本地 fake 数据实现继续加载效果
-  nextLoad: function () {
-    var next = util.exerisesNext();
-    console.log("continueload");
-    var next_data = next.data;
-    this.setData({
-      feed: this.data.feed.concat(next_data),
-      feed_length: this.data.feed_length + next_data.length
-    });
-  },
-
-  onLoad: function (options) {
-    //var gHeight = 
-    // 页面初始化 options为页面跳转所带来的参数
-  },
-  onPullDownRefresh: function () {
-    wx.showToast({
-      title: 'loading...',
-      icon: 'loading'
+  //------------------------START-----答题---------------------------
+  selected: function (e) {
+    //选择项确定
+    sUtil.selectedOptions(e, this, function (that, objExamItem) {
+      //单项选择时回调有效
+      var jsPost = new util.jsonRow()
+      jsPost.AddCell("ID", objExamItem.id)
+      jsPost.AddCell("QID", objExamItem.qid)
+      jsPost.AddCell("BID", objExamItem.bid)
+      jsPost.AddCell("SEQ", objExamItem.seq)
+      jsPost.AddCell("u_answer", objExamItem.u_answer)
+      jsPost.AddCell("u_second", objExamItem.u_second)
+      Post.call(this, that, "ANSWERED", jsPost)
     })
-    console.log('onPullDownRefresh', new Date())
   },
-  onReachBottom: function () {
-    console.log('hi')
-    if (this.data.loading) return;
-    this.setData({ loading: true });
-    updateRefreshIcon.call(this);
-    var words = this.data.words.concat([{ message: '土生土长', viewid: '0', time: util.formatTime(new Date), greeting: 'hello' }]);
-    setTimeout(() => {
-      this.setData({
-        loading: false,
-        words: words
+  submitMultiVal: function (e) {
+    //多选、不定项提交答案
+    sUtil.submitMultiAnswer(e, this, function (that, objExamItem) {
+      //非单项选择时回调
+      var jsPost = new util.jsonRow()
+      jsPost.AddCell("ID", objExamItem.id)
+      jsPost.AddCell("QID", objExamItem.qid)
+      jsPost.AddCell("BID", objExamItem.bid)
+      jsPost.AddCell("SEQ", objExamItem.seq)
+      jsPost.AddCell("u_answer", objExamItem.u_answer)
+      jsPost.AddCell("u_second", objExamItem.u_second)
+      Post.call(this, that, "ANSWERED", jsPost)
+    })
+  },
+  //------------------------END-----答题---------------------------
+
+  //------------------------START-----左右滑动控制------------------
+  touchStart: function (e) {
+    sUtil.touchStart(e)
+  },
+  touchMove: function (e) {
+    sUtil.touchMove(e)
+  },
+  touchEnd: function (e) {
+    sUtil.touchEnd(e, this, function (that, objExamItem) {
+      var jsPost = new util.jsonRow()
+      jsPost.AddCell("BID", objExamItem.bid)
+      Post.call(this, that, "NEXT", jsPost)
+    })
+  },
+  //------------------------END-----左右滑动控制--------------------
+
+  //------------------------START-----评论-------------------------
+  doComments: function (e) {
+    //评论题目窗口
+    this.setData({
+      r_id: '',
+      show_comment_module: true
+    })
+  },
+  doDisComm: function (e) {
+    //评论-评论
+    let iIndex = this.data.index
+    let sExe = this.data.exerises
+    let iFeedIndex = e.currentTarget.dataset.idx
+    let rid = sExe[iIndex].feeds[iFeedIndex].id
+    this.setData({
+      r_id: rid,
+      show_comment_module: true
+    })
+  },
+  InputComm: function (e) {
+    //输入评论时，实时显示长度
+    this.setData({
+      comm_text: e.detail.value,
+      comm_len: e.detail.value.length
+    })
+  },
+  SubmitComm: function (e) {
+    //提交评论
+    sUtil.comment(e, this, function (that, sId) {
+      var jsPost = new util.jsonRow()
+      jsPost.AddCell("QID", sId)
+      jsPost.AddCell("RID", that.data.r_id)
+      jsPost.AddCell("TEXT", that.data.comm_text)
+      Post.call(this, that, "COMMENT", jsPost)
+    })
+    this.setData({
+      r_id: '',
+      show_comment_module: false
+    })
+  },
+  CloseComm: function (e) {
+    //关闭评论
+    this.setData({
+      r_id: '',
+      show_comment_module: false
+    })
+  },
+  doLike: function (e) {
+    //评论点赞
+    sUtil.like(e, this, function (that, sId) {
+      var jsPost = new util.jsonRow()
+      jsPost.AddCell("DID", sId)
+      Post.call(this, that, "LIKE", jsPost)
+    })
+  },
+  //------------------------END-----评论---------------------------
+  doColl: function (e) {
+    //收藏
+    sUtil.collect(e, this, function (that, sId) {
+      var jsPost = new util.jsonRow()
+      jsPost.AddCell("QID", sId)
+      Post.call(this, that, "COLL", jsPost)
+    })
+  },
+  onLoad: function (options) {
+    //加载时执行
+    var that = this
+    //调用应用实例的方法获取全局数据
+    app.getUserInfo(function (userInfo) {
+      //更新数据
+      that.setData({
+        userInfo: userInfo
+        , week: util.currentWeekInfo()
       })
-    }, 2000)
-  },
-  onReady: function () {
-    // 页面渲染完成
-  },
-  onShow: function () {
-    // 页面显示
-  },
-  onHide: function () {
-    // 页面隐藏
-  },
-  onUnload: function () {
-    // 页面关闭
+    })
+    Post.call(this, this, "LOAD")
   }
 })
 
-
-/**
-  * 旋转刷新图标
-  */
-  function updateRefreshIcon () {
-    var deg = 0;
-    console.log('旋转开始了.....')
-    var animation = wx.createAnimation({
-      duration: 1000
-    });
-
-    var timer = setInterval(() => {
-      if (!this.data.loading)
-        clearInterval(timer);
-      animation.rotateZ(deg).step();//在Z轴旋转一个deg角度
-      deg += 360;
-      this.setData({
-        refreshAnimation: animation.export()
+function Post(that, action, data) {
+  //数据请求执行方法
+  var jsPost = data || new util.jsonRow()
+  jsPost.AddCell("PAGE", that.data.PAGE)
+  jsPost.AddCell("ACTION", action)
+  util._post(app.globalData.url, jsPost, function (res) {
+    if (res && res.data && res.data.data) {
+      //更新数据
+      if (jsPost.arrjson.ACTION == "LOAD") {        
+        that.setData({
+          batches: res.data.data.batches
+        })
+      }
+      else if (jsPost.arrjson.ACTION == "NEXT") {
+        that.setData({
+          exerises: that.data.exerises.concat(res.data.data.exerises)
+        })
+      }
+      else if (jsPost.arrjson.ACTION == "COMMENT") {
+        //题目评论
+        let cExes = that.data.exerises
+        cExes[that.data.index].feeds = res.data.data.feeds
+        that.setData({
+          exerises: cExes
+        })
+      }
+    }
+    else if (jsPost.arrjson.ACTION == "ANSWERED" && that.data.auto_next) {
+      //答题后，自动下一题的情况下处理
+      var iIndex = that.data.index
+      if (iIndex == that.data.exerises.length - 2) {
+        var jsPost1 = new util.jsonRow()
+        jsPost1.AddCell("BID", that.data.exerises[iIndex].bid)
+        Post.call(this, that, "NEXT", jsPost1)
+      }
+      that.setData({
+        index: ++iIndex
+        , start_time: new Date()
       })
-    }, 2000);
-  }
+    }
+    else {
+      // console.log('error')
+    }
+  })
+}
