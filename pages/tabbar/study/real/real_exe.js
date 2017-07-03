@@ -1,13 +1,36 @@
-// pages/tabbar/study/real/real.js
+// real_exe.js
 var util = require('../../../../utils/util.js')
 var sUtil = require('../sutil.js')
 var app = getApp()
 Page({
+
+  /**
+   * 页面的初始数据
+   */
   data: {
+    ID: '',
+    TXT: '',
     userInfo: {},
-    PAGE: "REAL",
-    batches: [],
-    height: 200
+    week: ["", "", ""],
+    PAGE: "REAL_EXE",
+    q_type: ["单选题", "多选题", "不定项题", "判断题", "主观题", "其他"],
+    exerises: [],
+    ecnt: 0,//有效答题数
+    start_time: null,
+    index: 0,//当前答题数量
+    auto_next: true,//自动下一题
+    // right: 0,
+    // error: 0,
+    comm_text: '',
+    comm_len: 0,
+    r_id: '',//评论ID
+    show_comment_module: false
+  },
+  setautonext: function (e) {
+    var that = this
+    that.setData({
+      auto_next: !that.data.auto_next
+    })
   },
   //------------------------START-----答题---------------------------
   selected: function (e) {
@@ -120,7 +143,14 @@ Page({
       Post.call(this, that, "COLL", jsPost)
     })
   },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
   onLoad: function (options) {
+    wx.setNavigationBarTitle({
+      title: options.txt + '真题模拟'
+    })
     //加载时执行
     var that = this
     //调用应用实例的方法获取全局数据
@@ -129,10 +159,14 @@ Page({
       that.setData({
         userInfo: userInfo
         , week: util.currentWeekInfo()
+        , ID: options.id
+        , TXT: options.txt
+        , start_time: new Date()
       })
     })
     Post.call(this, this, "LOAD")
-  }
+  },
+
 })
 
 function Post(that, action, data) {
@@ -144,9 +178,19 @@ function Post(that, action, data) {
     if (res && res.data && res.data.data) {
       //更新数据
       if (jsPost.arrjson.ACTION == "LOAD") {
+        let iIndex = that.data.index
+        if (res.data.data.exerises.length > 5) {
+          iIndex = 2
+        }
+        //格式化练习时间
+        let objSummaries = res.data.data.summaries
+        objSummaries[0].USE_SECOND = util.formatString(objSummaries[0].USE_SECOND)
+
         that.setData({
-          batches: res.data.data.batches,
-          height: res.data.data.batches.length*35
+          exerises: that.data.exerises.concat(res.data.data.exerises)
+          , summaryValues: objSummaries
+          , ecnt: res.data.data.ecnt
+          , index: iIndex
         })
       }
       else if (jsPost.arrjson.ACTION == "NEXT") {

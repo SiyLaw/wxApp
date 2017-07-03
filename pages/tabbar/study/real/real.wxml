@@ -2,17 +2,20 @@
 <!--主体-->
 <view bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd">
   <!--题目-->
-  <view class="section2" style="height:{{height}}rpx;" ></view>
-  <view class="section horizontal" id="sss" >
+  <view class="timeLine" style="height:{{height}}rpx;"></view>
+  <view class="section horizontal">
     <block wx:for="{{batches}}" wx:for-index="idx" wx:key="item.REAL_BATCH_ID">
       <view wx:if="{{batches[idx].IN_YEAR != batches[idx-1].IN_YEAR}}" style="width:100%;"></view>
       <view class="time" wx:if="{{batches[idx].IN_YEAR != batches[idx-1].IN_YEAR}}">
         {{item.IN_YEAR}}
       </view>
       <view class="item-txt vertical">
-        <view class="txt-head">{{item.PARTY_TYPE }}</view>
-        <view class="txt-foot">{{item.QUESTIONS_CNT }}题</view>
+        <navigator url="real_exe?id={{item.REAL_BATCH_ID}}&txt={{item.IN_YEAR}}年{{item.PARTY_TYPE}}">
+          <view class="txt-head">{{item.PARTY_TYPE }}</view>
+          <view class="txt-foot">{{item.QUESTIONS_CNT }}题</view>
+        </navigator>
       </view>
+
     </block>
   </view>
 </view>

@@ -22,30 +22,27 @@ page {
 
 .time {
   width: 120rpx;
-  height: 80rpx;
-  font-size: 28rpx;
-  line-height: 40px;
-  color: #000;
+  height: 100rpx;
+  font-size: 30rpx;
+  font-weight: bold;
+  line-height: 50px;
+  color: #777;
+  text-shadow: #eee 0 2px 0;
   text-align: center;
-  margin: 20rpx 20rpx;
-  border-bottom: #afdcf8 solid 2rpx;
+  margin: 0 20rpx;
+  border-bottom: #cd853f solid 2rpx;
 }
 
-.section2{
+.timeLine {
   content: '';
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 10rpx;
-  background: #afdcf8;
+  width: 8rpx;
+  border-radius: 5rpx;
+  box-shadow: #f5deb3 2px 2px 0;
+  background: #cd853f;
   left: 135rpx;
-}
-
-.item {
-  background: linear-gradient(to bottom right, #fff, #eee, #fff);
-  border-radius: 10rpx;
-  margin-top: 10rpx;
-  box-shadow: #191970 1px 1px 0;
 }
 
 .item-image {
@@ -69,7 +66,7 @@ page {
   text-align: center;
   width: 100%;
   color: #999;
-  /*border: #008000 solid 1rpx;*/
+  height: 100rpx;
 }
 
 .txt-head {
