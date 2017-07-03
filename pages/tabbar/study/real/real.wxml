@@ -1,14 +1,17 @@
 <!--pages/tabbar/study/real/real.wxml-->
 <!--主体-->
-<view class="container" bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd">
+<view bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd">
   <!--题目-->
-  <view class="page-section horizontal">
+  <view class="section2" style="height:{{height}}rpx;" ></view>
+  <view class="section horizontal" id="sss" >
     <block wx:for="{{batches}}" wx:for-index="idx" wx:key="item.REAL_BATCH_ID">
-      <view class="item-image" wx:if="{{batches[idx].IN_YEAR != batches[idx-1].IN_YEAR}}" >
+      <view wx:if="{{batches[idx].IN_YEAR != batches[idx-1].IN_YEAR}}" style="width:100%;"></view>
+      <view class="time" wx:if="{{batches[idx].IN_YEAR != batches[idx-1].IN_YEAR}}">
         {{item.IN_YEAR}}
       </view>
-      <view class="item-txt">
-        {{item.PARTY_TYPE }}{{item.QUESTIONS_CNT }}
+      <view class="item-txt vertical">
+        <view class="txt-head">{{item.PARTY_TYPE }}</view>
+        <view class="txt-foot">{{item.QUESTIONS_CNT }}题</view>
       </view>
     </block>
   </view>

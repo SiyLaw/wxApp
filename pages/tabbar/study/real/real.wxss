@@ -14,8 +14,31 @@ page {
   box-sizing: border-box;
 }
 
-.page-section {
+.section {
   width: 98%;
+}
+
+/* The line */
+
+.time {
+  width: 120rpx;
+  height: 80rpx;
+  font-size: 28rpx;
+  line-height: 40px;
+  color: #000;
+  text-align: center;
+  margin: 20rpx 20rpx;
+  border-bottom: #afdcf8 solid 2rpx;
+}
+
+.section2{
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 10rpx;
+  background: #afdcf8;
+  left: 135rpx;
 }
 
 .item {
@@ -26,17 +49,40 @@ page {
 }
 
 .item-image {
-  border-radius: 200rpx;
+  margin: 2rpx 0rpx;
+  border-top-left-radius: 10rpx;
+  border-bottom-left-radius: 10rpx;
+  border: #008000 solid 1rpx;
   width: 200rpx;
-  height: 200rpx;
+  height: 100rpx;
   text-align: center;
   vertical-align: middle;
+  line-height: 100rpx;
+  color: #000;
+  text-shadow: #eee 0 2px 0;
 }
 
 .item-txt {
   flex: 8;
+  margin: 2rpx 0rpx;
   font-size: 28rpx;
-  padding: 5rpx 40rpx;
+  text-align: center;
+  width: 100%;
+  color: #999;
+  /*border: #008000 solid 1rpx;*/
+}
+
+.txt-head {
+  width: 100%;
+  height: 60rpx;
+  line-height: 60rpx;
+  color: #000;
+}
+
+.txt-foot {
+  height: 40rpx;
+  line-height: 40rpx;
+  font-size: 24rpx;
 }
 
 /*--------------------------1.通用 div排版 start----------------*/

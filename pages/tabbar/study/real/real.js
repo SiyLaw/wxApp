@@ -6,7 +6,8 @@ Page({
   data: {
     userInfo: {},
     PAGE: "REAL",
-    batches:[],
+    batches: [],
+    height: 200
   },
   //------------------------START-----答题---------------------------
   selected: function (e) {
@@ -119,6 +120,16 @@ Page({
       Post.call(this, that, "COLL", jsPost)
     })
   },
+  onReady: function () {
+    var that = this
+    wx.getSystemInfo({
+      success: function (res) {
+        that.setData({
+          height: res.windowHeight
+        })
+      }
+    })  
+  },
   onLoad: function (options) {
     //加载时执行
     var that = this
@@ -142,7 +153,7 @@ function Post(that, action, data) {
   util._post(app.globalData.url, jsPost, function (res) {
     if (res && res.data && res.data.data) {
       //更新数据
-      if (jsPost.arrjson.ACTION == "LOAD") {        
+      if (jsPost.arrjson.ACTION == "LOAD") {
         that.setData({
           batches: res.data.data.batches
         })

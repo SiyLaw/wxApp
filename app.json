@@ -1,5 +1,6 @@
 {
   "pages":[
+    "pages/tabbar/study/real/real",
     "pages/tabbar/index/index",
     "pages/tabbar/study/study",
     "pages/tabbar/news/news",
@@ -7,7 +8,6 @@
 
     "pages/profile/profile",
     "pages/tabbar/study/random/random",
-    "pages/tabbar/study/real/real",
     "pages/tabbar/study/special/special",
     "pages/tabbar/study/realsimulate/realsimulate",
     "pages/tabbar/study/favorite/favorite",
