@@ -8,7 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    ID: '',
+    REALID: '',
     TXT: '',
     userInfo: {},
     week: ["", "", ""],
@@ -159,7 +159,7 @@ Page({
       that.setData({
         userInfo: userInfo
         , week: util.currentWeekInfo()
-        , ID: options.id
+        , REALID: options.id
         , TXT: options.txt
         , start_time: new Date()
       })
@@ -173,6 +173,7 @@ function Post(that, action, data) {
   //数据请求执行方法
   var jsPost = data || new util.jsonRow()
   jsPost.AddCell("PAGE", that.data.PAGE)
+  jsPost.AddCell("REALID", that.data.REALID)
   jsPost.AddCell("ACTION", action)
   util._post(app.globalData.url, jsPost, function (res) {
     if (res && res.data && res.data.data) {
