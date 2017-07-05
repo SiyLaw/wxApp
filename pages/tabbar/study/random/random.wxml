@@ -6,7 +6,7 @@
   <!--题目-->
   <view class="page-section">
     <view class="weui-cells weui-cells_after-title">
-      <view class="weui-cell">
+      <view wx:if="{{exerises[index].type}}" class="weui-cell">
         <label>
           <label class="text_label">{{q_type[exerises[index].type]}}</label>
           <label class="text32">{{index+1}}、{{exerises[index].title}}</label>
@@ -22,7 +22,7 @@
           </label>
         </radio-group>
       </block>
-      <block wx:elif="{{exerises[index].type != '0'}}">
+      <block wx:elif="{{exerises[index].type != '0' && exerises[index].type}}}}">
         <checkbox-group name="cg{{exerises[index].id}}" bindchange="selected">
           <label class="weui-cell weui-check__label" wx:for="{{exerises[index].options}}" wx:for-index="idx" wx:key="{{item.op}}">
             <view class="weui-cell__hd">

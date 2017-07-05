@@ -1,28 +1,61 @@
-// pages/tabbar/study/realsimulate/realsimulate.js
+// pages/tabbar/study/real/real.js
+var util = require('../../../../utils/util.js')
+var app = getApp()
 Page({
-  data:{
-    array: ['重庆', '四川', '湖南', '湖北'],
-    index: 0,
+  data: {
+    PAGE: "REAL_SIMULATE",
+    batches: [],
+    height: 0
   },
-  bindPickerChange: function(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
-    this.setData({
-      index: e.detail.value
+  onLoad: function (options) {
+    wx.showLoading({
+      title: '加载中...',
+      mask: true
     })
+    var that = this
+    wx.getSystemInfo({
+      success(res) {
+        that.setData({
+          height: res.screenHeight * 2
+        })
+      }
+    })
+    Post.call(this, this, "LOAD")
   },
-  onLoad:function(options){
-    // 页面初始化 options为页面跳转所带来的参数
+  onPullDownRefresh() {
+    Post.call(this, this, "LOAD")
   },
-  onReady:function(){
-    // 页面渲染完成
+  addbatch(){
+    Post.call(this, this, "ADD")
   },
-  onShow:function(){
-    // 页面显示
-  },
-  onHide:function(){
-    // 页面隐藏
-  },
-  onUnload:function(){
-    // 页面关闭
+  exebatch(){
+    wx.navigateTo({
+      url: 'realsimulate_exe?id=' + this.data.batches[0].EXAM_BATCH_ID + '&txt=' + this.data.batches[0].BATCH_NO,
+    })
   }
 })
+
+function Post(that, action, data) {
+  //数据请求执行方法
+  var jsPost = data || new util.jsonRow()
+  jsPost.AddCell("PAGE", that.data.PAGE)
+  jsPost.AddCell("ACTION", action)
+  util._post(app.globalData.url, jsPost, function (res) {
+    if (res && res.data && res.data.data) {
+      //更新数据
+      if (jsPost.arrjson.ACTION == "LOAD") {
+        that.setData({
+          batches: res.data.data.batches
+        })
+        wx.hideLoading()
+      } else if (jsPost.arrjson.ACTION == "ADD") {
+        that.setData({
+          newbatch: res.data.data.newbatch
+        })
+      }
+    }
+    else {
+      // console.log('error')
+    }
+  })
+}

@@ -8,9 +8,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    REALID: '',
+    RSID: '',
     TXT: '',
-    PAGE: "REAL_EXE",
+    PAGE: "REAL_SIMULATE_EXE",
     q_type: ["单选题", "多选题", "不定项题", "判断题", "主观题", "其他"],
     exerises: [],
     ecnt: 0,//有效答题数
@@ -146,18 +146,22 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.showLoading({
+      title: '加载中...',
+      mask: true
+    })
     wx.setNavigationBarTitle({
-      title: options.txt + '真题模拟'
+      title: options.txt + '全真模拟'
     })
     //加载时执行
     var that = this
     //调用应用实例的方法获取全局数据
     that.setData({
-      REALID: options.id
+      RSID: options.id
       , TXT: options.txt
       , start_time: new Date()
     })
-    var exerises = wx.getStorageSync('REAL_' + options.id) || [];
+    var exerises = wx.getStorageSync('REAL_SIMULATE_' + options.id) || [];
     if (exerises.length > 0) {
       let iIndex = 0
       for (var i = 0; i < exerises.length; i++) {
@@ -182,7 +186,7 @@ function Post(that, action, data) {
   //数据请求执行方法
   var jsPost = data || new util.jsonRow()
   jsPost.AddCell("PAGE", that.data.PAGE)
-  jsPost.AddCell("REALID", that.data.REALID)
+  jsPost.AddCell("RSID", that.data.RSID)
   jsPost.AddCell("ACTION", action)
   util._post(app.globalData.url, jsPost, function (res) {
     if (res && res.data && res.data.data) {
@@ -205,6 +209,7 @@ function Post(that, action, data) {
           , ecnt: res.data.data.ecnt
           , index: iIndex
         })
+        wx.hideLoading()
       }
       else if (jsPost.arrjson.ACTION == "COMMENT") {
         //题目评论
@@ -228,6 +233,6 @@ function Post(that, action, data) {
         , start_time: new Date()
       })
     }
-    wx.setStorageSync('REAL_' + that.data.REALID, that.data.exerises);//缓存
+    wx.setStorageSync('REAL_SIMULATE_' + that.data.RSID, that.data.exerises);//缓存
   })
 }

@@ -1,18 +1,16 @@
 <!--pages/tabbar/study/realsimulate/realsimulate.wxml-->
 <view class="container">
-<view class="page-section">
-  <view class="weui-cells__title">地区选择器</view>
-  <view class="weui-cells weui-cells_after-title">
-    <view class="weui-cell weui-cell_input">
-      <view class="weui-cell__hd">
-        <view class="weui-label">当前选择</view>
-      </view>
-      <view class="weui-cell__bd">
-        <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
-          <view class="weui-input">{{array[index]}}</view>
-        </picker>
-      </view>
-    </view>
+  <view wx:if="{{!batches[0].IS_FINISH_EXAM}}" class="addbatch"  bindtap="exebatch" >
+    <label class="lbDesc" >{{batches[0].BATCH_NO}}</label>
   </view>
+  <view wx:if="{{batches[0].IS_FINISH_EXAM}}" class="addbatch"  bindtap="addbatch" >
+    <label class="lbAdd" >+</label><label class="lbDesc">点击添加</label>
+  </view>
+  <view class="lbhead" >全真模拟记录（最近5次）</view>
+  <view class="batch-list">
+    <block wx:for="{{batches}}" wx:for-index="idx" wx:key="item.EXAM_BATCH_ID">
+      <view class="txt-head">{{item.BATCH_NO }}</view>
+    </block>
+    <view wx:if="{{batches.length == 0}}" class="txt-head">暂无批次！</view>
   </view>
 </view>

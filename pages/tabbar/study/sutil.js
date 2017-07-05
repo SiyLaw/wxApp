@@ -34,7 +34,13 @@ function touchEnd(e, that, next) {
           index: iIndex,
           start_time: new Date()
         })
-      } else {
+      } else if (iIndex == that.data.exerises.length - 1) {
+        wx.showToast({
+          title: '全部完成',
+          duration: 1000
+        })
+      }
+      else {
         iIndex += 1
         that.setData({
           index: iIndex

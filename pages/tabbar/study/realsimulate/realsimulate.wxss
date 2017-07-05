@@ -1,2 +1,43 @@
 /* pages/tabbar/study/realsimulate/realsimulate.wxss */
 @import "../../../../common/lib/weui.wxss";
+
+.addbatch {
+  border: 1rpx solid #8fad9c;
+  height: 140rpx;
+  width: 90%;
+  line-height: 140rpx;
+  margin: 10% auto;
+  border-radius: 20rpx;
+  text-align: center;
+  background-color: #8fbc8f;
+  box-shadow: 0 0 20rpx 1rpx #eee, 0 0 20rpx 1rpx #8fbc8f;
+  display: flex;
+  justify-content: center;
+}
+
+.addbatch .lbAdd {
+  font-size: 100rpx;
+  color: #eee;
+  text-shadow: 0 0 3px #ff8c00;
+}
+
+.addbatch .lbDesc {
+  margin-left: 30rpx;
+  font-size: 36rpx;
+  color: #ddd;
+  text-shadow: 0 0 3px #228B22;
+}
+
+.lbhead{  
+  color: #2F4F4F;
+  font-size: 30rpx;
+}
+
+.batch-list {
+  border: 1rpx solid #eee;
+  width: 90%;
+  margin: 2rpx auto;
+  border-radius: 20rpx;
+  text-align: center;
+  color: #cd853f;
+}
