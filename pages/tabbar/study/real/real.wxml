@@ -1,7 +1,7 @@
 <!--pages/tabbar/study/real/real.wxml-->
 <!--主体-->
 <view class="section horizontal">
-<view class="timeLine" style="height:{{height}}rpx;"></view>
+  <view class="timeLine" style="height:{{height}}rpx;"></view>
   <block wx:for="{{batches}}" wx:for-index="idx" wx:key="item.REAL_BATCH_ID">
     <view wx:if="{{batches[idx].IN_YEAR != batches[idx-1].IN_YEAR}}" style="width:100%;"></view>
     <view class="time" wx:if="{{batches[idx].IN_YEAR != batches[idx-1].IN_YEAR}}">

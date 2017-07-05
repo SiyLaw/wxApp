@@ -146,6 +146,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.showLoading({
+      title: '加载中...',
+      mask: true
+    })
     wx.setNavigationBarTitle({
       title: options.txt + '真题模拟'
     })
@@ -171,6 +175,7 @@ Page({
         , ecnt: exerises.length
         , index: iIndex
       })
+      wx.hideLoading()
     } else {
       Post.call(this, this, "LOAD")
     }
@@ -195,16 +200,13 @@ function Post(that, action, data) {
             break;
           }
         }
-        //格式化练习时间
-        // let objSummaries = res.data.data.summaries
-        // objSummaries[0].USE_SECOND = util.formatString(objSummaries[0].USE_SECOND)
-
         that.setData({
           exerises: that.data.exerises.concat(res.data.data.exerises)
           // , summaryValues: objSummaries
           , ecnt: res.data.data.ecnt
           , index: iIndex
         })
+        wx.hideLoading()
       }
       else if (jsPost.arrjson.ACTION == "COMMENT") {
         //题目评论

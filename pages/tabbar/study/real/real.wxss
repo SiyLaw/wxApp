@@ -1,21 +1,9 @@
 /* pages/tabbar/study/random/random.wxss */
 @import "../../../../common/lib/weui.wxss";
 
-page {
-  height: 100%;
-}
-
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 0rpx 0rpx;
-  box-sizing: border-box;
-}
-
 .section {
   width: 98%;
+  margin: 20rpx auto;
 }
 
 /* The line */
@@ -38,11 +26,11 @@ page {
   position: fixed;
   top: 0;
   bottom: 0;
-  width: 8rpx;
+  width: 6rpx;
   border-radius: 5rpx;
-  box-shadow: #f5deb3 2px 2px 0;
-  background: #cd853f;
-  left: 135rpx;
+  background: linear-gradient(to bottom,#FF7F50,#CD853F,#6B8E23,#708090);
+  box-shadow: 0 0 5rpx 2rpx #D2B48C;
+  left: 145rpx;
 }
 
 .item-txt {

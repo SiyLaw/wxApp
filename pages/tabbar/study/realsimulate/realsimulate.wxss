@@ -4,8 +4,8 @@
 .addbatch {
   border: 1rpx solid #8fad9c;
   height: 140rpx;
-  width: 90%;
   line-height: 140rpx;
+  width: 90%;
   margin: 10% auto;
   border-radius: 20rpx;
   text-align: center;
@@ -16,20 +16,35 @@
 }
 
 .addbatch .lbAdd {
+  margin-right: 30rpx;
   font-size: 100rpx;
   color: #eee;
   text-shadow: 0 0 3px #ff8c00;
 }
 
 .addbatch .lbDesc {
-  margin-left: 30rpx;
   font-size: 36rpx;
   color: #ddd;
-  text-shadow: 0 0 3px #228B22;
+  text-shadow: 0 0 3px #228b22;
+  vertical-align: middle;
 }
 
-.lbhead{  
-  color: #2F4F4F;
+.addbatch .lbDesc2 {
+  font-size: 36rpx;
+  color: #ddd;
+  text-shadow: 0 0 3px #228b22;
+  vertical-align: bottom;
+  line-height: 60rpx;
+}
+
+.lbDescTip {
+  font-size: 24rpx;
+  color: #ddd;
+  line-height: 40rpx;
+}
+
+.lbhead {
+  color: #2f4f4f;
   font-size: 30rpx;
 }
 
@@ -37,7 +52,48 @@
   border: 1rpx solid #eee;
   width: 90%;
   margin: 2rpx auto;
-  border-radius: 20rpx;
-  text-align: center;
-  color: #cd853f;
+  border-radius: 10rpx;
+  color: #ddd;
+  padding-top: 10rpx;
+}
+
+.batchItem {
+  font-size: 26rpx;
+  margin: 10rpx auto;
+  width: 90%;
+  border: 1rpx solid #8fad9c;
+  border-radius: 5rpx;
+  padding: 0 10rpx;
+  background-color: #8fbc8f;
+  box-shadow: 0 0 20rpx 1rpx #eee, 0 0 20rpx 1rpx #8fbc8f;
+}
+
+.itemno {
+  margin-top: 10rpx;
+  height: 40rpx;
+}
+
+.batchno {
+  color: #2F4F4F;
+}
+
+.itemdetail {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+}
+
+.itemdetail view {
+  margin-left: 27rpx;
+}
+
+.nobatch {
+  font-size: 24rpx;
+  color: #ddd;
+  padding: 30rpx 0;
+}
+
+.vertical {
+  display: flex;
+  flex-direction: column;
 }

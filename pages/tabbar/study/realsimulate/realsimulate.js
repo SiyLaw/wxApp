@@ -25,10 +25,10 @@ Page({
   onPullDownRefresh() {
     Post.call(this, this, "LOAD")
   },
-  addbatch(){
+  addbatch() {
     Post.call(this, this, "ADD")
   },
-  exebatch(){
+  exebatch() {
     wx.navigateTo({
       url: 'realsimulate_exe?id=' + this.data.batches[0].EXAM_BATCH_ID + '&txt=' + this.data.batches[0].BATCH_NO,
     })
@@ -50,12 +50,9 @@ function Post(that, action, data) {
         wx.hideLoading()
       } else if (jsPost.arrjson.ACTION == "ADD") {
         that.setData({
-          newbatch: res.data.data.newbatch
+          batches: res.data.data.batches
         })
       }
-    }
-    else {
-      // console.log('error')
     }
   })
 }

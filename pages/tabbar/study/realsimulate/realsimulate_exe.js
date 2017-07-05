@@ -175,6 +175,7 @@ Page({
         , ecnt: exerises.length
         , index: iIndex
       })
+      wx.hideLoading()
     } else {
       Post.call(this, this, "LOAD")
     }
