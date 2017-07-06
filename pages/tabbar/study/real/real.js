@@ -7,11 +7,15 @@ Page({
     batches: [],
     height: 0
   },
-  onLoad: function (options) {
+  onShow: function () {
     Post.call(this, this, "LOAD")
+  },
+  onLoad: function (options) {
+    //Post.call(this, this, "LOAD")
   },
   onPullDownRefresh() {
     Post.call(this, this, "LOAD")
+    wx.stopPullDownRefresh()
   }
 })
 

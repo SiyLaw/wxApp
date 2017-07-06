@@ -7,8 +7,7 @@ Page({
     batches: [],
     height: 0
   },
-  onLoad: function (options) {
-    
+  onLoad: function (options) {    
     var that = this
     wx.getSystemInfo({
       success(res) {
@@ -17,7 +16,6 @@ Page({
         })
       }
     })
-   // Post.call(this, this, "LOAD")
   },
   onShow: function () {
     wx.showLoading({
@@ -28,6 +26,7 @@ Page({
   },
   onPullDownRefresh() {
     Post.call(this, this, "LOAD")
+    wx.stopPullDownRefresh()
   },
   addbatch() {
     Post.call(this, this, "ADD")

@@ -36,7 +36,7 @@ function formatString(n) {
   if (hours > 0) { strFormat += formatNumber(hours) + "小时" }
   if (minutes > 0) { strFormat += formatNumber(minutes) + "分" }
   if (seconds > 0) { strFormat += formatNumber(seconds) + "秒" }
-  if (strFormat == "") { strFormat="0秒"}
+  if (strFormat == "") { strFormat = "0秒" }
   return strFormat
 }
 
@@ -134,9 +134,15 @@ function _post_json(url, jsPost, success, fail) {
         console.log(res.data.data);
       } else {
         if (res.data.msg != "") {
-          wx.showToast({
-            title: res.data.msg || "错误"
-          })
+          if (res.data.msg == "NO_USER") {
+            wx.navigateTo({
+              url: '/pages/profile/profile'
+            })
+          } else {
+            wx.showToast({
+              title: res.data.msg || "错误"
+            })
+          }
         }
         success(res);
       }
