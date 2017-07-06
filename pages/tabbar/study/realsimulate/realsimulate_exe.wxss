@@ -1,1 +1,64 @@
 @import "../random/random.wxss";
+
+.module-bg-layer2 {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  bottom: 82rpx;
+  left: 0;
+  background: #e0e0e0;
+  opacity: 1;
+  overflow: hidden;
+  z-index: 1000;
+  align-content: center;
+}
+.dv-module2{
+  width: 97%;
+  margin-top: 90rpx;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 5rpx;
+  background-color: #fff;
+  box-shadow: 0 0 8rpx #1aad19;
+}
+
+.setlabel{
+  font-size: 26rpx;
+  padding-left: 20rpx;
+}
+
+.answer-list{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+  padding-bottom: 20rpx;
+  align-content: space-between;
+}
+
+.answer-list .answer-item{
+  display: flex;
+  flex: auto;
+  flex-direction: column;
+  border: 1rpx solid #eee;
+  border-radius: 5rpx;
+  width: 50rpx;
+  height: 50rpx;
+  margin: 1rpx 1rpx;
+}
+.answer-list .answer-seq
+{
+  font-size: 18rpx;
+  height: 20rpx;
+  line-height: 20rpx;
+  text-align: center;
+}
+.answer-list .answer-content
+{
+  font-size: 18rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+  text-align: center;
+}

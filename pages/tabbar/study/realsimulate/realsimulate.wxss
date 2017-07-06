@@ -9,7 +9,7 @@
   margin: 10% auto;
   border-radius: 20rpx;
   text-align: center;
-  background-color: #8fbc8f;
+  background-color: #8FBC8F;
   box-shadow: 0 0 20rpx 1rpx #eee, 0 0 20rpx 1rpx #8fbc8f;
   display: flex;
   justify-content: center;
@@ -53,19 +53,19 @@
   width: 90%;
   margin: 2rpx auto;
   border-radius: 10rpx;
-  color: #ddd;
+  color: #444;
   padding-top: 10rpx;
 }
 
 .batchItem {
   font-size: 26rpx;
-  margin: 10rpx auto;
+  margin: 15rpx auto;
   width: 90%;
   border: 1rpx solid #8fad9c;
-  border-radius: 5rpx;
+  border-radius: 10rpx;
   padding: 0 10rpx;
-  background-color: #8fbc8f;
-  box-shadow: 0 0 20rpx 1rpx #eee, 0 0 20rpx 1rpx #8fbc8f;
+  background-color: #eed;
+  box-shadow: 0 0 20rpx 1rpx #eee;
 }
 
 .itemno {

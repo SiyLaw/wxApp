@@ -119,40 +119,27 @@ function like(e, that, update) {
   })
 }
 
-//多选提交答案
-function submitMultiAnswer(e, that, update) {
+//多选提交答案,needupdate:强制更新
+function submitMultiAnswer(e, that, update, needupdate = false) {
   let iEcnt = that.data.ecnt
   let iIndex = that.data.index
   let sExe = that.data.exerises
-  if (!sExe[iIndex].is_answered) {
+  if (!sExe[iIndex].is_answered || needupdate) {
     let exAnswer = sExe[iIndex].answer
     let sVal = sExe[iIndex].u_answer
-    // let iRight = that.data.right
-    // let iError = that.data.error
-    //未做答
-    // if (!sExe[iIndex].is_answered) {
-    //   if (sVal == exAnswer) {
-    //     iRight += 1
-    //   } else {
-    //     iError += 1
-    //   }
-    // }
     sExe[iIndex].seq = ++iEcnt
     sExe[iIndex].show_item = 1
     sExe[iIndex].is_answered = true
     that.setData({
       exerises: sExe
       , ecnt: iEcnt
-      // ,
-      // right: iRight,
-      // error: iError
     })
     typeof update == "function" && update(that, sExe[iIndex])
   }
 }
 
-//单选提交答案
-function selectedOptions(e, that, update) {
+//单选提交答案 ,needupdate:强制更新
+function selectedOptions(e, that, update, needupdate = false) {
   //当前答题时间
   var current_time = new Date()
   let start_time = that.data.start_time
@@ -177,26 +164,13 @@ function selectedOptions(e, that, update) {
   }
   sExe[iIndex].u_answer = sVal
   sExe[iIndex].u_second = Math.round(mSec / 1000)
-  if (exType == "0" && !sExe[iIndex].is_answered) {
-    // let iRight = that.data.right
-    // let iError = that.data.error
-    //未做答
-    // if (!sExe[iIndex].is_answered) {
-    //   if (sVal == exAnswer) {
-    //     iRight += 1
-    //   } else {
-    //     iError += 1
-    //   }
-    // }
+  if (exType == "0" && (!sExe[iIndex].is_answered || needupdate)) { //单项选择时更新
     sExe[iIndex].seq = ++iEcnt
     sExe[iIndex].show_item = 1
     sExe[iIndex].is_answered = true
     that.setData({
       exerises: sExe
       , ecnt: iEcnt
-      // ,
-      // right: iRight,
-      // error: iError
     })
     //单项选择回调
     typeof update == "function" && update(that, sExe[iIndex])

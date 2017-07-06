@@ -8,10 +8,7 @@ Page({
     height: 0
   },
   onLoad: function (options) {
-    wx.showLoading({
-      title: '加载中...',
-      mask: true
-    })
+    
     var that = this
     wx.getSystemInfo({
       success(res) {
@@ -19,6 +16,13 @@ Page({
           height: res.screenHeight * 2
         })
       }
+    })
+   // Post.call(this, this, "LOAD")
+  },
+  onShow: function () {
+    wx.showLoading({
+      title: '加载中...',
+      mask: true
     })
     Post.call(this, this, "LOAD")
   },
@@ -44,13 +48,21 @@ function Post(that, action, data) {
     if (res && res.data && res.data.data) {
       //更新数据
       if (jsPost.arrjson.ACTION == "LOAD") {
+        let objbatches = res.data.data.batches
+        for (var i = 0; i < objbatches.length; i++) {
+          objbatches[i].EXAM_USER_DT = util.formatString(objbatches[i].EXAM_USER_DT)
+        }
         that.setData({
-          batches: res.data.data.batches
+          batches: objbatches
         })
         wx.hideLoading()
       } else if (jsPost.arrjson.ACTION == "ADD") {
+        let objbatches = res.data.data.batches
+        for (var i = 0; i < objbatches.length; i++) {
+          objbatches[i].EXAM_USER_DT = util.formatString(objbatches[i].EXAM_USER_DT)
+        }
         that.setData({
-          batches: res.data.data.batches
+          batches: objbatches
         })
       }
     }

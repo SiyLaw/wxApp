@@ -13,6 +13,7 @@ Page({
     PAGE: "REAL_SIMULATE_EXE",
     q_type: ["单选题", "多选题", "不定项题", "判断题", "主观题", "其他"],
     exerises: [],
+    summaries: [],
     ecnt: 0,//有效答题数
     start_time: null,
     index: 0,//当前答题数量
@@ -22,7 +23,8 @@ Page({
     comm_text: '',
     comm_len: 0,
     r_id: '',//评论ID
-    show_comment_module: false
+    show_comment_module: false,
+    show_ctrl_panel: false
   },
   setautonext: function (e) {
     var that = this
@@ -43,7 +45,7 @@ Page({
       jsPost.AddCell("u_answer", objExamItem.u_answer)
       jsPost.AddCell("u_second", objExamItem.u_second)
       Post.call(this, that, "ANSWERED", jsPost)
-    })
+    }, true)
   },
   submitMultiVal: function (e) {
     //多选、不定项提交答案
@@ -57,7 +59,7 @@ Page({
       jsPost.AddCell("u_answer", objExamItem.u_answer)
       jsPost.AddCell("u_second", objExamItem.u_second)
       Post.call(this, that, "ANSWERED", jsPost)
-    })
+    }, true)
   },
   //------------------------END-----答题---------------------------
 
@@ -77,11 +79,33 @@ Page({
   },
   //------------------------END-----左右滑动控制--------------------
 
+  //------------------------START-----弹出的控制面板--------------------
+  showCtrlPanel: function (e) {
+    this.setData({
+      show_ctrl_panel: !this.data.show_ctrl_panel
+    })
+  },
+  closeCtrlPanel: function (e) {
+    this.setData({
+      show_ctrl_panel: false
+    })
+  },
+  submitExam: function (e) {
+    Post.call(this, this, "FINISHEDEXAM")
+  },
+  setExamIndex: function (e) {
+    this.setData({
+      index: e.currentTarget.dataset.idx,
+      show_ctrl_panel: !this.data.show_ctrl_panel
+    })
+  },
+  //------------------------END-----弹出的控制面板--------------------
+
   //------------------------START-----评论-------------------------
   doComments: function (e) {
     //评论题目窗口
     this.setData({
-      r_id: '',
+      r_id: '',//为空，对当前的题目进行评论
       show_comment_module: true
     })
   },
@@ -162,7 +186,8 @@ Page({
       , start_time: new Date()
     })
     var exerises = wx.getStorageSync('REAL_SIMULATE_' + options.id) || [];
-    if (exerises.length > 0) {
+    var summaries = wx.getStorageSync('REAL_SIMULATE_SUM' + options.id) || [];
+    if (exerises.length > 0 && summaries.length > 0) {
       let iIndex = 0
       for (var i = 0; i < exerises.length; i++) {
         if (!exerises[i].is_answered) {
@@ -172,6 +197,7 @@ Page({
       }
       that.setData({
         exerises: exerises
+        , summaries: summaries
         , ecnt: exerises.length
         , index: iIndex
       })
@@ -206,11 +232,16 @@ function Post(that, action, data) {
 
         that.setData({
           exerises: that.data.exerises.concat(res.data.data.exerises)
-          // , summaryValues: objSummaries
+          , summaries: res.data.data.summaries
           , ecnt: res.data.data.ecnt
           , index: iIndex
         })
         wx.hideLoading()
+      }
+      else if (jsPost.arrjson.ACTION == "FINISHEDEXAM") {
+        that.setData({
+          summaries: res.data.data.summaries
+        })
       }
       else if (jsPost.arrjson.ACTION == "COMMENT") {
         //题目评论
@@ -224,10 +255,11 @@ function Post(that, action, data) {
     else if (jsPost.arrjson.ACTION == "ANSWERED" && that.data.auto_next) {
       //答题后，自动下一题的情况下处理
       var iIndex = that.data.index
-      if (iIndex == that.data.exerises.length - 2) {
-        var jsPost1 = new util.jsonRow()
-        jsPost1.AddCell("BID", that.data.exerises[iIndex].bid)
-        Post.call(this, that, "NEXT", jsPost1)
+      if (iIndex == that.data.exerises.length - 1) {
+        wx.showToast({
+          title: "已经是最后一题"
+        })
+        --iIndex
       }
       that.setData({
         index: ++iIndex
@@ -235,5 +267,6 @@ function Post(that, action, data) {
       })
     }
     wx.setStorageSync('REAL_SIMULATE_' + that.data.RSID, that.data.exerises);//缓存
+    wx.setStorageSync('REAL_SIMULATE_SUM' + that.data.RSID, that.data.summaries);//缓存
   })
 }

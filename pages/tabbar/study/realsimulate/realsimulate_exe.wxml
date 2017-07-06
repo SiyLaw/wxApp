@@ -14,7 +14,7 @@
         <radio-group name="rg{{exerises[index].id}}" bindchange="selected">
           <label class="weui-cell weui-check__label" wx:for="{{exerises[index].options}}" wx:for-index="idx" wx:key="{{item.op}}">
             <view class="weui-cell__hd">
-              <radio value="{{item.op}}" checked="{{item.check}}" disabled="{{exerises[index].is_answered}}" />
+              <radio value="{{item.op}}" checked="{{item.check}}" disabled="{{summaries[0].IS_FINISH_EXAM}}" />
             </view>
             <view class="weui-cell__bd text28">{{item.op}}、{{item.text}}</view>
           </label>
@@ -24,19 +24,19 @@
         <checkbox-group name="cg{{exerises[index].id}}" bindchange="selected">
           <label class="weui-cell weui-check__label" wx:for="{{exerises[index].options}}" wx:for-index="idx" wx:key="{{item.op}}">
             <view class="weui-cell__hd">
-              <checkbox value="{{item.op}}" checked="{{item.check}}" disabled="{{exerises[index].is_answered}}" />
+              <checkbox value="{{item.op}}" checked="{{item.check}}" disabled="{{summaries[0].IS_FINISH_EXAM}}" />
             </view>
             <view class="weui-cell__bd text28">{{item.op}}、{{item.text}}</view>
           </label>
         </checkbox-group>
         <view class="btn-area">
-          <button type="primary" bindtap="submitMultiVal" size="mini" plain="true" disabled="{{exerises[index].is_answered}}">确认答案</button>
+          <button type="primary" bindtap="submitMultiVal" size="mini" plain="true" disabled="{{summaries[0].IS_FINISH_EXAM}}">确认答案</button>
         </view>
       </block>
     </view>
   </view>
   <!--析题 解析-->
-  <view class="page-section" hidden="{{exerises[index].show_item >= 1 ? '' : true}}">
+  <view class="page-section" hidden="{{summaries[0].IS_FINISH_EXAM ? '' : true}}">
     <view class="section_head">
       <label class="section_title">析题</label>
       <label class="answer_list">{{exerises[index].answer}}</label>
@@ -58,7 +58,7 @@
     </view>
   </view>
   <!--讨论-->
-  <view class="page-section" hidden="{{exerises[index].show_item >= 1 ? '' : true}}">
+  <view class="page-section" hidden="{{summaries[0].IS_FINISH_EXAM ? '' : true}}">
     <view class="section_head">
       <label class="section_title">讨论</label>
     </view>
@@ -113,15 +113,16 @@
 </view>
 <!--底层-->
 <view class="page-bottom">
-  <view class="top-tab flex-wrp flex-justify ">
-    <view class="flex-item bind" bindtap="doColl">
+  <!--没有完成考试时，不显示收藏，评论信息-->
+  <view class="top-tab flex-wrp {{summaries[0].IS_FINISH_EXAM?'flex-justify':'flex-center'}}">
+    <view wx:if="{{summaries[0].IS_FINISH_EXAM}}" class="flex-item bind" bindtap="doColl">
       <image src="/image/{{exerises[index].is_coll?'Liked':'Like'}}.png"></image>
       <label style="color:{{exerises[index].is_coll?'#1aad19':'inherit'}};">收藏</label>
     </view>
-    <view class="flex-item bind">
-      <checkbox value="{{auto_next}}" checked="{{auto_next}}" bindtap="setautonext" />
+    <view class="flex-item bind" bindtap="showCtrlPanel">
+      <image src="/image/{{show_ctrl_panel?'grided':'grid'}}.png"></image>
     </view>
-    <view class="flex-item bind" bindtap="doComments">
+    <view wx:if="{{summaries[0].IS_FINISH_EXAM}}" class="flex-item bind" bindtap="doComments">
       <image src="/image/Comments.png"></image>
       <lable>评论</lable>
     </view>
@@ -135,6 +136,28 @@
     <view class="cust-btn">
       <a bindtap="SubmitComm">提交</a>
       <a bindtap="CloseComm">关闭</a>
+    </view>
+  </view>
+</view>
+<!--中控面板-->
+<view class="module-bg-layer2" wx:if="{{show_ctrl_panel}}">
+  <view class="dv-module2">
+    <view class="setlabel">1-50题单选；51-85题多项选择；86-100题不定项选择</view>
+    <view class="answer-list">
+      <block wx:for="{{exerises}}" wx:for-index="idx" wx:key="item.qid">
+        <view class="answer-item" style="border-color:#{{summaries[0].IS_FINISH_EXAM?(item.u_answer == item.answer ? 'A9A9A9' :'FF7F50'):'A9A9A9'}};" data-idx="{{idx}}" bindtap="setExamIndex">
+          <view class="answer-seq" style="color: #{{idx<50?'2F4F4F':(idx<85?'808000':'2F4F4F')}};">{{idx+1}}</view>
+          <view class="answer-content">{{item.u_answer}}</view>
+        </view>
+      </block>
+    </view>
+    <view class="setlabel">
+      自动跳下一题：
+      <checkbox value="{{auto_next}}" checked="{{auto_next}}" bindtap="setautonext" />
+    </view>
+    <view class="cust-btn">
+      <a wx:if="{{!summaries[0].IS_FINISH_EXAM}}" bindtap="submitExam">交卷</a>
+      <a bindtap="closeCtrlPanel">关闭</a>
     </view>
   </view>
 </view>

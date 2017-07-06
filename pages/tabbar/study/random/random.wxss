@@ -244,6 +244,13 @@ page {
   align-items: stretch;
 }
 
+
+.flex-center {
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: stretch;
+}
+
 .flex-item {
   display: inline-flex;
   align-items: center;
