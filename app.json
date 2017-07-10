@@ -8,9 +8,9 @@
     "pages/tabbar/study/random/random",
     "pages/tabbar/study/favorite/favorite",
     "pages/tabbar/study/special/special",
-    "pages/tabbar/study/evaluation/evaluation",
     "pages/tabbar/study/real/real",
     "pages/tabbar/study/real/real_exe",
+    "pages/tabbar/study/evaluation/evaluation",
     "pages/tabbar/study/realsimulate/realsimulate",
     "pages/tabbar/study/realsimulate/realsimulate_exe"
   ],
