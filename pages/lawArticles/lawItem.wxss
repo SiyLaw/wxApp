@@ -1,41 +1,66 @@
 /* lawItem.wxss */
 @import "../../common/lib/weui.wxss";
 
-.headctrl {
+.head {
+  display: flex;
+  flex-direction: column;
   position: fixed;
   top: 0;
   left: 0;
-  height: 80rpx;
-  line-height: 80rpx;
-  background-color: #228b22;
+  width: 100%;
+  z-index: 9999;
+  box-shadow: 0 2rpx 12rpx 0 #d3d3d3;
+  background-color: #525e5e;
+}
+
+.headctrl {
+  height: 90rpx;
+  line-height: 90rpx;
   width: 100%;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   flex-direction: row;
-  box-shadow: 0 2rpx 12rpx 0 #D3D3D3;
-  z-index: 9999;
 }
 
 .headctrl image {
-  height: 42rpx;
-  width: 40rpx;
+  height: 46rpx;
+  width: 42rpx;
   padding: 22rpx 40rpx;
 }
 
-.headctrl text {
-  color: #eee;
-  font-size: 35rpx;
+.headSearch {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  border: 1rpx solid #808080;
+  border-radius: 10rpx;
+  margin-right: 20rpx;
+}
+
+.headSearch input {
+  color: #ffab30;
+  width: 250rpx;
   padding-left: 10rpx;
-  font-weight: bolder;
+  text-shadow: 1px 1px 0 rgba(31, 12, 5, 0.5);
+}
+
+.headSearch image {
+  height: 40rpx;
+  width: 38rpx;
+  padding-top: 10rpx;
+  padding-bottom: 10rpx;
+  padding-right: 25rpx;
+  padding-left: 0;
 }
 
 .lawSub1 {
   position: fixed;
-  top: 82rpx;
+  top: 92rpx;
   left: 0;
   background-color: #eee;
-  box-shadow: 2rpx 0 12rpx 0 #D3D3D3;
+  box-shadow: 2rpx 0 12rpx 0 #d3d3d3;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -47,8 +72,7 @@
   background-color: #eee;
   display: flex;
   flex-direction: column;
-  padding: 8rpx 0;
-  box-shadow: 0 0 5rpx 0 #BDB76B;
+  box-shadow: 0 0 5rpx 0 #bdb76b;
   margin-bottom: 2rpx;
 }
 
@@ -64,13 +88,14 @@
   font-size: 36rpx;
   padding-left: 20rpx;
   flex: auto;
+  color: #444;
+  text-shadow: 1px 1px 0 #ddd;
 }
 
 .itemHead image {
   height: 30rpx;
   width: 30rpx;
-  padding:0 20rpx;
-  color: #d3d3d3;
+  padding: 0 20rpx;
 }
 
 .itemContent {
@@ -78,14 +103,20 @@
   flex-direction: column;
   font-size: 30rpx;
   justify-content: flex-start;
-  margin-left: 20rpx;
-  border-top: 1rpx solid #ADC4AD;
-  padding: 4rpx 0;
+  background-color: #525e5e;
+  opacity: 0.8;
+  color: #ffab30;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
 }
 
 .itemContent text {
-  word-break:keep-all;
-  white-space:nowrap; 
-  text-overflow:ellipsis; 
-  overflow:hidden; 
+  border-bottom: 1rpx solid #808080;
+  margin-left: 40rpx;
+  word-break: keep-all;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.empty{
+  height: 250rpx;
 }

@@ -25,7 +25,7 @@
           <!--<view class="item-desc-detailtxt">...</view>-->
         </view>
       </view>
-      <view class="flex-item">
+      <view class="flex-item" bindtap="navtolaw" >
         <view class="item-desc">
           <view class="item-desc-img lightOri">
             <image src="../../../image/Order.png"></image>

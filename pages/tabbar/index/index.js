@@ -32,6 +32,10 @@ Page({
     wx.navigateTo({
       url: '../logs/logs'
     })
+  }, navtolaw:function(e){
+    wx.navigateTo({
+      url: '/pages/lawArticles/lawItem',
+    })
   },
   onLoad: function () {
     var vwith = 0;
