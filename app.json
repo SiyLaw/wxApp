@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/lawArticles/lawItem",
     "pages/tabbar/index/index",
     "pages/tabbar/study/study",
     "pages/tabbar/news/news",
