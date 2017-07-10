@@ -1,0 +1,18 @@
+<!--lawItem.wxml-->
+<view class="container">
+  <view class="headctrl">
+    <image src="/image/menu.png" bindtap="menucontrol"></image>
+    <text>法条</text>
+  </view>
+  <scroll-view scroll-y="{{true}}" style="height:{{height-106}}px;width:{{width*0.8}}px;" animation="{{menuanim}}" class="lawSub1">
+    <view wx:for="{{menu}}" wx:for-item="itm" wx:for-index="idx" wx:key="itm.id" class="Sub1item">
+      <view class="itemHead" data-idx="{{idx}}" bindtap="subitemcontrol">
+        <text>{{itm.txt}}</text>
+        <image src="/image/{{itm.expand?'expand':'forward'}}.png"></image>
+      </view>
+      <view wx:if="{{itm.expand}}" wx:for="{{itm.item}}" wx:key="item.id" class="itemContent">
+        <text>{{item.txt}}</text>
+      </view>
+    </view>
+  </scroll-view>
+</view>

@@ -1,0 +1,91 @@
+/* lawItem.wxss */
+@import "../../common/lib/weui.wxss";
+
+.headctrl {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 80rpx;
+  line-height: 80rpx;
+  background-color: #228b22;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+  box-shadow: 0 2rpx 12rpx 0 #D3D3D3;
+  z-index: 9999;
+}
+
+.headctrl image {
+  height: 42rpx;
+  width: 40rpx;
+  padding: 22rpx 40rpx;
+}
+
+.headctrl text {
+  color: #eee;
+  font-size: 35rpx;
+  padding-left: 10rpx;
+  font-weight: bolder;
+}
+
+.lawSub1 {
+  position: fixed;
+  top: 82rpx;
+  left: 0;
+  background-color: #eee;
+  box-shadow: 2rpx 0 12rpx 0 #D3D3D3;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border-right: 1rpx solid #c0c0c0;
+  z-index: 9998;
+}
+
+.Sub1item {
+  background-color: #eee;
+  display: flex;
+  flex-direction: column;
+  padding: 8rpx 0;
+  box-shadow: 0 0 5rpx 0 #BDB76B;
+  margin-bottom: 2rpx;
+}
+
+.itemHead {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 6rpx 0;
+}
+
+.itemHead text {
+  font-size: 36rpx;
+  padding-left: 20rpx;
+  flex: auto;
+}
+
+.itemHead image {
+  height: 30rpx;
+  width: 30rpx;
+  padding:0 20rpx;
+  color: #d3d3d3;
+}
+
+.itemContent {
+  display: flex;
+  flex-direction: column;
+  font-size: 30rpx;
+  justify-content: flex-start;
+  margin-left: 20rpx;
+  border-top: 1rpx solid #ADC4AD;
+  padding: 4rpx 0;
+}
+
+.itemContent text {
+  word-break:keep-all;
+  white-space:nowrap; 
+  text-overflow:ellipsis; 
+  overflow:hidden; 
+}
