@@ -18,9 +18,11 @@
         <image src="/image/{{itm.expand?'expandarr':'forwardarr'}}.png"></image>
       </view>
       <view wx:if="{{itm.expand}}" class="itemContent">
-        <text wx:for="{{itm.item}}" wx:key="item.id">{{item.txt}}</text>
+        <view wx:for="{{itm.item}}" wx:key="item.id">
+          <text style="animation:{{item.txt.length > 20 ? 'kf-marque-animation 11.3s linear infinite':''}}">{{item.txt}}</text>
+        </view>
       </view>
     </view>
-    <view class="empty" ></view>
+    <view class="empty"></view>
   </scroll-view>
 </view>

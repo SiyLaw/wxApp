@@ -97,7 +97,6 @@
   width: 30rpx;
   padding: 0 20rpx;
 }
-
 .itemContent {
   display: flex;
   flex-direction: column;
@@ -108,14 +107,15 @@
   color: #ffab30;
   text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
 }
-
-.itemContent text {
+.itemContent view {
   border-bottom: 1rpx solid #808080;
   margin-left: 40rpx;
+  display: flex;
+}
+@keyframes kf-marque-animation{ 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+.itemContent text {
   word-break: keep-all;
   white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
 }
 .empty{
   height: 250rpx;
