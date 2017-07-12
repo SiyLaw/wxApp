@@ -6,27 +6,6 @@ var menuanim = wx.createAnimation({
   duration: 600,
   timingFunction: 'ease'
 })
-function timer(that) {
-  if (that.data.second > 0 && !that.data.finished)
-    var time = setTimeout(function () {
-      that.setData({
-        second: that.data.second - 1
-      })
-      timer(that)
-    }, 1000)
-}
-function isExist(that, sId) {
-  let alllcts = that.data.alllcts
-  let iIndex = that.data.Index
-  let isExist = false;
-  for (var i = 0; i < alllcts.length; i++) {
-    if (sId == alllcts[i].clid) {
-      isExist = true
-      iIndex = i
-    }
-  }
-  return { "exist": isExist, "index": iIndex };
-}
 
 Page({
   data: {
@@ -40,8 +19,12 @@ Page({
     menuhide: false,
     menu: [],
     alllcts: [],
-    Index: 0
+    Index: -1,
+    termtitle: '',
+    x: 0,
+    y: 0
   },
+  //页面加载
   onLoad: function (options) {
     var that = this
     var height = 0;
@@ -54,19 +37,12 @@ Page({
       alllcts: lawItem
     })
     Post.call(this, this, "LOAD");
-  },
+  }, onReachBottom: function (e) { },
+  //展开或隐藏菜单
   menucontrol: function (e) {
-    var that = this
-    if (that.data.menuhide) {
-      menuanim.translateX(0).step()
-    } else {
-      menuanim.translateX(-that.data.width * 0.8 - 4).step()
-    }
-    this.setData({
-      menuanim: menuanim.export(),
-      menuhide: !that.data.menuhide
-    })
+    setMenuStatus(this)
   },
+  //展开或折叠菜单的内容项
   subitemcontrol: function (e) {
     let iIndex = e.currentTarget.dataset.idx
     let menu = this.data.menu
@@ -75,19 +51,39 @@ Page({
       menu: menu
     })
   },
+  //显示法条内容
   showcontent: function (e) {
     let sCid = e.currentTarget.dataset.cid
+    let sCnme = e.currentTarget.dataset.cnme
     var objResult = isExist(this, sCid)
     if (objResult.exist) {
       this.setData({
-        Index: objResult.index
+        Index: objResult.index,
+        termtitle: sCnme
       })
     } else {
       var jsPost = new util.jsonRow()
       jsPost.AddCell("CID", sCid)
+      jsPost.AddCell("CNME", sCnme)
       Post.call(this, this, "GETTERM", jsPost)
     }
+    setMenuStatus(this)
   },
+  searchtext:function(e){
+    wx.createSelectorQuery().select('#svterm,.lino').fields({
+      dataset: true,
+      size: true,
+      scrollOffset: true
+    }, function (res) {
+      // res.dataset    // 节点的dataset
+      // res.width      // 节点的宽度
+      // res.height     // 节点的高度
+      // res.scrollLeft // 节点的水平滚动位置
+      // res.scrollTop  // 节点的竖直滚动位置
+      console.log(res)
+    }).exec()
+  },
+  //开始录音
   startRecord: function (e) {
     var that = this
     this.setData({
@@ -128,6 +124,7 @@ Page({
       })
     }, 5000)
   },
+  //结束录音
   endRecord: function (e) {
     wx.stopRecord()
     this.setData({
@@ -136,7 +133,7 @@ Page({
     });
   }
 })
-
+//服务器请求数据
 function Post(that, action, data) {
   //数据请求执行方法
   var jsPost = data || new util.jsonRow()
@@ -163,12 +160,48 @@ function Post(that, action, data) {
         }
         that.setData({
           alllcts: alllcts,
-          Index: iIndex
+          Index: iIndex,
+          termtitle: jsPost.arrjson.CNME
         })
       }
     }
     else {
       // console.log('error')
     }
+  })
+}
+//录音计时器
+function timer(that) {
+  if (that.data.second > 0 && !that.data.finished)
+    var time = setTimeout(function () {
+      that.setData({
+        second: that.data.second - 1
+      })
+      timer(that)
+    }, 1000)
+}
+//当前是否加载法条内容
+function isExist(that, sId) {
+  let alllcts = that.data.alllcts
+  let iIndex = that.data.Index
+  let isExist = false;
+  for (var i = 0; i < alllcts.length; i++) {
+    if (sId == alllcts[i].clid) {
+      isExist = true
+      iIndex = i
+    }
+  }
+  return { "exist": isExist, "index": iIndex };
+}
+//隐藏、显示菜单
+function setMenuStatus(that) {
+  if (that.data.menuhide) {
+    menuanim.translateX(0).step()
+  } else {
+    menuanim.translateX(-that.data.width * 0.8 - 4).step()
+  }
+  that.setData({
+    menuanim: menuanim.export(),
+    menuhide: !that.data.menuhide
   })
 }

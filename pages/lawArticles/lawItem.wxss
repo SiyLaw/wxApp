@@ -1,6 +1,8 @@
 /* lawItem.wxss */
 @import "../../common/lib/weui.wxss";
 
+/* 页面头*/
+
 .head {
   display: flex;
   flex-direction: column;
@@ -55,6 +57,8 @@
   padding-left: 0;
 }
 
+/* 菜单框架 */
+
 .lawSub1 {
   position: fixed;
   top: 92rpx;
@@ -68,6 +72,8 @@
   z-index: 9998;
 }
 
+/* 单项菜单 */
+
 .Sub1item {
   background-color: #eee;
   display: flex;
@@ -75,6 +81,8 @@
   box-shadow: 0 0 5rpx 0 #bdb76b;
   margin-bottom: 2rpx;
 }
+
+/* 一级菜单 */
 
 .itemHead {
   align-items: center;
@@ -84,19 +92,28 @@
   padding: 6rpx 0;
 }
 
+/* 一级菜单 标题 */
+
 .itemHead text {
   font-size: 36rpx;
   padding-left: 20rpx;
+  padding-top: 10rpx;
+  padding-bottom: 10rpx;
   flex: auto;
   color: #444;
   text-shadow: 1px 1px 0 #ddd;
 }
+
+/* 一级菜单 折叠图标 */
 
 .itemHead image {
   height: 30rpx;
   width: 30rpx;
   padding: 0 20rpx;
 }
+
+/* 二级菜单 */
+
 .itemContent {
   display: flex;
   flex-direction: column;
@@ -107,16 +124,94 @@
   color: #ffab30;
   text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
 }
+
+/* 二级菜单项*/
+
 .itemContent view {
   border-bottom: 1rpx solid #808080;
   margin-left: 40rpx;
   display: flex;
 }
-@keyframes kf-marque-animation{ 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+@keyframes kf-marque-animation {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
 .itemContent text {
   word-break: keep-all;
   white-space: nowrap;
+  padding: 10rpx 0;
 }
-.empty{
-  height: 250rpx;
+
+/* 法条内容*/
+
+.lawContent {
+  margin-top: 92rpx;
+  background-color: #eee;
+  box-shadow: 2rpx 0 12rpx 0 #d3d3d3;
+  display: flex;
+  flex-direction: column;
+  border-right: 1rpx solid #c0c0c0;
+  align-items: center;
+  color: #444;
+}
+
+.lawContent .title {
+  font-size: 40rpx;
+  font-weight: bolder;
+  text-align: center;
+  text-shadow: 1px 1px 0 #ddd;
+  padding-top: 80rpx;
+  padding-bottom: 30rpx;
+}
+
+.lawContent .subtitle {
+  display: block;
+  padding-top: 30rpx;
+  padding-bottom: 0rpx;
+  font-size: 36rpx;
+  text-align: center;
+  text-shadow: 1px 1px 0 #ddd;
+}
+
+.lawContent .subtitlename {
+  display: block;
+  text-align: center;
+  font-size: 30rpx;
+  font-weight: bolder;
+  text-shadow: 1px 1px 0 #ddd;
+  padding-top: 0rpx;
+  padding-bottom: 10rpx;
+}
+
+.lawContent .termitem {
+  font-size: 30rpx;
+  padding: 5rpx 20rpx;
+  text-align: justify;
+}
+
+.termitem .lino {
+  color: #2186e0;
+}
+
+.quickLink {
+  width: 50rpx;
+  position: fixed;
+  top: 92rpx;
+  right: 0;
+  z-index: 1000;
+  color: #ffab30;
+}
+
+.quickLinkBar {
+  height: 50px;
+  width: 49rpx;
+  background: #666;
+  border-radius: 10rpx;
 }

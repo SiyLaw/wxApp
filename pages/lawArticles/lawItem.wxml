@@ -6,26 +6,33 @@
       <view class="headSearch">
         <input value="{{searchval}}" />
         <image src="/image/{{finished?'searchvoice':'searchvoiced'}}.png" bindlongtap="startRecord" bindtouchend="endRecord"></image>
-        <image src="/image/Search.png"></image>
+        <image src="/image/Search.png" bindtap="searchtext" ></image>
       </view>
     </view>
     <progress percent="{{second*20}}" stroke-width="1" color="#ffab30" />
   </view>
-  <scroll-view scroll-y="{{true}}" style="height:{{height}}px;width:{{width*0.8}}px;" animation="{{menuanim}}" class="lawSub1">
+  <scroll-view scroll-y="{{true}}" style="height:{{height-112}}px;width:{{width*0.8}}px;" animation="{{menuanim}}" class="lawSub1">
     <view wx:for="{{menu}}" wx:for-item="itm" wx:for-index="idx" wx:key="itm.id" class="Sub1item">
       <view class="itemHead" data-idx="{{idx}}" bindtap="subitemcontrol">
         <text>{{itm.txt}}</text>
         <image src="/image/{{itm.expand?'expandarr':'forwardarr'}}.png"></image>
       </view>
       <view wx:if="{{itm.expand}}" class="itemContent">
-        <view wx:for="{{itm.item}}" wx:key="item.id" data-cid="{{item.id}}" bindtap="showcontent">
+        <view wx:for="{{itm.item}}" wx:key="item.id" data-cid="{{item.id}}" data-cnme="{{item.txt}}" bindtap="showcontent">
           <text style="animation:{{item.txt.length > 20 ? 'kf-marque-animation 11.3s linear infinite':''}}">{{item.txt}}</text>
         </view>
       </view>
     </view>
-    <view class="empty"></view>
   </scroll-view>
-  <scroll-view scroll-y="{{true}}" style="height:{{height}}px;">
-
-  </scroll-view>>
+  <scroll-view id="svterm" scroll-y="{{true}}" style="height:{{height-92}}px;" class="lawContent">
+    <view class="title">{{termtitle}}</view>
+    <view wx:for="{{alllcts[Index].lcts}}" wx:for-item="itm" wx:for-index="idx" wx:key="itm.chid">
+      <text class="subtitle">{{itm.chno}}</text>
+      <text class="subtitlename">{{itm.chname}}</text>
+      <view wx:for="{{itm.item}}" class="termitem" wx:for-item="li" wx:key="li.trid">
+        <text class="lino">{{li.trno}}</text>
+        <text class="litxt">{{li.txt}}</text>
+      </view>
+    </view>
+  </scroll-view>
 </view>
