@@ -18,11 +18,14 @@
         <image src="/image/{{itm.expand?'expandarr':'forwardarr'}}.png"></image>
       </view>
       <view wx:if="{{itm.expand}}" class="itemContent">
-        <view wx:for="{{itm.item}}" wx:key="item.id">
+        <view wx:for="{{itm.item}}" wx:key="item.id" data-cid="{{item.id}}" bindtap="showcontent">
           <text style="animation:{{item.txt.length > 20 ? 'kf-marque-animation 11.3s linear infinite':''}}">{{item.txt}}</text>
         </view>
       </view>
     </view>
     <view class="empty"></view>
   </scroll-view>
+  <scroll-view scroll-y="{{true}}" style="height:{{height}}px;">
+
+  </scroll-view>>
 </view>

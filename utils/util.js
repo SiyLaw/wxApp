@@ -80,6 +80,32 @@ function currentWeekInfo() {
   return [sweek + ' ～ ' + eweek, (nowMonth + 1).toString(), num]
 }
 
+//高亮转换
+function HighlightTransform(data) {
+  let newList = [];
+  for (let i = 0; i < data.length; i++) {
+    let texts = data[i].text.split(data[i].key);
+    let t = '';
+    for (let j = 0; j < texts.length; j++) {
+      if (j < texts.length - 1) {
+        t += texts[j] + '@' + data[i].key + '@';
+      } else {
+        t += texts[j]
+      }
+    }
+    let arr = t.split('@');
+    let list = [];
+    for (let k = 0; k < arr.length; k++) {
+      list.push({
+        text: arr[k],
+        isgl: (arr[k] == data[i].key)
+      });
+    }
+    newList.push(list);
+  }
+  return newList;
+}
+
 /**
  * url 请求地址
  * success 成功的回调

@@ -15,6 +15,19 @@ function timer(that) {
       timer(that)
     }, 1000)
 }
+function isExist(that, sId) {
+  let alllcts = that.data.alllcts
+  let iIndex = that.data.Index
+  let isExist = false;
+  for (var i = 0; i < alllcts.length; i++) {
+    if (sId == alllcts[i].clid) {
+      isExist = true
+      iIndex = i
+    }
+  }
+  return { "exist": isExist, "index": iIndex };
+}
+
 Page({
   data: {
     height: 0,
@@ -22,20 +35,23 @@ Page({
     PAGE: "LAWITEM",
     second: 5,
     finished: true,
-    searchval:"",
+    searchval: "",
     menuanim: {},
     menuhide: false,
-    menu: []
+    menu: [],
+    alllcts: [],
+    Index: 0
   },
   onLoad: function (options) {
     var that = this
-    wx.getSystemInfo({
-      success(res) {
-        that.setData({
-          height: res.screenHeight,
-          width: res.screenWidth
-        })
-      }
+    var height = 0;
+    var width = 0;
+    var SysInfo = wx.getSystemInfoSync()
+    var lawItem = wx.getStorageSync('LAWITEMS') || [];
+    that.setData({
+      height: SysInfo.screenHeight,
+      width: SysInfo.screenWidth,
+      alllcts: lawItem
     })
     Post.call(this, this, "LOAD");
   },
@@ -58,6 +74,19 @@ Page({
     this.setData({
       menu: menu
     })
+  },
+  showcontent: function (e) {
+    let sCid = e.currentTarget.dataset.cid
+    var objResult = isExist(this, sCid)
+    if (objResult.exist) {
+      this.setData({
+        Index: objResult.index
+      })
+    } else {
+      var jsPost = new util.jsonRow()
+      jsPost.AddCell("CID", sCid)
+      Post.call(this, this, "GETTERM", jsPost)
+    }
   },
   startRecord: function (e) {
     var that = this
@@ -119,6 +148,22 @@ function Post(that, action, data) {
       if (jsPost.arrjson.ACTION == "LOAD") {
         that.setData({
           menu: res.data.data.menu
+        })
+      } else if (jsPost.arrjson.ACTION == "GETTERM") {
+        var sCid = res.data.data.clid
+        let alllcts = that.data.alllcts
+        let iIndex = that.data.Index
+        var objResult = isExist(that, sCid)
+        if (objResult.exist) {
+          alllcts[objResult.index] = res.data.data
+          iIndex = objResult.index
+        } else {
+          alllcts.push(res.data.data)
+          iIndex = alllcts.length - 1
+        }
+        that.setData({
+          alllcts: alllcts,
+          Index: iIndex
         })
       }
     }
