@@ -11,6 +11,7 @@ Page({
   data: {
     height: 0,
     width: 0,
+    rpxrate: 0.0,
     PAGE: "LAWITEM",
     second: 5,
     finished: true,
@@ -20,7 +21,9 @@ Page({
     menu: [],
     alllcts: [],
     Index: -1,
-    termtitle: '',
+    seqbar: [],//索搜条显示
+    barscale: 1,
+    scrollviewid: '',
     x: 0,
     y: 0
   },
@@ -32,8 +35,9 @@ Page({
     var SysInfo = wx.getSystemInfoSync()
     var lawItem = wx.getStorageSync('LAWITEMS') || [];
     that.setData({
-      height: SysInfo.screenHeight,
+      height: SysInfo.windowHeight,
       width: SysInfo.screenWidth,
+      rpxrate: Math.floor(SysInfo.screenWidth / 750 * 100) / 100,
       alllcts: lawItem
     })
     Post.call(this, this, "LOAD");
@@ -57,9 +61,12 @@ Page({
     let sCnme = e.currentTarget.dataset.cnme
     var objResult = isExist(this, sCid)
     if (objResult.exist) {
+      let seqBar = getSeqBar(this.data.alllcts[objResult.index].lcts)
       this.setData({
         Index: objResult.index,
-        termtitle: sCnme
+        termtitle: sCnme,
+        seqbar: seqBar,
+        barscale: parseInt(Math.ceil(seqBar.length / 30))
       })
     } else {
       var jsPost = new util.jsonRow()
@@ -69,19 +76,10 @@ Page({
     }
     setMenuStatus(this)
   },
-  searchtext:function(e){
-    wx.createSelectorQuery().select('#svterm,.lino').fields({
-      dataset: true,
-      size: true,
-      scrollOffset: true
-    }, function (res) {
-      // res.dataset    // 节点的dataset
-      // res.width      // 节点的宽度
-      // res.height     // 节点的高度
-      // res.scrollLeft // 节点的水平滚动位置
-      // res.scrollTop  // 节点的竖直滚动位置
-      console.log(res)
-    }).exec()
+  onsearchbarmove: function (e) {
+    this.setData({
+      scrollviewid: e.currentTarget.dataset.trid
+    })
   },
   //开始录音
   startRecord: function (e) {
@@ -158,10 +156,13 @@ function Post(that, action, data) {
           alllcts.push(res.data.data)
           iIndex = alllcts.length - 1
         }
+        let seqBar = getSeqBar(alllcts[iIndex].lcts)
         that.setData({
           alllcts: alllcts,
           Index: iIndex,
-          termtitle: jsPost.arrjson.CNME
+          termtitle: jsPost.arrjson.CNME,
+          seqbar: seqBar,
+          barscale: parseInt(Math.ceil(seqBar.length / 30))
         })
       }
     }
@@ -189,10 +190,12 @@ function isExist(that, sId) {
     if (sId == alllcts[i].clid) {
       isExist = true
       iIndex = i
+      break;
     }
   }
   return { "exist": isExist, "index": iIndex };
 }
+
 //隐藏、显示菜单
 function setMenuStatus(that) {
   if (that.data.menuhide) {
@@ -204,4 +207,19 @@ function setMenuStatus(that) {
     menuanim: menuanim.export(),
     menuhide: !that.data.menuhide
   })
+}
+
+function getSeqBar(lcts) {
+  let seqBar = []
+  for (var i = 0; i < lcts.length; i++) {
+    for (var j = 0; j < lcts[i].item.length; j++) {
+      let seqItem = {}
+      seqItem.clid = lcts[i].chid
+      seqItem.chno = lcts[i].chno
+      seqItem.trid = lcts[i].item[j].trid
+      seqItem.trno = lcts[i].item[j].trno
+      seqBar.push(seqItem)
+    }
+  }
+  return seqBar
 }

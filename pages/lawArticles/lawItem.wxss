@@ -61,7 +61,7 @@
 
 .lawSub1 {
   position: fixed;
-  top: 92rpx;
+  top: 94rpx;
   left: 0;
   background-color: #eee;
   box-shadow: 2rpx 0 12rpx 0 #d3d3d3;
@@ -152,7 +152,9 @@
 /* 法条内容*/
 
 .lawContent {
-  margin-top: 92rpx;
+  position: fixed;
+  top: 94rpx;
+  right: 0;
   background-color: #eee;
   box-shadow: 2rpx 0 12rpx 0 #d3d3d3;
   display: flex;
@@ -168,13 +170,15 @@
   text-align: center;
   text-shadow: 1px 1px 0 #ddd;
   padding-top: 80rpx;
-  padding-bottom: 30rpx;
+  padding-bottom: 30rpx;  
+  padding-right: 45rpx;
 }
 
 .lawContent .subtitle {
   display: block;
   padding-top: 30rpx;
-  padding-bottom: 0rpx;
+  padding-bottom: 0rpx;  
+  padding-right: 45rpx;
   font-size: 36rpx;
   text-align: center;
   text-shadow: 1px 1px 0 #ddd;
@@ -192,7 +196,10 @@
 
 .lawContent .termitem {
   font-size: 30rpx;
-  padding: 5rpx 20rpx;
+  padding-top: 5rpx;
+  padding-bottom: 5rpx;
+  padding-left: 20rpx;
+  padding-right: 45rpx;
   text-align: justify;
 }
 
@@ -200,18 +207,22 @@
   color: #2186e0;
 }
 
-.quickLink {
-  width: 50rpx;
+.scrollsearchbar {
+  width: 40rpx;
   position: fixed;
-  top: 92rpx;
+  top: 94rpx;
   right: 0;
   z-index: 1000;
-  color: #ffab30;
+  display: flex;
+  flex-direction: column;
+  font-size: 22rpx;
+  justify-content: space-between;
+  text-align: center;
+  background: linear-gradient(to right, #eee,#ddd, #eee);
+  color: #444;
+  opacity: 0.8;
 }
 
-.quickLinkBar {
-  height: 50px;
-  width: 49rpx;
-  background: #666;
-  border-radius: 10rpx;
+.scrollsearchbar label {
+  padding: 0rpx 0rpx;
 }

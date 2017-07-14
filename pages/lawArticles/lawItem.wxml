@@ -6,12 +6,12 @@
       <view class="headSearch">
         <input value="{{searchval}}" />
         <image src="/image/{{finished?'searchvoice':'searchvoiced'}}.png" bindlongtap="startRecord" bindtouchend="endRecord"></image>
-        <image src="/image/Search.png" bindtap="searchtext" ></image>
+        <image src="/image/Search.png" bindtap="searchtext"></image>
       </view>
     </view>
     <progress percent="{{second*20}}" stroke-width="1" color="#ffab30" />
   </view>
-  <scroll-view scroll-y="{{true}}" style="height:{{height-112}}px;width:{{width*0.8}}px;" animation="{{menuanim}}" class="lawSub1">
+  <scroll-view scroll-y="{{true}}" style="height:{{height-rpxrate*94}}px;width:{{width*0.8}}px;" animation="{{menuanim}}" class="lawSub1">
     <view wx:for="{{menu}}" wx:for-item="itm" wx:for-index="idx" wx:key="itm.id" class="Sub1item">
       <view class="itemHead" data-idx="{{idx}}" bindtap="subitemcontrol">
         <text>{{itm.txt}}</text>
@@ -24,15 +24,20 @@
       </view>
     </view>
   </scroll-view>
-  <scroll-view id="svterm" scroll-y="{{true}}" style="height:{{height-92}}px;" class="lawContent">
+  <scroll-view id="svterm" scroll-y="{{true}}" style="height:{{height-rpxrate*94}}px;" scroll-into-view="{{scrollviewid}}" class="lawContent">
     <view class="title">{{termtitle}}</view>
-    <view wx:for="{{alllcts[Index].lcts}}" wx:for-item="itm" wx:for-index="idx" wx:key="itm.chid">
+    <view wx:for="{{alllcts[Index].lcts}}" wx:for-item="itm" wx:for-index="idx" wx:key="itm.chid" id="{{itm.chid}}">
       <text class="subtitle">{{itm.chno}}</text>
       <text class="subtitlename">{{itm.chname}}</text>
-      <view wx:for="{{itm.item}}" class="termitem" wx:for-item="li" wx:key="li.trid">
+      <view wx:for="{{itm.item}}" class="termitem" wx:for-item="li" wx:key="li.trid" id="{{li.trid}}">
         <text class="lino">{{li.trno}}</text>
-        <text class="litxt">{{li.txt}}</text>
+        <text>{{li.txt}}</text>
       </view>
     </view>
   </scroll-view>
+  <view class="scrollsearchbar" style="height:{{height-rpxrate*94}}px;">
+    <block wx:for="{{seqbar}}" wx:for-item="itm" wx:for-index="idx" wx:key="itm.seqnum">
+      <label wx:if="{{idx%barscale==0}}" data-chid="{{itm.chid}}" data-trid="{{itm.trid}}" data-chno="{{itm.chno}}" data-trno="{{itm.trno}}" bindtap="onsearchbarmove">{{idx+1}}</label>
+    </block>
+  </view>
 </view>
