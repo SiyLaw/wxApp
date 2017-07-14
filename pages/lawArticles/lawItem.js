@@ -1,50 +1,48 @@
 // lawItem.js// pages/profile/profile.js
 var util = require('../../utils/util.js')
-
 var app = getApp()
-var menuanim = wx.createAnimation({
-  duration: 600,
-  timingFunction: 'ease'
-})
-
 Page({
   data: {
     height: 0,
     width: 0,
-    rpxrate: 0.0,
+    rpxrate: 0.0, //rpx-px比率
     PAGE: "LAWITEM",
-    second: 5,
-    finished: true,
-    searchval: "",
-    menuanim: {},
-    menuhide: false,
-    menu: [],
-    alllcts: [],
-    Index: -1,
-    seqbar: [],//索搜条显示
-    barscale: 1,
-    scrollviewid: '',
-    x: 0,
-    y: 0
+    second: 5,//录音秒
+    finished: true,//是否完成录音
+    searchval: "",//搜索内容
+    menuhide: false,//是否折叠菜单
+    menu: [],//菜单内容
+    alllcts: [],//法典内容
+    Index: -1,//当前法律原文序号ID
+    seqbar: [],//包含侧边章内容ID,侧边节内容ID
+    seqbartype: '0',//索搜条类型，按章、条
+    scrollviewid: '',//滚动到指定法条ID
+    scrolltop: 0
   },
   //页面加载
   onLoad: function (options) {
-    var that = this
     var height = 0;
     var width = 0;
     var SysInfo = wx.getSystemInfoSync()
+    //获取缓存数据
     var lawItem = wx.getStorageSync('LAWITEMS') || [];
-    that.setData({
-      height: SysInfo.windowHeight,
-      width: SysInfo.screenWidth,
-      rpxrate: Math.floor(SysInfo.screenWidth / 750 * 100) / 100,
-      alllcts: lawItem
-    })
-    Post.call(this, this, "LOAD");
-  }, onReachBottom: function (e) { },
+    Post.call(this, this, "LOAD", null, function (that, data) {
+      that.setData({
+        height: SysInfo.windowHeight,
+        width: SysInfo.screenWidth,
+        rpxrate: Math.floor(SysInfo.screenWidth / 750 * 100) / 100,
+        alllcts: lawItem,
+        menu: data.menu
+      })
+    });
+  }
+  ,
+  onReachBottom: function (e) { },
   //展开或隐藏菜单
   menucontrol: function (e) {
-    setMenuStatus(this)
+    this.setData({
+      menuhide: !this.data.menuhide
+    })
   },
   //展开或折叠菜单的内容项
   subitemcontrol: function (e) {
@@ -59,26 +57,69 @@ Page({
   showcontent: function (e) {
     let sCid = e.currentTarget.dataset.cid
     let sCnme = e.currentTarget.dataset.cnme
-    var objResult = isExist(this, sCid)
+    var objResult = isExist(this.data.alllcts, sCid)
     if (objResult.exist) {
       let seqBar = getSeqBar(this.data.alllcts[objResult.index].lcts)
+      seqBar.barTscale = parseInt(Math.ceil(seqBar.seqTBar.length / 30))
+      seqBar.barSscale = parseInt(Math.ceil(seqBar.seqSBar.length / 30))
       this.setData({
         Index: objResult.index,
         termtitle: sCnme,
         seqbar: seqBar,
-        barscale: parseInt(Math.ceil(seqBar.length / 30))
+        menuhide: !this.data.menuhide,
+        scrolltop: 0,
+        scrollviewid: '',
+
       })
     } else {
       var jsPost = new util.jsonRow()
       jsPost.AddCell("CID", sCid)
       jsPost.AddCell("CNME", sCnme)
-      Post.call(this, this, "GETTERM", jsPost)
+      Post.call(this, this, "GETTERM", jsPost, function (that, cdata) {
+        var sCid = cdata.clid
+        let alllcts = that.data.alllcts
+        let iIndex = that.data.Index
+        var objResult = isExist(alllcts, sCid)
+        if (objResult.exist) {
+          alllcts[objResult.index] = cdata
+          iIndex = objResult.index
+        } else {
+          alllcts.push(cdata)
+          iIndex = alllcts.length - 1
+        }
+        let seqBar = getSeqBar(alllcts[iIndex].lcts)
+        seqBar.barTscale = parseInt(Math.ceil(seqBar.seqTBar.length / 30))
+        seqBar.barSscale = parseInt(Math.ceil(seqBar.seqSBar.length / 30))
+        that.setData({
+          alllcts: alllcts,
+          Index: iIndex,
+          termtitle: jsPost.arrjson.CNME,
+          seqbar: seqBar,
+          menuhide: !that.data.menuhide,
+          scrolltop: 0,
+          scrollviewid: ''
+        })
+        //存至缓存
+        wx.setStorageSync('LAWITEMS', alllcts)
+      })
     }
-    setMenuStatus(this)
   },
-  onsearchbarmove: function (e) {
+  //条跳转
+  onTsearchbarmove: function (e) {
     this.setData({
       scrollviewid: e.currentTarget.dataset.trid
+    })
+  },
+  //章跳转
+  onSsearchbarmove: function (e) {
+    this.setData({
+      scrollviewid: e.currentTarget.dataset.chid
+    })
+  },
+  changeBarType: function (e) {
+    let seqbartype = this.data.seqbartype == '0' ? '1' : '0'
+    this.setData({
+      seqbartype: seqbartype
     })
   },
   //开始录音
@@ -132,39 +173,15 @@ Page({
   }
 })
 //服务器请求数据
-function Post(that, action, data) {
+function Post(that, action, data, doAfter) {
   //数据请求执行方法
   var jsPost = data || new util.jsonRow()
   jsPost.AddCell("PAGE", that.data.PAGE)
   jsPost.AddCell("ACTION", action)
   util._post(app.globalData.url, jsPost, function (res) {
     if (res && res.data && res.data.data) {
-      //更新数据
-      if (jsPost.arrjson.ACTION == "LOAD") {
-        that.setData({
-          menu: res.data.data.menu
-        })
-      } else if (jsPost.arrjson.ACTION == "GETTERM") {
-        var sCid = res.data.data.clid
-        let alllcts = that.data.alllcts
-        let iIndex = that.data.Index
-        var objResult = isExist(that, sCid)
-        if (objResult.exist) {
-          alllcts[objResult.index] = res.data.data
-          iIndex = objResult.index
-        } else {
-          alllcts.push(res.data.data)
-          iIndex = alllcts.length - 1
-        }
-        let seqBar = getSeqBar(alllcts[iIndex].lcts)
-        that.setData({
-          alllcts: alllcts,
-          Index: iIndex,
-          termtitle: jsPost.arrjson.CNME,
-          seqbar: seqBar,
-          barscale: parseInt(Math.ceil(seqBar.length / 30))
-        })
-      }
+      //回调
+      typeof doAfter == "function" && doAfter(that, res.data.data)
     }
     else {
       // console.log('error')
@@ -182,9 +199,8 @@ function timer(that) {
     }, 1000)
 }
 //当前是否加载法条内容
-function isExist(that, sId) {
-  let alllcts = that.data.alllcts
-  let iIndex = that.data.Index
+function isExist(alllcts, sId) {
+  let iIndex = 0
   let isExist = false;
   for (var i = 0; i < alllcts.length; i++) {
     if (sId == alllcts[i].clid) {
@@ -196,30 +212,19 @@ function isExist(that, sId) {
   return { "exist": isExist, "index": iIndex };
 }
 
-//隐藏、显示菜单
-function setMenuStatus(that) {
-  if (that.data.menuhide) {
-    menuanim.translateX(0).step()
-  } else {
-    menuanim.translateX(-that.data.width * 0.8 - 4).step()
-  }
-  that.setData({
-    menuanim: menuanim.export(),
-    menuhide: !that.data.menuhide
-  })
-}
-
+//当前法律，转换侧边快速定位列表，stype：0，条；1，章
 function getSeqBar(lcts) {
-  let seqBar = []
+  let seqSBar = []
+  let seqTBar = []
   for (var i = 0; i < lcts.length; i++) {
+    let seqSItem = {}
+    seqSItem.chid = lcts[i].chid
+    seqSBar.push(seqSItem)
     for (var j = 0; j < lcts[i].item.length; j++) {
       let seqItem = {}
-      seqItem.clid = lcts[i].chid
-      seqItem.chno = lcts[i].chno
       seqItem.trid = lcts[i].item[j].trid
-      seqItem.trno = lcts[i].item[j].trno
-      seqBar.push(seqItem)
+      seqTBar.push(seqItem)
     }
   }
-  return seqBar
+  return { "seqSBar": seqSBar, "seqTBar": seqTBar }
 }

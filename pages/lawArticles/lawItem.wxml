@@ -11,7 +11,7 @@
     </view>
     <progress percent="{{second*20}}" stroke-width="1" color="#ffab30" />
   </view>
-  <scroll-view scroll-y="{{true}}" style="height:{{height-rpxrate*94}}px;width:{{width*0.8}}px;" animation="{{menuanim}}" class="lawSub1">
+  <scroll-view scroll-y="{{true}}" style="height:{{height-rpxrate*94}}px;width:{{width*0.8}}px;" class="lawSub1 {{menuhide?'menuhide':'menushow'}}">
     <view wx:for="{{menu}}" wx:for-item="itm" wx:for-index="idx" wx:key="itm.id" class="Sub1item">
       <view class="itemHead" data-idx="{{idx}}" bindtap="subitemcontrol">
         <text>{{itm.txt}}</text>
@@ -24,20 +24,39 @@
       </view>
     </view>
   </scroll-view>
-  <scroll-view id="svterm" scroll-y="{{true}}" style="height:{{height-rpxrate*94}}px;" scroll-into-view="{{scrollviewid}}" class="lawContent">
+  <scroll-view id="svterm" scroll-y="{{true}}" style="height:{{height-rpxrate*94}}px;" scroll-into-view="{{scrollviewid}}" scroll-top="{{scrolltop}}" class="lawContent">
     <view class="title">{{termtitle}}</view>
     <view wx:for="{{alllcts[Index].lcts}}" wx:for-item="itm" wx:for-index="idx" wx:key="itm.chid" id="{{itm.chid}}">
       <text class="subtitle">{{itm.chno}}</text>
       <text class="subtitlename">{{itm.chname}}</text>
-      <view wx:for="{{itm.item}}" class="termitem" wx:for-item="li" wx:key="li.trid" id="{{li.trid}}">
-        <text class="lino">{{li.trno}}</text>
-        <text>{{li.txt}}</text>
-      </view>
+      <block wx:for="{{itm.item}}" wx:for-item="li" wx:key="li.trid">
+        <block wx:if="{{li.idx%seqbar.barTscale==0}}">
+          <view class="termitem" id="{{li.trid}}">
+            <text class="lino">{{li.trno}}</text>
+            <text>{{li.txt}}</text>
+          </view>
+        </block>
+        <block wx:else>
+          <view class="termitem">
+            <text class="lino">{{li.trno}}</text>
+            <text>{{li.txt}}</text>
+          </view>
+        </block>
+      </block>
     </view>
   </scroll-view>
   <view class="scrollsearchbar" style="height:{{height-rpxrate*94}}px;">
-    <block wx:for="{{seqbar}}" wx:for-item="itm" wx:for-index="idx" wx:key="itm.seqnum">
-      <label wx:if="{{idx%barscale==0}}" data-chid="{{itm.chid}}" data-trid="{{itm.trid}}" data-chno="{{itm.chno}}" data-trno="{{itm.trno}}" bindtap="onsearchbarmove">{{idx+1}}</label>
+    <label bindtap="changeBarType">{{seqbartype=='0'?'条':'章'}}</label>
+    <block wx:if="{{seqbartype=='0'}}">
+      <block wx:for="{{seqbar.seqTBar}}" wx:for-item="itm" wx:for-index="idx" wx:key="itm.trid">
+        <label wx:if="{{idx%seqbar.barTscale==0}}" data-trid="{{itm.trid}}" bindtap="onTsearchbarmove">{{idx+1}}</label>
+      </block>
     </block>
+    <block wx:else>
+      <block wx:for="{{seqbar.seqSBar}}" wx:for-item="itm" wx:for-index="idx" wx:key="itm.chid">
+        <label wx:if="seqbartype=='1'" wx:if="{{idx%seqbar.barSscale==0}}" data-chid="{{itm.chid}}" bindtap="onSsearchbarmove">{{idx+1}}</label>
+      </block>
+    </block>
+    <label></label>
   </view>
 </view>

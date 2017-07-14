@@ -143,6 +143,33 @@
   }
 }
 
+@keyframes menu-animation {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-105%);
+  }
+}
+@keyframes menu-animation2 {
+  0% {
+    transform: translateX(-105%);
+  }
+
+  100% {
+    transform: translateX(0%);
+  }
+}
+.menuhide{
+  animation: menu-animation 0.6s ease;
+  animation-fill-mode: both;
+}
+.menushow{
+  animation: menu-animation2 0.6s ease;
+  animation-fill-mode: both;
+}
+
 .itemContent text {
   word-break: keep-all;
   white-space: nowrap;
@@ -170,15 +197,15 @@
   text-align: center;
   text-shadow: 1px 1px 0 #ddd;
   padding-top: 80rpx;
-  padding-bottom: 30rpx;  
-  padding-right: 45rpx;
+  padding-bottom: 30rpx;
+  padding-right: 40rpx;
 }
 
 .lawContent .subtitle {
   display: block;
   padding-top: 30rpx;
-  padding-bottom: 0rpx;  
-  padding-right: 45rpx;
+  padding-bottom: 0rpx;
+  padding-right: 40rpx;
   font-size: 36rpx;
   text-align: center;
   text-shadow: 1px 1px 0 #ddd;
@@ -192,6 +219,7 @@
   text-shadow: 1px 1px 0 #ddd;
   padding-top: 0rpx;
   padding-bottom: 10rpx;
+  padding-right: 40rpx;
 }
 
 .lawContent .termitem {
@@ -199,7 +227,7 @@
   padding-top: 5rpx;
   padding-bottom: 5rpx;
   padding-left: 20rpx;
-  padding-right: 45rpx;
+  padding-right: 40rpx;
   text-align: justify;
 }
 
@@ -208,7 +236,7 @@
 }
 
 .scrollsearchbar {
-  width: 40rpx;
+  width: 36rpx;
   position: fixed;
   top: 94rpx;
   right: 0;
@@ -218,11 +246,13 @@
   font-size: 22rpx;
   justify-content: space-between;
   text-align: center;
-  background: linear-gradient(to right, #eee,#ddd, #eee);
+  background: linear-gradient(to right, #eee, #ddd, #eee);
   color: #444;
   opacity: 0.8;
 }
 
 .scrollsearchbar label {
   padding: 0rpx 0rpx;
+  height: 20rpx;
+  line-height: 20rpx;
 }
