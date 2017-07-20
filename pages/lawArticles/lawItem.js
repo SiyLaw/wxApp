@@ -17,7 +17,8 @@ Page({
     seqbar: [],//包含侧边章内容ID,侧边节内容ID
     seqbartype: '0',//索搜条类型，按章、条
     scrollviewid: '',//滚动到指定法条ID
-    scrolltop: 0
+    scrolltop: 0,
+    scurrentid: ''//当前法律ID
   },
   //页面加载
   onLoad: function (options) {
@@ -35,13 +36,42 @@ Page({
         menu: data.menu
       })
     });
-  }
-  ,
+  },
   onReachBottom: function (e) { },
   //展开或隐藏菜单
   menucontrol: function (e) {
     this.setData({
       menuhide: !this.data.menuhide
+    })
+  },
+  refreshcurrentclass: function (e) {
+    let sCid = this.data.scurrentid
+    var jsPost = new util.jsonRow()
+    jsPost.AddCell("CID", sCid)
+    Post.call(this, this, "GETTERM", jsPost, function (that, cdata) {
+      var sCid = cdata.clid
+      let alllcts = that.data.alllcts
+      let iIndex = that.data.Index
+      var objResult = isExist(alllcts, sCid)
+      if (objResult.exist) {
+        alllcts[objResult.index] = cdata
+        iIndex = objResult.index
+      } else {
+        alllcts.push(cdata)
+        iIndex = alllcts.length - 1
+      }
+      let seqBar = getSeqBar(alllcts[iIndex].lcts)
+      seqBar.barTscale = parseInt(Math.ceil(seqBar.seqTBar.length / 30))
+      seqBar.barSscale = parseInt(Math.ceil(seqBar.seqSBar.length / 30))
+      that.setData({
+        alllcts: alllcts,
+        Index: iIndex,
+        seqbar: seqBar,
+        scrolltop: 0,
+        scrollviewid: ''
+      })
+      //存至缓存
+      wx.setStorageSync('LAWITEMS', alllcts)
     })
   },
   //展开或折叠菜单的内容项
@@ -69,12 +99,12 @@ Page({
         menuhide: !this.data.menuhide,
         scrolltop: 0,
         scrollviewid: '',
-
+        scurrentid: sCid
       })
     } else {
       var jsPost = new util.jsonRow()
       jsPost.AddCell("CID", sCid)
-      jsPost.AddCell("CNME", sCnme)
+      //jsPost.AddCell("CNME", sCnme)
       Post.call(this, this, "GETTERM", jsPost, function (that, cdata) {
         var sCid = cdata.clid
         let alllcts = that.data.alllcts
@@ -93,11 +123,12 @@ Page({
         that.setData({
           alllcts: alllcts,
           Index: iIndex,
-          termtitle: jsPost.arrjson.CNME,
+          termtitle: sCnme,//jsPost.arrjson.CNME,
           seqbar: seqBar,
           menuhide: !that.data.menuhide,
           scrolltop: 0,
-          scrollviewid: ''
+          scrollviewid: '',
+          scurrentid: sCid
         })
         //存至缓存
         wx.setStorageSync('LAWITEMS', alllcts)

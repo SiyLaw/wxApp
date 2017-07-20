@@ -2,7 +2,10 @@
 <view class="container">
   <view class="head">
     <view class="headctrl">
-      <image src="/image/menu.png" bindtap="menucontrol"></image>
+      <view class="headimg">
+        <image src="/image/menu.png" bindtap="menucontrol"></image>
+        <image src="/image/refresh.png" hidden="{{menuhide&&scurrentid!=''?false:true}}" bindtap="refreshcurrentclass"></image>
+      </view>
       <view class="headSearch">
         <input value="{{searchval}}" />
         <image src="/image/{{finished?'searchvoice':'searchvoiced'}}.png" bindlongtap="startRecord" bindtouchend="endRecord"></image>

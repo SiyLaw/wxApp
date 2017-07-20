@@ -25,10 +25,18 @@
   flex-direction: row;
 }
 
+.headctrl .headimg {
+  display: flex;
+  flex-direction: row;
+}
+
 .headctrl image {
   height: 46rpx;
-  width: 42rpx;
-  padding: 22rpx 40rpx;
+  width: 46rpx;
+  padding-top: 22rpx;
+  padding-bottom: 22rpx;
+  padding-right: 10rpx;
+  padding-left: 40rpx;
 }
 
 .headSearch {
@@ -152,6 +160,7 @@
     transform: translateX(-105%);
   }
 }
+
 @keyframes menu-animation2 {
   0% {
     transform: translateX(-105%);
@@ -161,11 +170,13 @@
     transform: translateX(0%);
   }
 }
-.menuhide{
+
+.menuhide {
   animation: menu-animation 0.6s ease;
   animation-fill-mode: both;
 }
-.menushow{
+
+.menushow {
   animation: menu-animation2 0.6s ease;
   animation-fill-mode: both;
 }

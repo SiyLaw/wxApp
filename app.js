@@ -2,7 +2,7 @@
 App({
   onLaunch: function () {
   },
-  getUserInfo: function (cb) {
+  getUserInfo: function (cb, fuser) {
     var that = this
     var user = wx.getStorageSync('user') || {};
     if ((!user.openid || (user.expires_in || Date.now()) < (Date.now() + 600)) && (!this.globalData.userInfo)) {
@@ -32,6 +32,7 @@ App({
                 var obj = {};
                 obj.openid = res.data.openid;
                 obj.expires_in = Date.now() + res.data.expires_in;
+                that.globalData.openData = obj
                 wx.setStorageSync('user', obj);//存储openid  
               }
             });
@@ -41,12 +42,18 @@ App({
         }
       });
     }
-    else {
+    if (that.globalData.userInfo) {
       typeof cb == "function" && cb(that.globalData.userInfo)
+    }
+    if (that.globalData.openData.openid) {
+      //防止缓存清除后，跳转出错
+      wx.setStorageSync('user', that.globalData.openData)//存储openid      
+      typeof fuser == "function" && fuser(that.globalData.openData)
     }
   },
   globalData: {
     userInfo: null,
+    openData: {},
     appid: 'wx802cd0a3c07e95ce',//appid
     secret: '90a714b70aa14c9a10c05a08d9a3aca8',//secret
     url: 'https://www.yondo.cc/wx/wxget.axd',

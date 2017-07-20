@@ -1,3 +1,4 @@
+var app = getApp();
 function formatTime(date) {
   var year = date.getFullYear()
   var month = date.getMonth() + 1
@@ -144,6 +145,11 @@ function _post_json(url, jsPost, success, fail) {
   // })
   wx.showNavigationBarLoading()
   var user = wx.getStorageSync('user')
+  if (user == "") {
+    app.getUserInfo(null, function (openData) {
+      user = openData
+    })
+  }
   if (jsPost == null) jsPost = new jsonRow();
   jsPost.AddCell("OPEN_ID", user.openid)
   wx.request({

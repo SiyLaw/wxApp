@@ -163,6 +163,10 @@ Page({
     })
   },
   onLoad: function (options) {
+    wx.showLoading({
+      title: '加载中...',
+      mask: true
+    })
     //加载时执行
     var that = this
     //调用应用实例的方法获取全局数据
@@ -200,6 +204,7 @@ function Post(that, action, data) {
           , ecnt: res.data.data.ecnt
           , index: iIndex
         })
+        wx.hideLoading()
       }
       else if (jsPost.arrjson.ACTION == "NEXT") {
         that.setData({
