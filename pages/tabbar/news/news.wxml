@@ -9,16 +9,16 @@
     </view>
   </view>
   <view class="page-section">
-    <view wx:for="{{exerises[index].feeds}}" wx:for-index="idx" wx:key="{{id}}" class="hot-item hot-item2 flex-wrp">
+    <view wx:for="{{HOTS}}" wx:for-index="idx" wx:key="{{item.INFO_HOST_ID}}" class="hot-item hot-item2 flex-wrp">
       <view class="avatar">
         <image src="{{item.head_img}}"></image>
       </view>
       <view class="hot-content">
         <view class="hot-source">
-          <text class="hotmate">{{item.feed_title}}</text>
-          <text class="lasttime">{{item.time}}</text>
+          <text class="hotmate">{{item.INFO_TITLE}}</text>
+          <text class="lasttime">{{item.INITIAL_USR}}</text>
         </view>
-        <text class="hot-txt">{{item.feed_txt}}</text>
+        <text class="hot-txt">{{item.INFO_DESC}}</text>
       </view>
     </view>
   </view>
