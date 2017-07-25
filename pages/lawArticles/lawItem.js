@@ -22,8 +22,6 @@ Page({
   },
   //页面加载
   onLoad: function (options) {
-    var height = 0;
-    var width = 0;
     var SysInfo = wx.getSystemInfoSync()
     //获取缓存数据
     var lawItem = wx.getStorageSync('LAWITEMS') || [];

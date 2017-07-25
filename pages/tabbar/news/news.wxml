@@ -1,25 +1,40 @@
-
 <!--pages/tabbar/study/news.wxml-->
-<!--<import src="../../../common/head.wxml" />-->
-<view class="container">
-  <!--<template is="HeadInfo" data="{{...headinfo}}" />-->
-  <view stytle=" overflow-x: hidden; overflow-y: auto;margin-bottom:30rpx;">
-    <view class="serach">
-      <view class="serach_view_show">搜索</view>
+<view class="head">
+  <view class="headctrl">
+    <view class="headimg">
+      <image src="/image/menu_white.png" bindtap="menucontrol"></image>
     </view>
-  </view>
-  <view class="page-section">
-    <view wx:for="{{HOTS}}" wx:for-index="idx" wx:key="{{item.INFO_HOST_ID}}" class="hot-item hot-item2 flex-wrp">
-      <view class="avatar">
-        <image src="{{item.head_img}}"></image>
-      </view>
-      <view class="hot-content">
-        <view class="hot-source">
-          <text class="hotmate">{{item.INFO_TITLE}}</text>
-          <text class="lasttime">{{item.INITIAL_USR}}</text>
-        </view>
-        <text class="hot-txt">{{item.INFO_DESC}}</text>
-      </view>
+    <view class="headSearch">
+      <image src="/image/msg.png" ></image>
     </view>
   </view>
 </view>
+<scroll-view scroll-y="true"  class="container" style="height:{{height}}px;">
+  <swiper autoplay="true" indicator-active-color="white" indicator-color="#C0C0C0" indicator-dots="true" circular="true" interval="5000" duration="500" class="swiper">
+    <block wx:for="{{HOTS}}" wx:key="item.id">
+      <swiper-item>
+        <label class="swiper-text">{{item.INFO_TITLE}}</label>
+        <image src="{{item.url}}" class="swiper-item" mode="aspectFill" />
+      </swiper-item>
+    </block>
+  </swiper>
+  <block wx:for="{{HOTS}}" wx:key="item.id">
+    <view class="infoItem">
+      <view class="itemTitle" ><label>{{item.INFO_TITLE}}</label></view>
+      <view class="itemImage"><image src="/image/cd.png"></image></view>
+    </view>
+  </block>
+</scroll-view>
+<scroll-view scroll-y="{{true}}" style="height:{{height}}px;width:{{width*0.8}}px;" class="lawSub1 {{menuhide?'menuhide':'menushow'}}">
+  <view wx:for="{{menu}}" wx:for-item="itm" wx:for-index="idx" wx:key="itm.id" class="Sub1item">
+    <view class="itemHead" data-idx="{{idx}}" bindtap="subitemcontrol">
+      <text>{{itm.txt}}</text>
+      <image src="/image/{{itm.expand?'expandarr':'forwardarr'}}.png"></image>
+    </view>
+    <view wx:if="{{itm.expand}}" class="itemContent">
+      <view wx:for="{{itm.item}}" wx:key="item.id" data-cid="{{item.id}}" data-cnme="{{item.txt}}" bindtap="showcontent">
+        <text style="animation:{{item.txt.length > 20 ? 'kf-marque-animation 11.3s linear infinite':''}}">{{item.txt}}</text>
+      </view>
+    </view>
+  </view>
+</scroll-view>
