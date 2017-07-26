@@ -5,6 +5,7 @@ Page({
   data: {
     height: 0,
     width: 0,
+    bseurl:'',
     rpxrate: 0.0, //rpx-px比率
     PAGE: "NEWS_LIST",
     HOTS: [],
@@ -28,7 +29,8 @@ Page({
         height: SysInfo.windowHeight,
         width: SysInfo.screenWidth,
         rpxrate: Math.floor(SysInfo.screenWidth / 750 * 100) / 100,
-        HOTS: data.HOTS
+        HOTS: data.HOTS,
+        bseurl: app.globalData.bseurl
       })
     });
   },

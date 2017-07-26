@@ -5,23 +5,27 @@
       <image src="/image/menu_white.png" bindtap="menucontrol"></image>
     </view>
     <view class="headSearch">
-      <image src="/image/msg.png" ></image>
+      <image src="/image/msg.png"></image>
     </view>
   </view>
 </view>
-<scroll-view scroll-y="true"  class="container" style="height:{{height}}px;">
+<scroll-view scroll-y="true" class="container" style="height:{{height}}px;">
   <swiper autoplay="true" indicator-active-color="white" indicator-color="#C0C0C0" indicator-dots="true" circular="true" interval="5000" duration="500" class="swiper">
-    <block wx:for="{{HOTS}}" wx:key="item.id">
+    <block wx:for="{{HOTS}}" wx:for-index="idx" wx:key="item.id">
       <swiper-item>
+        <view class="swiper-shadow" wx:if="{{idx<6}}">
+        </view>
         <label class="swiper-text">{{item.INFO_TITLE}}</label>
-        <image src="{{item.url}}" class="swiper-item" mode="aspectFill" />
+        <image src="{{bseurl+item.INFO_IMG_URL}}" class="swiper-item" mode="aspectFill" />
       </swiper-item>
     </block>
   </swiper>
   <block wx:for="{{HOTS}}" wx:key="item.id">
     <view class="infoItem">
-      <view class="itemTitle" ><label>{{item.INFO_TITLE}}</label></view>
-      <view class="itemImage"><image src="/image/cd.png"></image></view>
+      <view class="itemTitle"><label>{{item.INFO_TITLE}}</label></view>
+      <view class="itemImage">
+        <image src="{{bseurl+item.INFO_IMG_URL}}"></image>
+      </view>
     </view>
   </block>
 </scroll-view>

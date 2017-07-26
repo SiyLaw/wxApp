@@ -57,6 +57,7 @@ App({
     appid: 'wx802cd0a3c07e95ce',//appid
     secret: '90a714b70aa14c9a10c05a08d9a3aca8',//secret
     url: 'https://www.yondo.cc/wx/wxget.axd',
-    uploadurl: 'https://www.yondo.cc/wx/wxupload.axd'
+    uploadurl: 'https://www.yondo.cc/wx/wxupload.axd',
+    bseurl: 'https://www.yondo.cc/'
   }
 })
