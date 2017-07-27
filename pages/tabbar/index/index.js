@@ -18,12 +18,7 @@ Page({
       text: "刑事案件实例分析...",
       color: "#2F4F4F",
       url: "https://www.yondo.cc/wx/images/103.png"
-    }],
-    indicatorDots: false,
-    autoplay: true,
-    interval: 5000,
-    duration: 500,
-    headinfo: {}
+    }]
   },
   //事件处理函数
   bindViewTap: function () {
@@ -36,28 +31,6 @@ Page({
     })
   },
   onLoad: function () {
-    var vwith = 0;
-    //调用应用实例的方法获取全局数据
-    var that = this
-    app.getUserInfo(function (userInfo) {
-      //更新数据
-      if (userInfo) {
-        that.setData({
-          headinfo: {
-            score: 88,
-            avatarUrl: userInfo.avatarUrl,
-            nickName: userInfo.nickName,
-            province: userInfo.province,
-            city: userInfo.city
-          }
-        })
-      }
-    })
-    wx.getSystemInfo({
-      success: function (res) {
-        vwith = res.windowWidth;
-      }
-    });
   }
 });
 

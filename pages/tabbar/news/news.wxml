@@ -22,12 +22,17 @@
   </swiper>
   <block wx:for="{{HOTS}}" wx:key="item.id">
     <view class="infoItem">
-      <view class="itemTitle"><label>{{item.INFO_TITLE}}</label></view>
+      <view class="itemTitle">
+        <label>{{item.INFO_TITLE}}</label>
+        <label class="itemTime">{{item.INFO_TYPE_CID + "·" + item.INITIAL_USR}}</label>
+      </view>
       <view class="itemImage">
         <image src="{{bseurl+item.INFO_IMG_URL}}"></image>
       </view>
     </view>
   </block>
+  <view class="loading" hidden="{{!searchLoading}}">正在载入更多...</view> 
+  <view class="loading complete" hidden="{{!searchLoadingComplete}}">已加载全部</view> 
 </scroll-view>
 <scroll-view scroll-y="{{true}}" style="height:{{height}}px;width:{{width*0.8}}px;" class="lawSub1 {{menuhide?'menuhide':'menushow'}}">
   <view wx:for="{{menu}}" wx:for-item="itm" wx:for-index="idx" wx:key="itm.id" class="Sub1item">
