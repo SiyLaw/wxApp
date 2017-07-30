@@ -1,15 +1,16 @@
 <!--pages/tabbar/study/news.wxml-->
 <view class="head">
   <view class="headctrl">
-    <view class="headimg">
-      <image src="/image/menu_white.png" bindtap="menucontrol"></image>
+    <view class="headimg" bindtap="menucontrol">
+      <image src="{{menuhide?'/image/menu_white.png':'/image/menu_yellow.png'}}"></image>
+      <text>{{menuIndex==-1?'首页':(menu[menuIndex].txt)}}</text>
     </view>
     <view class="headSearch">
       <image src="/image/msg.png"></image>
     </view>
   </view>
 </view>
-<scroll-view scroll-y="true" class="container" style="height:{{height}}px;">
+<view class="container" >
   <swiper autoplay="true" indicator-active-color="white" indicator-color="#C0C0C0" indicator-dots="true" circular="true" interval="5000" duration="500" class="swiper">
     <block wx:for="{{HOTS}}" wx:for-index="idx" wx:key="item.id">
       <swiper-item>
@@ -31,19 +32,18 @@
       </view>
     </view>
   </block>
-  <view class="loading" hidden="{{!searchLoading}}">正在载入更多...</view> 
-  <view class="loading complete" hidden="{{!searchLoadingComplete}}">已加载全部</view> 
-</scroll-view>
-<scroll-view scroll-y="{{true}}" style="height:{{height}}px;width:{{width*0.8}}px;" class="lawSub1 {{menuhide?'menuhide':'menushow'}}">
-  <view wx:for="{{menu}}" wx:for-item="itm" wx:for-index="idx" wx:key="itm.id" class="Sub1item">
-    <view class="itemHead" data-idx="{{idx}}" bindtap="subitemcontrol">
-      <text>{{itm.txt}}</text>
-      <image src="/image/{{itm.expand?'expandarr':'forwardarr'}}.png"></image>
+  <view class="loading" hidden="{{!moreLoading}}">正在载入更多...</view>
+  <view class="loading complete" hidden="{{!moreLoadingComplete}}">- 已加载全部 -</view>
+</view>
+<scroll-view scroll-y="{{true}}" style="height:{{height}}px;width:{{width*0.6}}px;" class="lawSub1 {{menuhide?'menuhide':'menushow'}}">
+  <view class="Sub1item">
+    <view class="itemHead {{menuIndex==-1?'menuSltd':''}}" data-idx="-1" bindtap="subitemcontrol">
+      <text>首页</text>
     </view>
-    <view wx:if="{{itm.expand}}" class="itemContent">
-      <view wx:for="{{itm.item}}" wx:key="item.id" data-cid="{{item.id}}" data-cnme="{{item.txt}}" bindtap="showcontent">
-        <text style="animation:{{item.txt.length > 20 ? 'kf-marque-animation 11.3s linear infinite':''}}">{{item.txt}}</text>
-      </view>
+  </view>
+  <view wx:for="{{menu}}" wx:for-item="itm" wx:for-index="idx" wx:key="itm.id" class="Sub1item">
+    <view class="itemHead {{menuIndex==idx?'menuSltd':''}}" data-idx="{{idx}}" bindtap="subitemcontrol">
+      <text>{{itm.txt}}</text>
     </view>
   </view>
 </scroll-view>

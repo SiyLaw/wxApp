@@ -1,4 +1,25 @@
 /* pages/tabbar/study/news.wxss */
+
+page{
+  background-color: #f3f3f3;
+  text-align: center;
+}
+
+page:before {
+  display: inline-block;
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
+  vertical-align: middle;
+  content: ' ';
+  width: 44rpx;
+  height: 44rpx;
+  background-image: url(../../../image/loading.png);
+  background-size: contain;
+  animation: rotation 1s linear infinite;
+  border-radius: 100%;
+  box-shadow: 0 0 1rpx 1rpx #999;
+}
+
 .head {
   display: flex;
   flex-direction: column;
@@ -8,7 +29,7 @@
   width: 100%;
   z-index: 9999;
   /* box-shadow: 0 2rpx 12rpx 0 #A9A9A9; */
-  background-color: #4682B4;
+  background-color: #4682b4;
   height: 90rpx;
 }
 
@@ -28,12 +49,20 @@
 }
 
 .headctrl image {
-  height: 46rpx;
-  width: 46rpx;
+  height: 48rpx;
+  width: 48rpx;
   padding-top: 22rpx;
   padding-bottom: 22rpx;
   padding-right: 10rpx;
   padding-left: 40rpx;
+}
+
+.headctrl text {
+  color: #eee;
+  font-weight: bolder;
+  margin-left: 30rpx;
+  font-size: 34rpx;
+  letter-spacing: 6rpx;
 }
 
 .headSearch {
@@ -50,21 +79,15 @@
   padding: 10rpx 0;
 }
 
-
-.container{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.container {
   background-color: #f3f3f3;
   padding: 0;
   margin: 0;
-  position: fixed;
-  top: 90rpx;
-  left: 0;
   width: 100%;
+  text-align: left;
 }
 
-.swiper{
+.swiper {
   width: 100%;
   height: 400rpx;
   letter-spacing: 5rpx;
@@ -86,6 +109,7 @@
   background-color: #999;
   box-shadow: 0 -20rpx 180rpx 50rpx #333;
 }
+
 .swiper-text {
   position: absolute;
   bottom: 40rpx;
@@ -97,7 +121,7 @@
   z-index: 2;
 }
 
-.infoItem{
+.infoItem {
   background-color: #fff;
   border: 1rpx solid #dadada;
   border-radius: 10rpx;
@@ -108,24 +132,26 @@
   flex-direction: row;
   justify-content: space-between;
 }
-.itemTitle{
+
+.itemTitle {
   padding-top: 20rpx;
   padding-bottom: 20rpx;
   padding-left: 25rpx;
   font-size: 36rpx;
-  color: #777777;
+  color: #777;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
-.itemTitle .itemTime{
+
+.itemTitle .itemTime {
   flex-grow: 0;
   height: 20rpx;
   color: #aaa;
   font-size: 24rpx;
 }
 
-.itemImage{
+.itemImage {
   flex-grow: 0;
   width: 175rpx;
   padding-top: 20rpx;
@@ -134,7 +160,7 @@
   padding-right: 25rpx;
 }
 
-.itemImage image{  
+.itemImage image {
   height: 150rpx;
   width: 171rpx;
 }
@@ -142,11 +168,11 @@
 /* 菜单框架 */
 
 .lawSub1 {
+  text-align: left;
   position: fixed;
-  top: 94rpx;
+  top: 90rpx;
   left: 0;
   background-color: #eee;
-  box-shadow: 2rpx 0 12rpx 0 #d3d3d3;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -172,6 +198,8 @@
   flex-direction: row;
   justify-content: space-around;
   padding: 6rpx 0;
+  color: #444;
+  text-shadow: 1px 1px 0 #ddd;
 }
 
 /* 一级菜单 标题 */
@@ -182,8 +210,12 @@
   padding-top: 10rpx;
   padding-bottom: 10rpx;
   flex: auto;
-  color: #444;
-  text-shadow: 1px 1px 0 #ddd;
+}
+
+.menuSltd {
+  background-color: #708090;
+  color: #eee;
+  text-shadow: 1px 1px 0 #444;
 }
 
 @keyframes menu-animation {
@@ -216,21 +248,35 @@
   animation-fill-mode: both;
 }
 
-.loading{ 
- padding: 10rpx; 
- text-align: center; 
-} 
-.loading:before{ 
- display: inline-block; 
- margin-right: 5rpx; 
- vertical-align: middle; 
- content: ''; 
- width: 40rpx; 
- height: 40rpx; 
- background: url(../../images/icon-loading.png) no-repeat; 
- background-size: contain; 
- animation: rotate 1s linear infinite; 
-} 
-.loading.complete:before{ 
- display: none; 
-} 
+.loading {
+  padding: 10rpx;
+  text-align: center;
+  font-size: 26rpx;
+  color: #777;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+.loading:before {
+  display: inline-block;
+  margin-right: 5rpx;
+  vertical-align: middle;
+  content: '';
+  width: 44rpx;
+  height: 44rpx;
+  background-image: url(../../../image/loading.png);
+  background-size: contain;
+  animation: rotation 1s linear infinite;
+}
+
+.loading.complete:before {
+  display: none;
+}

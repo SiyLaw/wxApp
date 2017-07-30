@@ -1,9 +1,9 @@
 {
   "pages": [
+    "pages/tabbar/news/news",
     "pages/tabbar/index/index",
     "pages/tabbar/study/study",
     "pages/tabbar/profile/profile",
-    "pages/tabbar/news/news",
     "pages/profile/profile",
     "pages/lawArticles/lawItem",
     "pages/tabbar/study/random/random",

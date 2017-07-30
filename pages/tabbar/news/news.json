@@ -1,3 +1,4 @@
 {
-    "navigationBarTitleText": "法律资讯"
+    "navigationBarTitleText": "法律资讯",
+    "enablePullDownRefresh": true
 }
