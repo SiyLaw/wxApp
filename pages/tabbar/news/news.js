@@ -1,8 +1,6 @@
 // pages/news/news.js
 var util = require('../../../utils/util.js');
 var app = getApp();
-var startDot = { x: 0, y: 0 };//触摸时的原点
-var endDot = { x: 0, y: 0 };
 Page({
   data: {
     height: 0,

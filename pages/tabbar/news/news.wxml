@@ -10,19 +10,21 @@
     </view>
   </view>
 </view>
-<view class="container" >
+<view class="container">
   <swiper autoplay="true" indicator-active-color="white" indicator-color="#C0C0C0" indicator-dots="true" circular="true" interval="5000" duration="500" class="swiper">
     <block wx:for="{{HOTS}}" wx:for-index="idx" wx:key="item.id">
-      <swiper-item>
-        <view class="swiper-shadow" wx:if="{{idx<6}}">
-        </view>
-        <label class="swiper-text">{{item.INFO_TITLE}}</label>
-        <image src="{{bseurl+item.INFO_IMG_URL}}" class="swiper-item" mode="aspectFill" />
-      </swiper-item>
+      <navigator url="newsItem?id={{item.INFO_HOST_ID}}&txt={{item.INFO_TITLE}}&url={{item.INFO_IMG_URL}}">
+        <swiper-item>
+          <view class="swiper-shadow" wx:if="{{idx<6}}">
+          </view>
+          <label class="swiper-text">{{item.INFO_TITLE}}</label>
+          <image src="{{bseurl+item.INFO_IMG_URL}}" class="swiper-item" mode="aspectFill" />
+        </swiper-item>
+      </navigator>
     </block>
-  </swiper>
+  </swiper>  
   <block wx:for="{{HOTS}}" wx:key="item.id">
-    <view class="infoItem">
+    <navigator class="infoItem" url="newsItem?id={{item.INFO_HOST_ID}}&txt={{item.INFO_TITLE}}&url={{item.INFO_IMG_URL}}">
       <view class="itemTitle">
         <label>{{item.INFO_TITLE}}</label>
         <label class="itemTime">{{item.INFO_TYPE_CID + "·" + item.INITIAL_USR}}</label>
@@ -30,7 +32,7 @@
       <view class="itemImage">
         <image src="{{bseurl+item.INFO_IMG_URL}}"></image>
       </view>
-    </view>
+    </navigator>
   </block>
   <view class="loading" hidden="{{!moreLoading}}">正在载入更多...</view>
   <view class="loading complete" hidden="{{!moreLoadingComplete}}">- 已加载全部 -</view>

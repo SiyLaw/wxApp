@@ -1,9 +1,9 @@
 {
   "pages": [
-    "pages/tabbar/news/news",
     "pages/tabbar/index/index",
     "pages/tabbar/study/study",
     "pages/tabbar/profile/profile",
+    "pages/tabbar/news/news",
     "pages/profile/profile",
     "pages/lawArticles/lawItem",
     "pages/tabbar/study/random/random",
@@ -13,7 +13,8 @@
     "pages/tabbar/study/real/real_exe",
     "pages/tabbar/study/evaluation/evaluation",
     "pages/tabbar/study/realsimulate/realsimulate",
-    "pages/tabbar/study/realsimulate/realsimulate_exe"
+    "pages/tabbar/study/realsimulate/realsimulate_exe",
+    "pages/tabbar/news/newsItem"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -93,6 +93,7 @@ page:before {
   letter-spacing: 5rpx;
   background-color: #999;
   font-size: 34rpx;
+  margin-bottom: 10rpx;
 }
 
 .swiper-item {
@@ -127,7 +128,7 @@ page:before {
   border-radius: 10rpx;
   box-shadow: 0 2rpx 2rpx -1rpx #d0d0d0;
   width: 97%;
-  margin: 10rpx auto;
+  margin: 5rpx auto;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
