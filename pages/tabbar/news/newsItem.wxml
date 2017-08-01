@@ -1,4 +1,5 @@
 <!--newsItem.wxml-->
+<import src="../../../common/foot.wxml" />
 <view class="head">
   <view class="headctrl">
     <view class="headSearch">
@@ -19,8 +20,10 @@
     </swiper-item>
   </swiper>
 </VIEW>
-<view>
+<view class="richtxt">
   <block wx:for="{{NODES}}" wx:for-item="itm" wx:for-index="idx" wx:key="itm.id" >
-    <rich-text nodes="{{itm.INFO_CONTENT}}" />
+    <rich-text clas="richcontent" nodes="{{itm.INFO_CONTENT}}" />
   </block>
 </view>
+
+<template is="foot" />

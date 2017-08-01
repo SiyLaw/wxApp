@@ -82,3 +82,8 @@
   z-index: 2;
 }
 
+.richtxt{
+  overflow: hidden;
+  width: 98%;
+  margin: 5rpx auto;
+}
