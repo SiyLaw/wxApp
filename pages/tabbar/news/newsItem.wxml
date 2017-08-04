@@ -3,7 +3,7 @@
 <view class="head">
   <view class="headctrl">
     <view class="headSearch">
-      <image src="/image/share.png"></image>
+      <!-- <image src="/image/share.png" bindtap="onShare" ></image> -->
       <image src="/image/star.png"></image>
       <image src="/image/message.png"></image>
       <image src="/image/thumbs.png"></image>

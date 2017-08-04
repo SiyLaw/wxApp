@@ -1,4 +1,4 @@
-// lawItem.js// pages/profile/profile.js
+// lawItem.js
 var util = require('../../utils/util.js')
 var app = getApp()
 Page({

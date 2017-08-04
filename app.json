@@ -14,7 +14,8 @@
     "pages/tabbar/study/evaluation/evaluation",
     "pages/tabbar/study/realsimulate/realsimulate",
     "pages/tabbar/study/realsimulate/realsimulate_exe",
-    "pages/tabbar/news/newsItem"
+    "pages/tabbar/news/newsItem",
+    "pages/InterAct/InterAct"
   ],
   "window": {
     "backgroundTextStyle": "light",
