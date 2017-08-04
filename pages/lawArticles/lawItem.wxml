@@ -1,5 +1,6 @@
 <!--lawItem.wxml-->
 <view class="container">
+  <!-- 页头 -->
   <view class="head">
     <view class="headctrl">
       <view class="headimg">
@@ -14,6 +15,7 @@
     </view>
     <progress percent="{{second*20}}" stroke-width="1" color="#ffab30" />
   </view>
+  <!-- 菜单 -->
   <scroll-view scroll-y="{{true}}" style="height:{{height-rpxrate*94}}px;width:{{width*0.8}}px;" class="lawSub1 {{menuhide?'menuhide':'menushow'}}">
     <view wx:for="{{menu}}" wx:for-item="itm" wx:for-index="idx" wx:key="itm.id" class="Sub1item">
       <view class="itemHead" data-idx="{{idx}}" bindtap="subitemcontrol">
@@ -27,13 +29,14 @@
       </view>
     </view>
   </scroll-view>
+  <!-- 法条内容 -->
   <scroll-view id="svterm" scroll-y="{{true}}" style="height:{{height-rpxrate*94}}px;" scroll-into-view="{{scrollviewid}}" scroll-top="{{scrolltop}}" class="lawContent">
     <view class="title">{{termtitle}}</view>
     <view wx:for="{{alllcts[Index].lcts}}" wx:for-item="itm" wx:for-index="idx" wx:key="itm.chid" id="{{itm.chid}}">
       <text class="subtitle">{{itm.chno}}</text>
       <text class="subtitlename">{{itm.chname}}</text>
       <block wx:for="{{itm.item}}" wx:for-item="li" wx:key="li.trid">
-        <block wx:if="{{li.idx%seqbar.barTscale==0}}">
+        <block wx:if="{{li.seqno%seqbar.barTscale==0}}">
           <view class="termitem" id="{{li.trid}}">
             <text class="lino">{{li.trno}}</text>
             <text>{{li.txt}}</text>
@@ -48,11 +51,12 @@
       </block>
     </view>
   </scroll-view>
+  <!-- 侧边定位栏 -->
   <view class="scrollsearchbar" style="height:{{height-rpxrate*94}}px;">
-    <label bindtap="changeBarType">{{seqbartype=='0'?'条':'章'}}</label>
+    <label bindtap="changeBarType" style="padding:15rpx 0;" >{{seqbartype=='0'?'条':'章'}}</label>
     <block wx:if="{{seqbartype=='0'}}">
-      <block wx:for="{{seqbar.seqTBar}}" wx:for-item="itm" wx:for-index="idx" wx:key="itm.trid">
-        <label wx:if="{{idx%seqbar.barTscale==0}}" data-trid="{{itm.trid}}" bindtap="onTsearchbarmove">{{idx+1}}</label>
+      <block wx:for="{{seqbar.seqTBar}}" wx:for-item="itm" wx:key="itm.trid">
+        <label wx:if="{{itm.tno%seqbar.barTscale==0}}" data-trid="{{itm.trid}}" bindtap="onTsearchbarmove">{{itm.tno}}</label>
       </block>
     </block>
     <block wx:else>

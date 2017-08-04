@@ -138,9 +138,9 @@ page {
 .dv-module {
   width: 97%;
   margin: 20rpx auto;
-  border-radius: 5rpx;
+  border-radius: 10rpx;
   background-color: #fff;
-  box-shadow: 0 0 8rpx #1aad19;
+  box-shadow: 0 8rpx 8rpx -1rpx #bbb;
 }
 
 .dv-module .content {

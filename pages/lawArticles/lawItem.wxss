@@ -247,7 +247,7 @@
 }
 
 .scrollsearchbar {
-  width: 36rpx;
+  width: 40rpx;
   position: fixed;
   top: 94rpx;
   right: 0;
@@ -263,7 +263,5 @@
 }
 
 .scrollsearchbar label {
-  padding: 0rpx 0rpx;
-  height: 20rpx;
-  line-height: 20rpx;
+  flex-grow: 1;
 }

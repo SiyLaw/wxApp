@@ -245,14 +245,24 @@ function isExist(alllcts, sId) {
 function getSeqBar(lcts) {
   let seqSBar = []
   let seqTBar = []
+  let sno = 0
+  let tno = 0
   for (var i = 0; i < lcts.length; i++) {
-    let seqSItem = {}
-    seqSItem.chid = lcts[i].chid
-    seqSBar.push(seqSItem)
+    if (sno != lcts[i].seqno) {
+      let seqSItem = {}
+      sno = lcts[i].seqno
+      seqSItem.sno = lcts[i].seqno
+      seqSItem.chid = lcts[i].chid
+      seqSBar.push(seqSItem)
+    }
     for (var j = 0; j < lcts[i].item.length; j++) {
-      let seqItem = {}
-      seqItem.trid = lcts[i].item[j].trid
-      seqTBar.push(seqItem)
+      if (tno != lcts[i].item[j].seqno) {
+        tno = lcts[i].item[j].seqno
+        let seqItem = {}
+        seqItem.tno = tno
+        seqItem.trid = lcts[i].item[j].trid
+        seqTBar.push(seqItem)
+      }
     }
   }
   return { "seqSBar": seqSBar, "seqTBar": seqTBar }
