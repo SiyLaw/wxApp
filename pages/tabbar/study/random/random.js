@@ -178,6 +178,17 @@ Page({
       })
     })
     Post.call(this, this, "LOAD")
+  },
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+    var that = this
+    return {
+      title: that.data.TXT,
+      desc: '',
+      path: '/pages/tabbar/study/random'
+    }
   }
 })
 

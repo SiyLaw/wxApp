@@ -1,1 +1,67 @@
 /* InterAct.wxss */
+
+page {
+}
+
+.titem {
+  width: 97%;
+  display: flex;
+  flex-direction: column;
+  margin: 10rpx auto;
+  border: 1rpx solid #eee;
+  border-bottom-right-radius: 8rpx;
+  border-bottom-left-radius: 8rpx;
+  box-shadow: 1rpx 2rpx 2rpx -1rpx #eee;
+}
+
+.titem .head {
+  color: #fff;
+  display: flex;
+  flex-direction: row;
+  padding: 30rpx 30rpx;
+  font-size: 30rpx;
+}
+
+.titem .head .hi {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 0;
+  font-size: 22rpx;
+  padding-left: 10rpx;
+  padding-right: 40rpx;
+}
+
+.titem .head .hi image {
+  width: 70rpx;
+  height: 70rpx;
+  border: 5rpx solid #fff;
+  border-radius: 100%;
+  margin-bottom: 6rpx;
+}
+
+.titem .body{
+  font-size: 30rpx;
+  padding: 10rpx 20rpx;
+}
+
+.titem .foot {
+  display: flex;
+  flex-direction: row;
+  font-size: 22rpx;
+  color: #999;
+  justify-content: flex-end;
+}
+.titem .foot text{
+  padding: 5rpx 20rpx;
+}
+
+.load{
+  display: flex;
+  justify-content: center;
+  padding: 20rpx;
+}
+
+.load button{
+  border:1rpx solid #999;
+}

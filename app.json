@@ -5,6 +5,7 @@
     "pages/tabbar/profile/profile",
     "pages/tabbar/news/news",
     "pages/profile/profile",
+    "pages/InterAct/InterAct",
     "pages/lawArticles/lawItem",
     "pages/tabbar/study/random/random",
     "pages/tabbar/study/favorite/favorite",
@@ -14,8 +15,7 @@
     "pages/tabbar/study/evaluation/evaluation",
     "pages/tabbar/study/realsimulate/realsimulate",
     "pages/tabbar/study/realsimulate/realsimulate_exe",
-    "pages/tabbar/news/newsItem",
-    "pages/InterAct/InterAct"
+    "pages/tabbar/news/newsItem"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -18,7 +18,9 @@ Page({
     seqbartype: '0',//索搜条类型，按章、条
     scrollviewid: '',//滚动到指定法条ID
     scrolltop: 0,
-    scurrentid: ''//当前法律ID
+    scurrentid: '',//当前法律ID
+    termtitle: '',
+    tid:''
   },
   //页面加载
   onLoad: function (options) {
@@ -31,8 +33,14 @@ Page({
         width: SysInfo.screenWidth,
         rpxrate: Math.floor(SysInfo.screenWidth / 750 * 100) / 100,
         alllcts: lawItem,
-        menu: data.menu
+        menu: data.menu,
+        scurrentid: options.id || '',
+        tid: options.tid || '',
+        termtitle: options.nme || ''
       })
+      if (that.data.scurrentid != '') {
+        ShowContent.call(that, that, that.data.scurrentid, that.data.termtitle,true)
+      }
     });
   },
   onReachBottom: function (e) { },
@@ -85,53 +93,7 @@ Page({
   showcontent: function (e) {
     let sCid = e.currentTarget.dataset.cid
     let sCnme = e.currentTarget.dataset.cnme
-    var objResult = isExist(this.data.alllcts, sCid)
-    if (objResult.exist) {
-      let seqBar = getSeqBar(this.data.alllcts[objResult.index].lcts)
-      seqBar.barTscale = parseInt(Math.ceil(seqBar.seqTBar.length / 30))
-      seqBar.barSscale = parseInt(Math.ceil(seqBar.seqSBar.length / 30))
-      this.setData({
-        Index: objResult.index,
-        termtitle: sCnme,
-        seqbar: seqBar,
-        menuhide: !this.data.menuhide,
-        scrolltop: 0,
-        scrollviewid: '',
-        scurrentid: sCid
-      })
-    } else {
-      var jsPost = new util.jsonRow()
-      jsPost.AddCell("CID", sCid)
-      //jsPost.AddCell("CNME", sCnme)
-      Post.call(this, this, "GETTERM", jsPost, function (that, cdata) {
-        var sCid = cdata.clid
-        let alllcts = that.data.alllcts
-        let iIndex = that.data.Index
-        var objResult = isExist(alllcts, sCid)
-        if (objResult.exist) {
-          alllcts[objResult.index] = cdata
-          iIndex = objResult.index
-        } else {
-          alllcts.push(cdata)
-          iIndex = alllcts.length - 1
-        }
-        let seqBar = getSeqBar(alllcts[iIndex].lcts)
-        seqBar.barTscale = parseInt(Math.ceil(seqBar.seqTBar.length / 30))
-        seqBar.barSscale = parseInt(Math.ceil(seqBar.seqSBar.length / 30))
-        that.setData({
-          alllcts: alllcts,
-          Index: iIndex,
-          termtitle: sCnme,//jsPost.arrjson.CNME,
-          seqbar: seqBar,
-          menuhide: !that.data.menuhide,
-          scrolltop: 0,
-          scrollviewid: '',
-          scurrentid: sCid
-        })
-        //存至缓存
-        wx.setStorageSync('LAWITEMS', alllcts)
-      })
-    }
+    ShowContent.call(this, this, sCid, sCnme,false)
   },
   //条跳转
   onTsearchbarmove: function (e) {
@@ -199,6 +161,17 @@ Page({
       second: 0,
       finished: true
     });
+  },
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+    var that = this
+    return {
+      title: that.data.termtitle,
+      desc: '',
+      path: '/pages/lawArticles/lawItem?id=' + that.data.scurrentid + '&nme=' + that.data.termtitle + '&tid=' + that.data.scrollviewid
+    }
   }
 })
 //服务器请求数据
@@ -266,4 +239,54 @@ function getSeqBar(lcts) {
     }
   }
   return { "seqSBar": seqSBar, "seqTBar": seqTBar }
+}
+
+function ShowContent(that, sCid, sCnme,isLinked) {
+  var objResult = isExist(that.data.alllcts, sCid)
+  if (objResult.exist) {
+    let seqBar = getSeqBar(that.data.alllcts[objResult.index].lcts)
+    seqBar.barTscale = parseInt(Math.ceil(seqBar.seqTBar.length / 30))
+    seqBar.barSscale = parseInt(Math.ceil(seqBar.seqSBar.length / 30))
+    that.setData({
+      Index: objResult.index,
+      termtitle: sCnme,
+      seqbar: seqBar,
+      menuhide: !that.data.menuhide,
+      scrolltop: 0,
+      scrollviewid: isLinked ? that.data.tid : '',
+      scurrentid: sCid
+    })
+  } else {
+    var jsPost = new util.jsonRow()
+    jsPost.AddCell("CID", sCid)
+    //jsPost.AddCell("CNME", sCnme)
+    Post(that, "GETTERM", jsPost, function (that1, cdata) {
+      var sCid = cdata.clid
+      let alllcts = that1.data.alllcts
+      let iIndex = that1.data.Index
+      var objResult = isExist(alllcts, sCid)
+      if (objResult.exist) {
+        alllcts[objResult.index] = cdata
+        iIndex = objResult.index
+      } else {
+        alllcts.push(cdata)
+        iIndex = alllcts.length - 1
+      }
+      let seqBar = getSeqBar(alllcts[iIndex].lcts)
+      seqBar.barTscale = parseInt(Math.ceil(seqBar.seqTBar.length / 30))
+      seqBar.barSscale = parseInt(Math.ceil(seqBar.seqSBar.length / 30))
+      that1.setData({
+        alllcts: alllcts,
+        Index: iIndex,
+        termtitle: sCnme,//jsPost.arrjson.CNME,
+        seqbar: seqBar,
+        menuhide: !that1.data.menuhide,
+        scrolltop: 0,
+        scrollviewid: isLinked ? that.data.tid : '',
+        scurrentid: sCid
+      })
+      //存至缓存
+      wx.setStorageSync('LAWITEMS', alllcts)
+    })
+  }
 }
