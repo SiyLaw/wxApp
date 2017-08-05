@@ -8,9 +8,10 @@ Page({
    */
   data: {
     PAGE: "INTERACT",
-    COLOR: ['#6699cc', '#99cc66', '#778899', '#8FBC8F', '#BDB76B'],
+    COLOR: ['#6699cc', '#778899', '#99cc66', '#5F9EA0', '#8FBC8F', '#BDB76B'],
     TOPIC: [],
     QID: '',
+    DID: '',
     isLoad: false,
     hideLoad: true
   },
@@ -28,6 +29,7 @@ Page({
         that.setData({
           TOPIC: data.lt,
           QID: data.lt[data.lt.length - 1].qid,
+          DID: data.lt[data.lt.length - 1].did,
           hideLoad: false
         })
       }
@@ -37,45 +39,23 @@ Page({
   loadmore: function (e) {
     Post.call(this, this, "MORE", null, function (that, data) {
       if (data.lt.length > 0) {
+        let vTopic = that.data.TOPIC.concat(data.lt)
         that.setData({
-          TOPIC: that.data.TOPIC.concat(data.lt),
-          QID: data.lt[data.lt.length - 1].qid
+          TOPIC: vTopic,
+          QID: vTopic[vTopic.length - 1].qid,
+          DID: vTopic[vTopic.length - 1].did
         })
-      }else{
+      } else {
         wx.showToast({
           title: '无更多数据!',
         })
       }
     });
-  }
-  ,
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
+  navtoview: function (e) {
+    wx.navigateTo({
+      url: '/pages/InterAct/InterAct_view?qid=' + e.currentTarget.dataset.qid
+    })
   },
 
   /**
@@ -90,13 +70,6 @@ Page({
    */
   onReachBottom: function () {
 
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
   }
 })
 
@@ -107,6 +80,7 @@ function Post(that, action, data, doAfter) {
   jsPost.AddCell("PAGE", that.data.PAGE)
   jsPost.AddCell("ACTION", action)
   jsPost.AddCell("QID", that.data.QID)
+  jsPost.AddCell("DID", that.data.DID)
   util._post(app.globalData.url, jsPost, function (res) {
     if (res && res.data && res.data.data) {
       //回调

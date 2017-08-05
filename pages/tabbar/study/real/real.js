@@ -16,7 +16,8 @@ Page({
   onPullDownRefresh() {
     Post.call(this, this, "LOAD")
     wx.stopPullDownRefresh()
-  }
+  },
+  onReachBottom: function () { }
 })
 
 function Post(that, action, data) {

@@ -75,6 +75,14 @@ Page({
       // var jsPost = new util.jsonRow()
       // jsPost.AddCell("BID", objExamItem.bid)
       // Post.call(this, that, "NEXT", jsPost)
+    }, function (that) {
+      //刷新评论
+      let iIndex = that.data.index
+      let sExe = that.data.exerises
+      let sId = sExe[iIndex].qid
+      var jsPost = new util.jsonRow()
+      jsPost.AddCell("QID", sId)
+      Post.call(that, that, "REFRESHCOMMENT", jsPost)
     })
   },
   //------------------------END-----左右滑动控制--------------------
@@ -129,17 +137,14 @@ Page({
   },
   SubmitComm: function (e) {
     //提交评论
-    sUtil.comment(e, this, function (that, sId) {
-      var jsPost = new util.jsonRow()
-      jsPost.AddCell("QID", sId)
-      jsPost.AddCell("RID", that.data.r_id)
-      jsPost.AddCell("TEXT", that.data.comm_text)
-      Post.call(this, that, "COMMENT", jsPost)
-    })
-    this.setData({
-      r_id: '',
-      show_comment_module: false
-    })
+    let iIndex = this.data.index
+    let sExe = this.data.exerises
+    let sId = sExe[iIndex].qid
+    var jsPost = new util.jsonRow()
+    jsPost.AddCell("QID", sId)
+    jsPost.AddCell("RID", this.data.r_id)
+    jsPost.AddCell("TEXT", this.data.comm_text)
+    Post.call(this, this, "COMMENT", jsPost)
   },
   CloseComm: function (e) {
     //关闭评论
@@ -206,7 +211,7 @@ Page({
       Post.call(this, this, "LOAD")
     }
   },
-
+  onReachBottom: function () { }
 })
 
 function Post(that, action, data) {
@@ -244,6 +249,18 @@ function Post(that, action, data) {
         })
       }
       else if (jsPost.arrjson.ACTION == "COMMENT") {
+        //题目评论
+        let cExes = that.data.exerises
+        cExes[that.data.index].feeds = res.data.data.feeds
+        that.setData({
+          exerises: cExes,
+          comm_text: '',
+          comm_len: 0,
+          r_id: '',
+          show_comment_module: false
+        })
+      }
+      else if (jsPost.arrjson.ACTION == "REFRESHCOMMENT") {
         //题目评论
         let cExes = that.data.exerises
         cExes[that.data.index].feeds = res.data.data.feeds

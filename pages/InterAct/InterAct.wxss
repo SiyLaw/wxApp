@@ -1,17 +1,12 @@
 /* InterAct.wxss */
 
-page {
-}
-
 .titem {
   width: 97%;
   display: flex;
   flex-direction: column;
-  margin: 10rpx auto;
-  border: 1rpx solid #eee;
-  border-bottom-right-radius: 8rpx;
-  border-bottom-left-radius: 8rpx;
-  box-shadow: 1rpx 2rpx 2rpx -1rpx #eee;
+  margin: 20rpx auto;
+  border-radius: 5rpx;
+  box-shadow: 5rpx 5rpx 5rpx -1rpx #ddd;
 }
 
 .titem .head {
@@ -40,7 +35,7 @@ page {
   margin-bottom: 6rpx;
 }
 
-.titem .body{
+.titem .body {
   font-size: 30rpx;
   padding: 10rpx 20rpx;
 }
@@ -52,16 +47,17 @@ page {
   color: #999;
   justify-content: flex-end;
 }
-.titem .foot text{
+
+.titem .foot text {
   padding: 5rpx 20rpx;
 }
 
-.load{
+.load {
   display: flex;
   justify-content: center;
   padding: 20rpx;
 }
 
-.load button{
-  border:1rpx solid #999;
+.load button {
+  border: 1rpx solid #999;
 }

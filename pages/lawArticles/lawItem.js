@@ -242,6 +242,9 @@ function getSeqBar(lcts) {
 }
 
 function ShowContent(that, sCid, sCnme,isLinked) {
+  wx.setNavigationBarTitle({
+    title: sCnme,
+  })
   var objResult = isExist(that.data.alllcts, sCid)
   if (objResult.exist) {
     let seqBar = getSeqBar(that.data.alllcts[objResult.index].lcts)

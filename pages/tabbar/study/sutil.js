@@ -15,7 +15,7 @@ function touchMove(e) {
 }
 
 // 触摸结束事件
-function touchEnd(e, that, next) {
+function touchEnd(e, that, next, refreshComment) {
   var diffX = Math.abs(endDot.x - startDot.x)
   var diffY = Math.abs(endDot.y - startDot.y)
   if (diffX > 130 && diffY < 60) {
@@ -74,6 +74,9 @@ function touchEnd(e, that, next) {
       that.setData({
         exerises: sExe
       })
+      if (sExe[iIndex].show_item > 2) {
+        typeof refreshComment == "function" && refreshComment(that, that.data.exerises[iIndex])
+      }
     }
   }
 }
@@ -86,18 +89,6 @@ function collect(e, that, update) {
   typeof update == "function" && update(that, sExe[iIndex].qid)
   that.setData({
     exerises: sExe
-  })
-}
-
-
-//评论
-function comment(e, that, update) {
-  let iIndex = that.data.index
-  let sExe = that.data.exerises
-  typeof update == "function" && update(that, sExe[iIndex].qid)
-  that.setData({
-    comm_text: '',
-    comm_len: 0
   })
 }
 
@@ -186,7 +177,6 @@ module.exports = {
   touchMove: touchMove,
   touchEnd: touchEnd,
   collect: collect,
-  comment: comment,
   like: like,
   selectedOptions: selectedOptions,
   submitMultiAnswer: submitMultiAnswer
