@@ -1,46 +1,56 @@
 {
-  "pages":[
+  "pages": [
     "pages/tabbar/index/index",
     "pages/tabbar/study/study",
     "pages/tabbar/news/news",
-    "pages/tabbar/profile/profile",
-
     "pages/profile/profile",
+    "pages/InterAct/InterAct",
+    "pages/lawArticles/lawItem",
+    "pages/tabbar/profile/profile",
     "pages/tabbar/study/random/random",
-    "pages/tabbar/study/special/special",
-    "pages/tabbar/study/realsimulate/realsimulate",
     "pages/tabbar/study/favorite/favorite",
+    "pages/tabbar/study/special/special",
     "pages/tabbar/study/real/real",
-    "pages/tabbar/study/evaluation/evaluation"
+    "pages/tabbar/study/real/real_exe",
+    "pages/tabbar/study/evaluation/evaluation",
+    "pages/tabbar/study/realsimulate/realsimulate",
+    "pages/tabbar/study/realsimulate/realsimulate_exe",
+    "pages/tabbar/news/newsItem",
+    "pages/InterAct/InterAct_view"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "司煜科技",
-    "navigationBarTextStyle":"black"
-  },"tabBar": {
-    "color":"#777",
-    "list": [{
-      "pagePath": "pages/tabbar/index/index",
-      "iconPath": "image/Station.png",
-      "selectedIconPath": "image/StationSelected.png",
-      "text": "首页"
-    }, {
-      "pagePath": "pages/tabbar/study/study",
-      "iconPath": "image/Officer.png",
-      "selectedIconPath": "image/OfficerSelected.png",
-      "text": "宝典"
-    }, {
-      "pagePath": "pages/tabbar/news/news",
-      "iconPath": "image/Badge.png",
-      "selectedIconPath": "image/BadgeSelected.png",
-      "text": "资讯"
-    },
-    {
-      "pagePath": "pages/tabbar/profile/profile",
-      "iconPath": "image/me.png",
-      "selectedIconPath": "image/meselect.png",
-      "text": "我"
-    }]
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#777",
+    "list": [
+      {
+        "pagePath": "pages/tabbar/index/index",
+        "iconPath": "image/Station.png",
+        "selectedIconPath": "image/StationSelected.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/tabbar/study/study",
+        "iconPath": "image/Officer.png",
+        "selectedIconPath": "image/OfficerSelected.png",
+        "text": "宝典"
+      },
+      {
+        "pagePath": "pages/tabbar/news/news",
+        "iconPath": "image/Badge.png",
+        "selectedIconPath": "image/BadgeSelected.png",
+        "text": "资讯"
+      },
+      {
+        "pagePath": "pages/tabbar/profile/profile",
+        "iconPath": "image/me.png",
+        "selectedIconPath": "image/meselect.png",
+        "text": "我"
+      }
+    ]
   }
 }

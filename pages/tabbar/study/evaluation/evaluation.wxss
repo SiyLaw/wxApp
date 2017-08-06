@@ -1,2 +1,25 @@
 /* pages/tabbar/study/evaluation/evaluation.wxss */
 @import "../../../../common/lib/weui.wxss";
+
+.voice {
+  display: flex;
+  margin: 20rpx auto;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+}
+
+.voice text {
+  height: 80rpx;
+  line-height: 80rpx;
+}
+
+.voice image {
+  align-items: center;
+  width: 90rpx;
+  height: 90rpx;
+  border: 1rpx solid #eee;
+  border-radius: 90rpx;
+  padding: 15rpx 15rpx;
+  background-color: #8fbc8f;
+}

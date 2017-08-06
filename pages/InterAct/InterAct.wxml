@@ -1,0 +1,22 @@
+<!--InterAct.wxml-->
+<VIEW>
+  <view wx:for="{{TOPIC}}" wx:for-index="idx" wx:key="item.qid" data-qid="{{item.qid}}"  bindtap="navtoview" >
+    <view class="titem" data-qid="{{item.qid}}" style="border: 1rpx solid {{COLOR[idx%COLOR.length]}};" >
+      <view class="head" style="background-color:{{COLOR[idx%COLOR.length]}};">
+        <view class="hi">
+          <image src="{{item.hi}}"></image>
+          <text>{{item.dun}}</text>
+        </view>
+        <text>{{item.qde}}</text>
+      </view>
+      <view class="body">
+        <text>{{item.dc}}</text>
+      </view>
+      <view class="foot">
+        <text>{{item.dnt}}评论</text>
+        <text>{{item.pd}}</text>
+      </view>
+    </view>
+  </view>
+  <view class="load" hidden="{{hideLoad}}" ><button size="mini" loading="{{isLoad}}"  plain="true"  bindtap="loadmore">点击加载更多</button> </view>
+</VIEW>

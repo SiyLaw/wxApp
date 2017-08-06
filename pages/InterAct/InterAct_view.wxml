@@ -1,0 +1,127 @@
+<!--InterAct_view.wxml-->
+<view class="container">
+  <!--题目-->
+  <view class="page-section">
+    <view class="weui-cells weui-cells_after-title">
+      <view wx:if="{{exerises[index].type}}" class="weui-cell">
+        <label>
+          <label class="text_label">{{q_type[exerises[index].type]}}</label>
+        <label class="text32">{{exerises[index].title}}</label>
+        </label>
+      </view>
+      <block wx:if="{{exerises[index].type == '0'}}">
+        <radio-group name="rg{{exerises[index].id}}" bindchange="selected">
+          <label class="weui-cell weui-check__label" wx:for="{{exerises[index].options}}" wx:for-index="idx" wx:key="{{item.op}}">
+            <view class="weui-cell__hd">
+              <radio value="{{item.op}}" checked="{{item.check}}" disabled="{{exerises[index].is_answered}}" />
+            </view>
+            <view class="weui-cell__bd text28">{{item.op}}、{{item.text}}</view>
+          </label>
+        </radio-group>
+      </block>
+      <block wx:elif="{{exerises[index].type != '0' && exerises[index].type}}}}">
+        <checkbox-group name="cg{{exerises[index].id}}" bindchange="selected">
+          <label class="weui-cell weui-check__label" wx:for="{{exerises[index].options}}" wx:for-index="idx" wx:key="{{item.op}}">
+            <view class="weui-cell__hd">
+              <checkbox value="{{item.op}}" checked="{{item.check}}" disabled="{{exerises[index].is_answered}}" />
+            </view>
+            <view class="weui-cell__bd text28">{{item.op}}、{{item.text}}</view>
+          </label>
+        </checkbox-group>
+      </block>
+    </view>
+  </view>
+  <!--析题 解析-->
+  <view class="page-section">
+    <view wx:if="{{exerises[index].tag.length > 0}}" class="que-tag">
+      <text wx:for="{{exerises[index].tag}}" wx:key="*this" class="tag text24">{{item.op}}</text>
+    </view>
+    <view class="padding10">
+      <label class="text_label">解析</label>
+      <label class="text24">{{exerises[index].desc}}</label>
+    </view>
+    <view wx:if="{{exerises[index].rlaw.length > 0}}" class="padding10">
+      <label class="text_label">关联法条</label>
+      <label wx:for="{{exerises[index].rlaw}}" wx:key="*this" class="text24 textblock">{{(index+1)+'、'+item.op+':'+item.co}}</label>
+    </view>
+    <view wx:if="{{exerises[index].rsub.length > 0}}" class="padding10">
+      <label class="text_label">关联考纲</label>
+      <label wx:for="{{exerises[index].rsub}}" wx:key="*this" class="text24 textblock">{{(index+1)+'、'+item.year+':'+item.op}}</label>
+    </view>
+  </view>
+  <!--讨论-->
+  <view class="page-section" id="topic" >
+    <view class="section_head">
+      <label class="section_title">讨论</label>
+    </view>
+    <view wx:for="{{exerises[index].feeds}}" wx:for-index="idx" wx:key="{{id}}" class="exerises-feed">
+      <view class="feed-item">
+        <view class="feed-source">
+          <view class="avatar">
+            <image src="{{item.head_img}}"></image>
+            <label class="slabel">{{item.user}}</label>
+          </view>
+        </view>
+        <view class="feed-content">
+          <view class="answer-body">
+            <view>
+              <text class="answer-txt">{{item.feed_txt}}</text>
+            </view>
+            <view class="answer-actions">
+              <view class="dot">
+                <a>{{item.time}}</a>
+              </view>
+              <view class="dot" data-idx="{{idx}}" bindtap="doDisComm">
+                <a>回复{{item.comments}}</a>
+              </view>
+              <view class="like" data-idx="{{idx}}" bindtap="doLike">
+                <a style="color:{{item.is_agreed?'#1aad19':'inherit'}};">
+                  <image src="/image/{{item.is_agreed?'ThumbUped':'ThumbUp'}}.png"></image>赞{{item.agree}}</a>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="feed-item" wx:if="{{exerises[index].feeds[idx].rel_feed}}">
+          <view class="feed-source">
+            <view class="avatar">
+              <image src="{{exerises[index].feeds[idx].rel_feed.head_img}}"></image>
+              <label class="slabel">{{exerises[index].feeds[idx].rel_feed.user}}</label>
+            </view>
+          </view>
+          <view class="feed-content">
+            <view class="answer-body">
+              <view>
+                <text class="answer-txt">{{exerises[index].feeds[idx].rel_feed.feed_txt}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="exerises-feed-bottom">
+    <label> </label>
+  </view>
+</view>
+
+<!--底层-->
+<view class="page-bottom">
+  <view class="btn" bindtap="doComments">
+    我有话说
+  </view>
+  <!-- <share-button class="sbtn" bindshare="onShare">
+    <image src="/image/share.png"></image>
+  </share-button> -->
+</view>
+
+<!--评论弹出窗-->
+<view class="module-bg-layer" wx:if="{{show_comment_module}}">
+  <view class="dv-module">
+    <view class="cmts_label">可输入{{140-comm_len}}</view>
+    <textarea placeholder="请输入评论内容..." value="{{comm_text}}" bindinput="InputComm" auto-focus="{{show_comment_module}}" class="cmts_content" />
+    <view class="cust-btn">
+      <a bindtap="SubmitComm">提交</a>
+      <a bindtap="CloseComm">关闭</a>
+    </view>
+  </view>
+</view>

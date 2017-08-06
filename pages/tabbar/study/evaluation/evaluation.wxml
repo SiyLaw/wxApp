@@ -1,6 +1,11 @@
-
 <!--pages/tabbar/study/evaluation/evaluation.wxml-->
 <view class="container">
   <view class="page-section">
+    <progress percent="{{second*20}}" stroke-width="1" />
+    <view class="voice">
+      <image src="/image/{{finished?'voice':'voiced'}}.png" bindlongtap="startRecord" bindtouchend="endRecord" style="background-color: #{{finished?'228B22':'8FBC8F'}};"></image>
+      <text>{{vt}}</text>
+    </view>
+    <view class="voiceText"></view>
   </view>
 </view>

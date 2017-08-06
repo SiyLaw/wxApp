@@ -11,10 +11,11 @@
 }
 
 .page-head{
-  padding: 60rpx 50rpx 60rpx;
+  padding-top: 60rpx;
+  padding-bottom: 60rpx;
   text-align: center;
   width:100%;
-  background: #3cc51f;
+  background: #4682B4;
 }
 .page-head-title{
   display: inline-block;
@@ -22,12 +23,7 @@
   font-size: 32rpx;
   color: #A0A0A0;
 }
-.page-head-line{
-  margin: 0 auto;
-  width: 180rpx;
-  height: 2rpx;
-  background-color: #D8D8D8;
-}
+
 .page-head-desc{
   padding-top: 0rpx;
   color: #fff;
@@ -125,12 +121,6 @@
   color: white;
   font-size: 12px;
   text-shadow: #555 0 1px 0;
-}
-
-.userinfo-score {
-  line-height: 100rpx;
-  color: white;
-  font-size: 12px;
 }
 
 .btn-Update{

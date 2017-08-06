@@ -1,2 +1,99 @@
 /* pages/tabbar/study/realsimulate/realsimulate.wxss */
 @import "../../../../common/lib/weui.wxss";
+
+.addbatch {
+  border: 1rpx solid #8fad9c;
+  height: 140rpx;
+  line-height: 140rpx;
+  width: 90%;
+  margin: 10% auto;
+  border-radius: 20rpx;
+  text-align: center;
+  background-color: #8FBC8F;
+  box-shadow: 0 0 20rpx 1rpx #eee, 0 0 20rpx 1rpx #8fbc8f;
+  display: flex;
+  justify-content: center;
+}
+
+.addbatch .lbAdd {
+  margin-right: 30rpx;
+  font-size: 100rpx;
+  color: #eee;
+  text-shadow: 0 0 3px #ff8c00;
+}
+
+.addbatch .lbDesc {
+  font-size: 36rpx;
+  color: #ddd;
+  text-shadow: 0 0 3px #228b22;
+  vertical-align: middle;
+}
+
+.addbatch .lbDesc2 {
+  font-size: 36rpx;
+  color: #ddd;
+  text-shadow: 0 0 3px #228b22;
+  vertical-align: bottom;
+  line-height: 60rpx;
+}
+
+.lbDescTip {
+  font-size: 24rpx;
+  color: #ddd;
+  line-height: 40rpx;
+}
+
+.lbhead {
+  color: #2f4f4f;
+  font-size: 30rpx;
+}
+
+.batch-list {
+  border: 1rpx solid #eee;
+  width: 90%;
+  margin: 2rpx auto;
+  border-radius: 10rpx;
+  color: #444;
+  padding-top: 10rpx;
+}
+
+.batchItem {
+  font-size: 26rpx;
+  margin: 15rpx auto;
+  width: 90%;
+  border: 1rpx solid #8fad9c;
+  border-radius: 10rpx;
+  padding: 0 10rpx;
+  background-color: #eed;
+  box-shadow: 0 0 20rpx 1rpx #eee;
+}
+
+.itemno {
+  margin-top: 10rpx;
+  height: 40rpx;
+}
+
+.batchno {
+  color: #2F4F4F;
+}
+
+.itemdetail {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+}
+
+.itemdetail view {
+  margin-left: 27rpx;
+}
+
+.nobatch {
+  font-size: 24rpx;
+  color: #ddd;
+  padding: 30rpx 0;
+}
+
+.vertical {
+  display: flex;
+  flex-direction: column;
+}
