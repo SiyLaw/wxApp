@@ -40,9 +40,6 @@ Page({
           exerises: data.exerises,
           hideLoad: false
         })
-        wx.setNavigationBarTitle({
-          title: data.exerises[0].title,
-        })
       }
       wx.hideLoading()
     });
@@ -154,10 +151,12 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-    console.log('1112221')
-  },
-  onShare: function (e) {
-    console.log('1111')
+    let that = this
+    return {
+      title: '试题互动',
+      desc: '',
+      path: '/pages/InterAct/InterAct_view?qid=' + that.data.QID
+    }
   }
 })
 

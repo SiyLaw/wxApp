@@ -6,16 +6,16 @@
   <view class="page-section page-section-gap">
     <view class="item-total">
       <view class="titem">
-        <view class="item-head">1小时20分</view>
+        <view class="item-head">{{info[0].US}}</view>
         <view class="item-desc">学习时间</view>
       </view>
       <view class="titem">
-        <view class="item-head">0条</view>
+        <view class="item-head">{{info[0].DT}}条</view>
         <view class="item-desc">参与讨论</view>
       </view>
       <view class="titem">
-        <view class="item-head">1天</view>
-        <view class="item-desc">连续学习</view>
+        <view class="item-head">{{info[0].RATE}}%</view>
+        <view class="item-desc">练习覆盖率</view>
       </view>
     </view>
   </view>

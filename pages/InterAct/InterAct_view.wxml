@@ -28,9 +28,6 @@
             <view class="weui-cell__bd text28">{{item.op}}、{{item.text}}</view>
           </label>
         </checkbox-group>
-        <view class="btn-area">
-          <button type="primary" bindtap="submitMultiVal" size="mini" plain="true" disabled="{{exerises[index].is_answered}}">确认答案</button>
-        </view>
       </block>
     </view>
   </view>
@@ -116,7 +113,6 @@
     <image src="/image/share.png"></image>
   </share-button> -->
 </view>
-
 
 <!--评论弹出窗-->
 <view class="module-bg-layer" wx:if="{{show_comment_module}}">

@@ -2,11 +2,11 @@
   "pages": [
     "pages/tabbar/index/index",
     "pages/tabbar/study/study",
-    "pages/tabbar/profile/profile",
     "pages/tabbar/news/news",
-    "pages/InterAct/InterAct",
     "pages/profile/profile",
+    "pages/InterAct/InterAct",
     "pages/lawArticles/lawItem",
+    "pages/tabbar/profile/profile",
     "pages/tabbar/study/random/random",
     "pages/tabbar/study/favorite/favorite",
     "pages/tabbar/study/special/special",
