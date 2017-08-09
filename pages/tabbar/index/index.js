@@ -1,8 +1,13 @@
 //index.js
 //获取应用实例
+var util = require('../../../utils/util.js');
 var app = getApp();
 Page({
   data: {
+    PAGE: "INDEX",
+    RCNT: 4,//每次请求数量
+    HOTS: [],
+    hothide: true,
     background: [{
       id: "item-1",
       text: "法律学习有何难点?",
@@ -18,14 +23,16 @@ Page({
       text: "刑事案件实例分析...",
       color: "#2F4F4F",
       url: "https://www.yondo.cc/wx/images/103.png"
-    }]
+    }],
+    IMGLIST: ['one.png', 'two.png', 'three.png', 'four.png']
   },
   //事件处理函数
-  bindViewTap: function () {
-    wx.navigateTo({
-      url: '../logs/logs'
+  navtohot: function (e) {
+    wx.switchTab({
+      url: '/pages/tabbar/news/news'
     })
-  }, navtolaw: function (e) {
+  },
+  navtolaw: function (e) {
     wx.navigateTo({
       url: '/pages/lawArticles/lawItem'//?id=RID0H4A0NTXAT63J&nme=中华人民共和国刑法&tid=RID0H6U0XVRB63S4'
     })
@@ -33,8 +40,23 @@ Page({
     wx.navigateTo({
       url: '/pages/InterAct/InterAct',
     })
+  }, navtosubject: function (e) {
+    wx.showToast({
+      title: '开发中',
+    })
   },
   onLoad: function () {
+    var jsPost = new util.jsonRow()
+    jsPost.AddCell("RCNT", this.data.RCNT)
+    jsPost.AddCell("CCNT", this.data.HOTS.length)
+    util.Post(this, "LOAD", jsPost, function (that, data) {
+      that.setData({
+        HOTS: data.HOTS,
+        hothide: false,
+        bseurl: app.globalData.bseurl
+      })
+    });
   }
 });
+
 

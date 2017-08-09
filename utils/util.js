@@ -232,6 +232,24 @@ jsonRow.prototype = {
   }
 };
 
+
+//服务器请求数据
+function Post(that, action, data, doAfter) {
+  //数据请求执行方法
+  var jsPost = data || new jsonRow()
+  jsPost.AddCell("PAGE", that.data.PAGE)
+  jsPost.AddCell("ACTION", action)
+  _post_json(app.globalData.url, jsPost, function (res) {
+    if (res && res.data && res.data.data) {
+      //回调
+      typeof doAfter == "function" && doAfter(that, res.data.data)
+    }
+    else {
+      // console.log('error')
+    }
+  })
+}
+
 module.exports = {
   formatTime: formatTime,
   formatTimeString: formatTimeString,
@@ -240,5 +258,6 @@ module.exports = {
   imageUtil: imageUtil,
   _get: _get,
   _post: _post_json,
+  Post: Post,
   jsonRow: jsonRow
 }

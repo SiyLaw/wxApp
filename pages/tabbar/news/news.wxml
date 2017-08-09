@@ -23,7 +23,7 @@
       </navigator>
     </block>
   </swiper>  
-  <block wx:for="{{HOTS}}" wx:key="item.id">
+  <block wx:for="{{HOTS}}" wx:key="{{item.id}}">
     <navigator class="infoItem" url="newsItem?id={{item.INFO_HOST_ID}}&txt={{item.INFO_TITLE}}&url={{item.INFO_IMG_URL}}">
       <view class="itemTitle">
         <label>{{item.INFO_TITLE}}</label>

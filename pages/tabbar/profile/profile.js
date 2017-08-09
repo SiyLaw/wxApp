@@ -10,12 +10,12 @@ Page({
       txt: "学习进度",
       color: "#cd853f",
       img: "/image/Reading.png",
-      url: ".."
+      url: "/"
     }, {
       txt: "消息中心",
       color: "#008B8B",
       img: "/image/message.png",
-      url: ".."
+      url: "/"
     }, {
       txt: "帐号",
       color: "#3CB371",
