@@ -37,7 +37,7 @@
         "pagePath": "pages/tabbar/study/study",
         "iconPath": "image/Officer.png",
         "selectedIconPath": "image/OfficerSelected.png",
-        "text": "宝典"
+        "text": "题库"
       },
       {
         "pagePath": "pages/tabbar/news/news",

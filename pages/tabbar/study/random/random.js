@@ -29,7 +29,7 @@ Page({
     ecnt: 0,//有效答题数
     start_time: null,
     index: 0,//当前答题数量
-    auto_next: true,//自动下一题
+    auto_next: false,//自动下一题
     // right: 0,
     // error: 0,
     comm_text: '',

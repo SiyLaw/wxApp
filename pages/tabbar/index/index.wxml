@@ -25,6 +25,15 @@
           <!--<view class="item-desc-detailtxt">...</view>-->
         </view>
       </view>
+      <view class="flex-item">
+        <view class="item-desc" bindtap="navtosubject" >
+          <view class="item-desc-img lightBlue2">
+            <image src="../../../image/Book.png"></image>
+          </view>
+          <text class="item-desc-headtxt">教材</text>
+          <!--<view class="item-desc-detailtxt">...</view>-->
+        </view>
+      </view>
       <view class="flex-item" bindtap="navtolaw">
         <view class="item-desc">
           <view class="item-desc-img lightOri">

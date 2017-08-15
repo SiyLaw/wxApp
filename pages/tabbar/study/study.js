@@ -7,17 +7,17 @@ Page({
       [{
         id: "t1",
         open: false,
+        bkImg: "../../../image/Trademark.png",
+        selectBkImg: "../../../image/Trademark.png",
+        text: "历年真题",
+        page: "real"
+      },{
+        id: "t2",
+        open: false,
         bkImg: "../../../image/SheriffSelected.png",
         selectBkImg: "../../../image/SheriffSelected.png",
         text: "随机练习",
         page: "random"
-      }, {
-        id: "t2",
-        open: false,
-        bkImg: "../../../image/External.png",
-        selectBkImg: "../../../image/External.png",
-        text: "专项训练",
-        page: "special"
       }, {
         id: "t3",
         open: false,
@@ -28,11 +28,11 @@ Page({
       }], [{
         id: "t4",
         open: false,
-        bkImg: "../../../image/Trademark.png",
-        selectBkImg: "../../../image/Trademark.png",
-        text: "历年真题",
-        page: "real"
-      }, {
+        bkImg: "../../../image/External.png",
+        selectBkImg: "../../../image/External.png",
+        text: "专项训练",
+        page: "special"
+      },  {
         id: "t5",
         open: false,
         bkImg: "../../../image/Amnesty.png",

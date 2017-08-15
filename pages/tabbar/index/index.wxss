@@ -69,6 +69,10 @@ swiper {
   background-color: #4682b4;
 }
 
+.item-desc .lightBlue2 {
+  background-color: #008B8B;
+}
+
 .item-desc .lightOri {
   background-color: #cd853f;
 }

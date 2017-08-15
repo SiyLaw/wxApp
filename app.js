@@ -1,6 +1,7 @@
 //app.js
 App({
   onLaunch: function () {
+    this.getUserInfo(null,null);
   },
   getUserInfo: function (cb, fuser) {
     var that = this

@@ -177,13 +177,19 @@ function _post_json(url, jsPost, success, fail) {
   // })
   wx.showNavigationBarLoading()
   var user = wx.getStorageSync('user')
+  var isAddUserInfo = false
   if (user == "") {
+    isAddUserInfo = true
     app.getUserInfo(null, function (openData) {
       user = openData
     })
   }
   if (jsPost == null) jsPost = new jsonRow();
   jsPost.AddCell("OPEN_ID", user.openid)
+  if (isAddUserInfo && app.globalData.userInfo){
+    jsPost.AddCell("USER_NME", app.globalData.userInfo.nickName)
+    jsPost.AddCell("HEAD_IMG", app.globalData.userInfo.avatarUrl)
+  }
   wx.request({
     url: url,
     header: {
