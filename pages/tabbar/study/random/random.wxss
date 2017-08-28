@@ -8,17 +8,21 @@ page {
 .text32 {
   font-size: 32rpx;
 }
+
 .text28 {
   font-size: 28rpx;
 }
+
 .text24 {
   font-size: 24rpx;
 }
-.textblock{
+
+.textblock {
   display: block;
   text-indent: 40rpx;
 }
-.padding10{
+
+.padding10 {
   padding: 10px 10px;
   margin: 7rpx 0 6rpx 0;
   background: #fff;
@@ -26,7 +30,7 @@ page {
 }
 
 .que-tag {
-  border-top: 1px solid #eee;  
+  border-top: 1px solid #eee;
   padding: 10rpx 10rpx;
 }
 
@@ -53,28 +57,144 @@ page {
   width: 100rpx;
   font-size: 24rpx;
   border: 1rpx solid #2186e0;
-  padding: 4rpx 4rpx;
+  padding: 2rpx 4rpx;
   color: #2186e0;
   margin-right: 10rpx;
 }
 
+.section_head {
+  background: linear-gradient(to top right, #fff, #eee, #fff);
+}
 
 .section_title {
-  border-left: 4rpx solid #2186e0;
+  border-left: 6rpx solid #2186e0;
   padding: 6rpx 4rpx;
-  font-size: 24rpx;
+  font-size: 28rpx;
   font-weight: bolder;
   color: cornflowerblue;
 }
 
-.comments-section{  
-  height:470rpx;
-  width:97%;
-  margin: 20rpx auto;
-  border-radius: 5rpx;
-  background-color: #fff;
-  box-shadow: 0 0 8rpx #1aad19;
+/*--------------------------1.通用 div排版 start----------------*/
+
+.horizontal {
+  display: flex;
+  flex-direction: row;
 }
+
+.vertical {
+  display: flex;
+  flex-direction: column;
+}
+
+/*--------------------------1.通用 div排版 end------------------*/
+
+/*--------------------------1.通用 按钮 start----------------*/
+
+.horizontal {
+  display: flex;
+  flex-direction: row;
+}
+
+.vertical {
+  display: flex;
+  flex-direction: column;
+}
+
+/*--------------------------1.通用 按钮 end------------------*/
+
+.cust-btn {
+  font-size: 28rpx;
+  text-align: center;
+  padding: 40rpx;
+}
+
+.cust-btn a {
+  border: 1rpx solid #1aad19;
+  border-radius: 10rpx;
+  padding: 15rpx 30rpx;
+  margin: 0 20rpx;
+  color: #1aad19;
+}
+
+/*--------------------------1.通用 遮罩层 start----------------------*/
+
+.module-bg-layer {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #e0e0e0;
+  opacity: 1;
+  overflow: hidden;
+  z-index: 1000;
+  margin: auto 0;
+}
+
+/*--------------------------1.通用 遮罩层 end----------------------*/
+
+/*--------------------------8.起始弹出窗 start----------------------*/
+
+.dv-module {
+  width: 97%;
+  margin: 20rpx auto;
+  border-radius: 10rpx;
+  background-color: #fff;
+  box-shadow: 0 8rpx 8rpx -1rpx #bbb;
+}
+
+.dv-module .content {
+  text-align: center;
+}
+
+.dv-module .txt-vert {
+  writing-mode: vertical-lr;
+}
+
+.dv-module .txt {
+  margin: -30rpx 0rpx;
+  padding: 0;
+  font-size: 60rpx;
+  font-weight: bold;
+  color: #666;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  transform: scale(1, 0.6);
+}
+
+.dv-module .txt-date {
+  margin: 0rpx 0rpx;
+  font-size: 30rpx;
+  transform: scale(1, 0.8);
+}
+
+.item {
+  display: flex;
+  padding: 15rpx 10rpx;
+  text-align: left;
+}
+
+.item-image {
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50rpx;
+  margin-left: 20rpx;
+}
+
+.item-image image {
+  width: 35rpx;
+  height: 35rpx;
+  padding: 8rpx 8rpx;
+}
+
+.item-txt {
+  flex: 8;
+  font-size: 28rpx;
+  padding: 5rpx 40rpx;
+}
+
+/*--------------------------8.起始弹出窗 end----------------------*/
+
+/*--------------------------9.评论弹出窗 start----------------------*/
 
 .cmts_label {
   font-size: 28rpx;
@@ -83,22 +203,9 @@ page {
   color: #5b5b5b;
 }
 
-.cmts_actions{
-  font-size: 28rpx;
-  text-align: center;
-  margin-top:20rpx; 
-}
-.cmts_actions a{
-  width:50rpx;
-  border: 1rpx solid #1aad19;
-  border-radius: 5rpx;
-  padding: 10rpx 10rpx;
-  margin:0 10rpx; 
-}
-
 .cmts_content {
   font-size: 28rpx;
-  position:relative;
+  position: relative;
   height: 330rpx;
   width: 100%;
   padding: 5rpx 5rpx;
@@ -107,6 +214,8 @@ page {
   border-left: none;
   border-right: none;
 }
+
+/*--------------------------9.评论弹出窗 end----------------------*/
 
 .page-bottom {
   position: fixed;
@@ -129,16 +238,30 @@ page {
   align-items: stretch;
 }
 
+.flex-justify {
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+
+.flex-center {
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: stretch;
+}
+
 .flex-item {
   display: inline-flex;
   align-items: center;
+  padding: 10rpx 50rpx;
 }
 
 .top-tab {
   width: 100%;
   height: 80rpx;
   background: #f1f1f1;
-  color: #323232;
+  color: #666;
   font-size: 28rpx;
   line-height: 80rpx;
   box-shadow: 0 -2rpx 2rpx #bebebe;
@@ -154,7 +277,6 @@ page {
 }
 
 .page-section .feed-item {
-  width: 690rpx;
   padding: 30rpx 30rpx 20rpx;
   margin: 7rpx 0 6rpx 0;
   background: #fff;
@@ -163,29 +285,23 @@ page {
   box-shadow: 0 2px 5px #eee;
 }
 
-.page-section .feed-item .feed-source {
-  width: 690rpx;
-  left: 0;
-  height: 50rpx;
-}
-
 .page-section .feed-item .feed-source .avatar {
   position: relative;
   display: inline-block;
 }
 
-.page-section .feed-item .feed-source a {
-  display: inline-block;
-  height: 40rpx;
-}
-
 .page-section .feed-item .feed-source .avatar image {
   /*position: absolute;*/
   display: inline-block;
-  width: 45rpx;
-  height: 45rpx;
-  border-radius: 45rpx;
-  top: 10rpx;
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 40rpx;
+  top: 0rpx;
+  margin-right: 10rpx;
+  vertical-align: middle;
+}
+
+.slabel {
   vertical-align: middle;
 }
 
@@ -195,16 +311,8 @@ page {
   height: 40rpx;
   line-height: 40rpx;
   vertical-align: middle;
-  margin: 0 0 0 15rpx;
   color: #a0acac;
   font-size: 26rpx;
-}
-
-.page-section .feed-item .feed-source .item-more {
-  display: inline-block;
-  width: 40rpx;
-  height: 45rpx;
-  float: right;
 }
 
 .page-section .feed-item .feed-content {
@@ -229,7 +337,7 @@ page {
 .page-section .feed-item .feed-content .answer-actions {
   width: 690rpx;
   padding: 10rpx 0 0;
-  color: #a0acac;
+  color: #666;
 }
 
 .page-section .feed-item .feed-content .answer-actions view {
@@ -251,7 +359,7 @@ page {
 }
 
 .exerises-feed-bottom {
-  margin-bottom: 90rpx;
+  padding: 45rpx;
 }
 
 .answer_list {
@@ -259,27 +367,4 @@ page {
   font-size: 26rpx;
   font-weight: bolder;
   color: crimson;
-}
-
-.commodity_screen {
- width: 100%;
- height: 100%;
- position: fixed;
- top: 0;
- left: 0;
- background: #e0e0e0;
- opacity: 1;
- overflow: hidden;
- z-index: 1000;
- margin: auto 0;
-}
-.commodity_attr_box {
- width: 100%;
- overflow: hidden;
- position: fixed;
- bottom: 0;
- left: 0;
- z-index: 2000;
- background: #fff;
- padding-top: 20rpx;
 }

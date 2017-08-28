@@ -1,18 +1,28 @@
 <!--pages/tabbar/study/realsimulate/realsimulate.wxml-->
 <view class="container">
-<view class="page-section">
-  <view class="weui-cells__title">地区选择器</view>
-  <view class="weui-cells weui-cells_after-title">
-    <view class="weui-cell weui-cell_input">
-      <view class="weui-cell__hd">
-        <view class="weui-label">当前选择</view>
-      </view>
-      <view class="weui-cell__bd">
-        <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
-          <view class="weui-input">{{array[index]}}</view>
-        </picker>
-      </view>
-    </view>
+  <view wx:if="{{batches.length > 0 && !batches[0].IS_FINISH_EXAM}}" class="addbatch vertical" bindtap="exebatch">
+    <label class="lbDesc2">{{batches[0].BATCH_NO}}</label>
+    <label class="lbDescTip">点击练习</label>
   </view>
+  <view wx:if="{{batches.length == 0 || batches[0].IS_FINISH_EXAM}}" class="addbatch" bindtap="addbatch">
+    <label class="lbAdd">+</label>
+    <label class="lbDesc">点击添加</label>
+  </view>
+  <view class="lbhead">全真模拟记录（已完成）</view>
+  <view class="batch-list">
+    <block wx:for="{{batches}}" wx:for-index="idx" wx:key="item.EXAM_BATCH_ID">
+      <view wx:if="{{item.IS_FINISH_EXAM}}" class="batchItem vertical">
+        <navigator url="realsimulate_exe?id={{item.EXAM_BATCH_ID}}&txt={{item.BATCH_NO}}">
+          <view class="itemno">批次号：
+            <label class="batchno">{{item.BATCH_NO }}</label>
+          </view>
+          <view class="itemdetail">
+            <view>用时：{{item.EXAM_USER_DT}}</view>
+            <view>得分：{{item.ACT_SCORE}}</view>
+          </view>
+        </navigator>
+      </view>
+    </block>
+    <view wx:if="{{batches.length == 0 || (batches.length == 1 && !batches[0].IS_FINISH_EXAM)}}" class="nobatch">暂无批次！</view>
   </view>
 </view>

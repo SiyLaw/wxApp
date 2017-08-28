@@ -7,43 +7,43 @@ Page({
       [{
         id: "t1",
         open: false,
-        bkImg: "../../../image/Sheriff.png",
+        bkImg: "../../../image/Trademark.png",
+        selectBkImg: "../../../image/Trademark.png",
+        text: "历年真题",
+        page: "real"
+      },{
+        id: "t2",
+        open: false,
+        bkImg: "../../../image/SheriffSelected.png",
         selectBkImg: "../../../image/SheriffSelected.png",
         text: "随机练习",
         page: "random"
       }, {
-        id: "t2",
-        open: false,
-        bkImg: "../../../image/External.png",
-        selectBkImg: "../../../image/ExternalSelected.png",
-        text: "专项训练",
-        page: "special"
-      }, {
         id: "t3",
         open: false,
         bkImg: "../../../image/real.png",
-        selectBkImg: "../../../image/realSelected.png",
+        selectBkImg: "../../../image/real.png",
         text: "全真模拟",
         page: "realsimulate"
       }], [{
         id: "t4",
         open: false,
-        bkImg: "../../../image/Trademark.png",
-        selectBkImg: "../../../image/TrademarkSelected.png",
-        text: "历年真题",
-        page: "real"
-      }, {
+        bkImg: "../../../image/External.png",
+        selectBkImg: "../../../image/External.png",
+        text: "专项训练",
+        page: "special"
+      },  {
         id: "t5",
         open: false,
         bkImg: "../../../image/Amnesty.png",
-        selectBkImg: "../../../image/AmnestySelected.png",
+        selectBkImg: "../../../image/Amnesty.png",
         text: "我的收藏",
         page: "favorite"
       }, {
         id: "t6",
         open: false,
         bkImg: "../../../image/Rules.png",
-        selectBkImg: "../../../image/RulesSelected.png",
+        selectBkImg: "../../../image/Rules.png",
         text: "学习评估",
         page: "evaluation"
       }]

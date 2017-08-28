@@ -1,84 +1,62 @@
 //index.js
 //获取应用实例
+var util = require('../../../utils/util.js');
 var app = getApp();
-var wxCharts = require('../../../common/wxcharts.js');
-
 Page({
   data: {
+    PAGE: "INDEX",
+    RCNT: 4,//每次请求数量
+    HOTS: [],
+    hothide: true,
     background: [{
       id: "item-1",
-      text: "item-1"
+      text: "法律学习有何难点?",
+      color: "#800000",
+      url: "https://www.yondo.cc/wx/images/101.png"
     }, {
       id: "item-2",
-      text: "item-2"
+      text: "法律考试应该注意的问题...",
+      color: "#483D8B",
+      url: "https://www.yondo.cc/wx/images/102.png"
     }, {
       id: "item-3",
-      text: "item-3"
+      text: "刑事案件实例分析...",
+      color: "#2F4F4F",
+      url: "https://www.yondo.cc/wx/images/103.png"
     }],
-    indicatorDots: true,
-    autoplay: true,
-    interval: 2000,
-    duration: 500,
-    headinfo: {}
+    IMGLIST: ['one.png', 'two.png', 'three.png', 'four.png']
   },
   //事件处理函数
-  bindViewTap: function () {
+  navtohot: function (e) {
+    wx.switchTab({
+      url: '/pages/tabbar/news/news'
+    })
+  },
+  navtolaw: function (e) {
     wx.navigateTo({
-      url: '../logs/logs'
+      url: '/pages/lawArticles/lawItem'//?id=RID0H4A0NTXAT63J&nme=中华人民共和国刑法&tid=RID0H6U0XVRB63S4'
+    })
+  }, navtointeract: function (e) {
+    wx.navigateTo({
+      url: '/pages/InterAct/InterAct',
+    })
+  }, navtosubject: function (e) {
+    wx.showToast({
+      title: '开发中',
     })
   },
   onLoad: function () {
-    var vwith = 0;
-    //调用应用实例的方法获取全局数据
-    var that = this
-    app.getUserInfo(function (userInfo) {
-      //更新数据
-      if (userInfo) {
-        that.setData({
-          headinfo: {
-            score: 88,
-            avatarUrl: userInfo.avatarUrl,
-            nickName: userInfo.nickName,
-            province: userInfo.province,
-            city: userInfo.city
-          }
-        })
-      }
-    })
-    wx.getSystemInfo({
-      success: function (res) {
-        vwith = res.windowWidth;
-      }
-    });
-    new wxCharts({
-      canvasId: 'areaCanvas',
-      type: 'area',
-      categories: ['2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016'],
-      series: [{
-        name: '参考人数',
-        data: [35.3, 32.6, 34.7, 33.2, 33.5, 35.3, 37.5, 43.8],
-        format: function (val) {
-          return val + '';
-        }
-      }, {
-        name: '通过人数',
-        data: [9.02, 8.58, 6.64, 4.8, 4.796, 4.994, 4.88, 6],
-        format: function (val) {
-          if (val == 6) {
-            return '6 ?';
-          } else {
-            return val;
-          }
-        }
-      }],
-      yAxis: {
-        format: function (val) {
-          return val + '万';
-        }
-      },
-      width: vwith,
-      height: 210
+    var jsPost = new util.jsonRow()
+    jsPost.AddCell("RCNT", this.data.RCNT)
+    jsPost.AddCell("CCNT", this.data.HOTS.length)
+    util.Post(this, "LOAD", jsPost, function (that, data) {
+      that.setData({
+        HOTS: data.HOTS,
+        hothide: false,
+        bseurl: app.globalData.bseurl
+      })
     });
   }
 });
+
 

@@ -1,0 +1,29 @@
+<!--newsItem.wxml-->
+<import src="../../../common/foot.wxml" />
+<view class="head">
+  <view class="headctrl">
+    <view class="headSearch">
+      <!-- <image src="/image/share.png" bindtap="onShare" ></image> -->
+      <image src="/image/star.png"></image>
+      <image src="/image/message.png"></image>
+      <image src="/image/thumbs.png"></image>
+    </view>
+  </view>
+</view>
+<VIEW>
+  <swiper autoplay="{{false}}" indicator-dots="{{false}}" circular="{{false}}" class="swiper">
+    <swiper-item>
+      <view class="swiper-shadow">
+      </view>
+      <label class="swiper-text">{{TXT}}</label>
+      <image src="{{BSURL+BGURL}}" class="swiper-item" mode="aspectFill" />
+    </swiper-item>
+  </swiper>
+</VIEW>
+<view class="richtxt">
+  <block wx:for="{{NODES}}" wx:for-item="itm" wx:for-index="idx" wx:key="itm.id" >
+    <rich-text clas="richcontent" nodes="{{itm.INFO_CONTENT}}" />
+  </block>
+</view>
+
+<template is="foot" />
