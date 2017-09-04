@@ -52,14 +52,11 @@ Page({
 
 function Post(that, action, data) {
   //数据请求执行方法
-  var jsPost = data || new util.jsonRow()
-  jsPost.AddCell("PAGE", that.data.PAGE)
-  jsPost.AddCell("ACTION", action)
-  util._post(app.globalData.url, jsPost, function (res) {
-    if (res && res.data && res.data.data) {
+  util.Post(that,action, data, function (that,res) {
+    if (res) {
       //更新数据
-      if (jsPost.arrjson.ACTION == "LOAD") {
-        let objbatches = res.data.data.batches
+      if (action == "LOAD") {
+        let objbatches = res.batches
         for (var i = 0; i < objbatches.length; i++) {
           objbatches[i].EXAM_USER_DT = util.formatString(objbatches[i].EXAM_USER_DT)
         }

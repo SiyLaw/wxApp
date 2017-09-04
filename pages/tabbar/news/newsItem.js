@@ -112,13 +112,11 @@ Page({
 function Post(that, action, data, doAfter) {
   //数据请求执行方法
   var jsPost = data || new util.jsonRow()
-  jsPost.AddCell("PAGE", that.data.PAGE)
   jsPost.AddCell("NID", that.data.NID)
-  jsPost.AddCell("ACTION", action)
-  util._post(app.globalData.url, jsPost, function (res) {
-    if (res && res.data && res.data.data) {
+  util.Post(that,action, jsPost, function (that,res) {
+    if (res) {
       //回调
-      typeof doAfter == "function" && doAfter(that, res.data.data)
+      typeof doAfter == "function" && doAfter(that, res)
     }
     else {
       // console.log('error')

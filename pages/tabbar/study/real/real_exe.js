@@ -187,32 +187,30 @@ Page({
 function Post(that, action, data) {
   //数据请求执行方法
   var jsPost = data || new util.jsonRow()
-  jsPost.AddCell("PAGE", that.data.PAGE)
   jsPost.AddCell("REALID", that.data.REALID)
-  jsPost.AddCell("ACTION", action)
-  util._post(app.globalData.url, jsPost, function (res) {
-    if (res && res.data && res.data.data) {
+  util.Post(that,action, jsPost, function (that,res) {
+    if (res) {
       //更新数据
-      if (jsPost.arrjson.ACTION == "LOAD") {
+      if (action == "LOAD") {
         let iIndex = that.data.index
-        for (var i = 0; i < res.data.data.exerises.length; i++) {
-          if (!res.data.data.exerises[i].is_answered) {
+        for (var i = 0; i < res.exerises.length; i++) {
+          if (!res.exerises[i].is_answered) {
             iIndex = i;
             break;
           }
         }
         that.setData({
-          exerises: that.data.exerises.concat(res.data.data.exerises)
+          exerises: that.data.exerises.concat(res.exerises)
           // , summaryValues: objSummaries
-          , ecnt: res.data.data.ecnt
+          , ecnt: res.ecnt
           , index: iIndex
         })
         wx.hideLoading()
       }
-      else if (jsPost.arrjson.ACTION == "COMMENT") {
+      else if (action == "COMMENT") {
         //题目评论
         let cExes = that.data.exerises
-        cExes[that.data.index].feeds = res.data.data.feeds
+        cExes[that.data.index].feeds = res.feeds
         that.setData({
           exerises: cExes,
           comm_text: '',
@@ -221,16 +219,16 @@ function Post(that, action, data) {
           show_comment_module: false
         })
       }
-      else if (jsPost.arrjson.ACTION == "REFRESHCOMMENT") {
+      else if (action == "REFRESHCOMMENT") {
         //题目评论
         let cExes = that.data.exerises
-        cExes[that.data.index].feeds = res.data.data.feeds
+        cExes[that.data.index].feeds = res.feeds
         that.setData({
           exerises: cExes
         })
       }
     }
-    else if (jsPost.arrjson.ACTION == "ANSWERED" && that.data.auto_next) {
+    else if (action == "ANSWERED" && that.data.auto_next) {
       //答题后，自动下一题的情况下处理
       var iIndex = that.data.index
       if (iIndex == that.data.exerises.length - 2) {

@@ -22,11 +22,8 @@ Page({
 
 function Post(that, action, data) {
   //数据请求执行方法
-  var jsPost = data || new util.jsonRow()
-  jsPost.AddCell("PAGE", that.data.PAGE)
-  jsPost.AddCell("ACTION", action)
-  util._post(app.globalData.url, jsPost, function (res) {
-    if (res && res.data && res.data.data) {
+  util.Post(that,action, jsPost, function (that,res) {
+    if (res) {
       //更新数据
       wx.getSystemInfo({
         success(res) {
@@ -35,9 +32,9 @@ function Post(that, action, data) {
           })
         }
       })
-      if (jsPost.arrjson.ACTION == "LOAD") {
+      if (action == "LOAD") {
         that.setData({
-          batches: res.data.data.batches
+          batches: res.batches
         })
 
       }
