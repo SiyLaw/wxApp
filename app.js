@@ -1,62 +1,79 @@
 //app.js
+var util = require('/utils/util.js');
 App({
   onLaunch: function () {
-    this.getUserInfo(null,null);
+    wx.checkSession({
+      success: function (e) {   //登录态未过期
+      },
+      fail: function () {   //登录态过期了
+        wx.setStorageSync('openkey', null);
+        wx.setStorageSync('code', '');
+      }
+    })
   },
-  getUserInfo: function (cb, fuser) {
+  getOpenInfo: function (doAfter) {
+    var that = this
+    var openkey = wx.getStorageSync('openkey') || {};
+    var rescode = wx.getStorageSync('code') || '';
+    if (!openkey.OPEN_KEY && rescode != '') {
+      util.getOpenId(that.globalData.url, rescode, function (res) {
+        that.globalData.openData = res.data
+        wx.setStorageSync('openkey', res.data);//存储openid
+        typeof doAfter == "function" && doAfter()
+      })
+    } else if (rescode == '') {
+      that.getUserInfo(function(){
+        that.getOpenInfo(doAfter)
+      })
+    }
+    if (openkey && openkey.OPEN_KEY) {
+      if (!that.globalData.openData || openkey.OPEN_KEY != that.globalData.openData.OPEN_KEY) {
+        that.globalData.openData = openkey
+      }
+    }
+    if (openkey.OPEN_KEY && rescode != '') {
+      typeof doAfter == "function" && doAfter()
+    }
+  },
+  getUserInfo: function (doAfter,doGetUser) {
     var that = this
     var user = wx.getStorageSync('user') || {};
-    if ((!user.openid || (user.expires_in || Date.now()) < (Date.now() + 600)) && (!this.globalData.userInfo)) {
+    var code = wx.getStorageSync('code') || '';
+    if (!user.nickName || code == '') {
       //调用登录接口
       wx.login({
         success: function (res) {
           if (res.code) {
+            that.globalData.code = res.code;
+            wx.setStorageSync('code', res.code);//userInfo
+            typeof doAfter == "function" && doAfter()
             wx.getUserInfo({
-              success: function (res) {
-                var objz = {};
-                objz.avatarUrl = res.userInfo.avatarUrl;
-                objz.nickName = res.userInfo.nickName;
-                objz.province = res.userInfo.province;
-                objz.city = res.userInfo.city;
-                that.globalData.userInfo = objz;
-                typeof cb == "function" && cb(that.globalData.userInfo)
+              success: function (res2) {
+                that.globalData.userInfo = res2.userInfo;
+                wx.setStorageSync('user', res2.userInfo);//userInfo
+                typeof doGetUser == "function" && doGetUser(res2.userInfo)
               }
-            });
-            var d = that.globalData;//这里存储了appid、secret、token串  
-            var l = 'https://api.weixin.qq.com/sns/jscode2session?appid=' + d.appid + '&secret=' + d.secret + '&js_code=' + res.code + '&grant_type=authorization_code';
-            wx.request({
-              url: l,
-              data: {},
-              method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT  
-              // header: {}, // 设置请求的 header  
-              success: function (res) {
-                var obj = {};
-                obj.openid = res.data.openid;
-                obj.expires_in = Date.now() + res.data.expires_in;
-                that.globalData.openData = obj
-                wx.setStorageSync('user', obj);//存储openid  
-              }
-            });
-          } else {
+            })
+          }
+          else {
             console.log('获取用户登录态失败！' + res.errMsg)
           }
         }
-      });
-    }
-    if (that.globalData.userInfo) {
-      typeof cb == "function" && cb(that.globalData.userInfo)
-    }
-    if (that.globalData.openData.openid) {
-      //防止缓存清除后，跳转出错
-      wx.setStorageSync('user', that.globalData.openData)//存储openid      
-      typeof fuser == "function" && fuser(that.globalData.openData)
+        , fail: function (res){
+          console.log('获取用户登录态失败！' + res.errMsg)
+        }
+      })
+    } else {
+      that.globalData.userInfo = user;
+      that.globalData.code = code;
+      typeof doAfter == "function" && doAfter()
+      typeof doGetUser == "function" && doGetUser(user)
     }
   },
   globalData: {
     userInfo: null,
-    openData: {},
-    appid: 'wx802cd0a3c07e95ce',//appid
-    secret: '90a714b70aa14c9a10c05a08d9a3aca8',//secret
+    openData: null,
+    code: '',
     url: 'https://www.yondo.cc/wx/wxget.axd',
     uploadurl: 'https://www.yondo.cc/wx/wxupload.axd',
     bseurl: 'https://www.yondo.cc/'

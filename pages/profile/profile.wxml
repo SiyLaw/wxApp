@@ -5,7 +5,6 @@
 <view class="container">
   <template is="pagehead" data="{{avatarUrl: userInfo.avatarUrl,nickName:userInfo.nickName}}" />
   <form catchsubmit="formSubmit">
-    <input style="display:none;" name="HEAD_IMG" type="text" value="{{HEAD_IMG}}" />
     <view class="page-section">
       <view class="weui-cells__title">基本信息</view>
       <view class="weui-cells weui-cells_after-title">

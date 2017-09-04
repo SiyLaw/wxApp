@@ -52,19 +52,6 @@ Page({
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
     //调用应用实例的方法获取全局数据
-    var that = this
-    app.getUserInfo(function (userInfo) {
-      //更新数据
-      that.setData({
-        headinfo: {
-          score: 88,
-          avatarUrl: userInfo.avatarUrl,
-          nickName: userInfo.nickName,
-          province: userInfo.province,
-          city: userInfo.city
-        }
-      })
-    })
   },
   selectedTap: function (e) {
     var id = e.currentTarget.id, list = this.data.Items;
