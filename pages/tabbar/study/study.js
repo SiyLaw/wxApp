@@ -37,7 +37,7 @@ Page({
         open: false,
         bkImg: "../../../image/Amnesty.png",
         selectBkImg: "../../../image/Amnesty.png",
-        text: "我的收藏",
+        text: "支付测试", //我的收藏
         page: "favorite"
       }, {
         id: "t6",

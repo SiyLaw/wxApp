@@ -3,56 +3,67 @@ var util = require('../../../../utils/util.js')
 var app = getApp()
 Page({
   data: {
-    PAGE: "FAVORITE",
-    batches: [],
-    iheight: 0,
-    hidden: true,
-    page: 1,
-    size: 20,
-    hasMore: true,
-    hasRefesh: false
+    PAGE: "CREATE_ORDER",
+    total_fee: "0.00",
+    PL: [{
+      id: "id1",
+      checked: false,
+      body: "司煜宝-真题购买",
+      attach: "在线支付",
+      goods_tag: "2017年真题卷一",
+      fee: 0.30
+    }, {
+      id: "id2",
+      checked: false,
+      body: "司煜宝-真题购买",
+      attach: "在线支付",
+      goods_tag: "2017年真题卷二",
+      fee: 0.50
+    }, {
+      id: "id3",
+      checked: false,
+      body: "司煜宝-真题购买",
+      attach: "在线支付",
+      goods_tag: "2017年真题卷三",
+      fee: 0.60
+    }]
   },
   onLoad: function (options) {
-    var that = this
-    wx.getSystemInfo({
-      success(res) {
-        that.setData({
-          iheight: res.screenHeight * 2
-        })
-        console.log(res.screenHeight * 2)
-      }
-    })
   },
-  onShow: function () {
-    // wx.showLoading({
-    //   title: '加载中...',
-    //   mask: true
-    // })
-    //Post.call(this, this, "LOAD")
-  },
-  onPullDownRefresh() {
-    Post.call(this, this, "LOAD")
-    wx.stopPullDownRefresh()
-  }, onReachBottom() {
+  onSelected: function (e) {
+    var idx = e.currentTarget.dataset.idx
+    this.data.PL[idx].checked = !this.data.PL[idx].checked;
+    let total_fee = parseFloat(this.data.total_fee);
+    if (this.data.PL[idx].checked) {
+      total_fee = (total_fee + this.data.PL[idx].fee).toFixed(2);
+    } else {
+      total_fee = (total_fee - this.data.PL[idx].fee).toFixed(2);
+    }
     this.setData({
-      hasMore: !this.data.hasMore,
-      hidden: !this.data.hidden
-    })
+      PL: this.data.PL,
+      total_fee: total_fee
+    });
   },
-  loadMore() {
-    console.log('loadMore')
-    //Post.call(this, this, "ADD")
-  },
-  exebatch() {
-    wx.navigateTo({
-      url: 'realsimulate_exe?id=' + this.data.batches[0].EXAM_BATCH_ID + '&txt=' + this.data.batches[0].BATCH_NO,
-    })
+  onPurchase:function(e){
+    let total_fee = parseFloat(this.data.total_fee);
+    if (total_fee - 0.0 > 0){
+      var jsPost = new util.jsonRow()
+      jsPost.AddCell("TOTAL_FEE", total_fee)
+      util.Post(this, "CREATE_ORDER", jsPost, function (that, data) {
+        console.log(data)
+      });
+    }else{
+      wx.showToast({
+        title: '请选择购买项',
+        duration: 1000
+      })
+    }
   }
 })
 
 function Post(that, action, data) {
   //数据请求执行方法
-  util.Post(that,action, data, function (that,res) {
+  util.Post(that, action, data, function (that, res) {
     if (res) {
       //更新数据
       if (action == "LOAD") {

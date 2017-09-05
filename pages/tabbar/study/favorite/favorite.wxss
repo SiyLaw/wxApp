@@ -1,5 +1,76 @@
 /* pages/tabbar/study/favorite/favorite.wxss */
-.sview
-{
-  
+
+.pl {
+  background-color: #fff;
+  border: 1rpx solid #dadada;
+  border-radius: 10rpx;
+  box-shadow: 0 2rpx 2rpx -1rpx #d0d0d0;
+  width: 97%;
+  margin: 5rpx auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pl checkbox{
+  padding-left: 25rpx;
+}
+
+.pl-content,.pl-prise {
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;  
+  font-size: 36rpx;
+  color: #777;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.pl-content{
+  padding-left: 25rpx;
+  flex-grow: 1;
+}
+.pl-prise{
+  padding-left: 25rpx;
+  padding-right: 25rpx;
+}
+
+.pl-total{
+  border-top: 1rpx dashed #dadada;
+  width:100%;
+  margin-top: 50rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-top: 20rpx;
+}
+.pl-total .txt{
+  flex-grow: 1;
+  text-align: center;
+}
+.pl-total .summary{
+  padding-right: 40rpx;
+  color: red;
+}
+.cust-btn {
+  font-size: 32rpx;
+  text-align: center;
+  margin-top: 40rpx;
+  padding: 15rpx 50rpx;
+  border: 1rpx solid #1aad19;
+  border-radius: 10rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.cust-btn image{
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.cust-btn a {
+  margin: 0 20rpx;
+  color: #1aad19;
 }
