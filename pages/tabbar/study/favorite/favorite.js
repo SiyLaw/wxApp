@@ -11,21 +11,21 @@ Page({
       body: "司煜宝-真题购买",
       attach: "在线支付",
       goods_tag: "2017年真题卷一",
-      fee: 0.30
+      fee: 0.10
     }, {
       id: "id2",
       checked: false,
       body: "司煜宝-真题购买",
       attach: "在线支付",
       goods_tag: "2017年真题卷二",
-      fee: 0.50
+      fee: 0.25
     }, {
       id: "id3",
       checked: false,
       body: "司煜宝-真题购买",
       attach: "在线支付",
       goods_tag: "2017年真题卷三",
-      fee: 0.60
+      fee: 0.08
     }]
   },
   onLoad: function (options) {
@@ -51,6 +51,22 @@ Page({
       jsPost.AddCell("TOTAL_FEE", total_fee)
       util.Post(this, "CREATE_ORDER", jsPost, function (that, data) {
         console.log(data)
+        wx.requestPayment({
+          timeStamp: data.timeStamp,
+          nonceStr: data.nonceStr,
+          package: data.package,
+          signType: data.signType,
+          paySign: data.paySign,
+          success:function(res){
+            console.log(res)
+          },
+          fail:function(res){
+            console.log(res)
+          },
+          complete:function(res){
+            console.log(res)
+          }
+        })
       });
     }else{
       wx.showToast({

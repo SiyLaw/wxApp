@@ -1,12 +1,12 @@
 {
   "pages": [
-    "pages/tabbar/study/favorite/favorite",
     "pages/tabbar/index/index",
     "pages/tabbar/study/study",
     "pages/tabbar/news/news",
     "pages/profile/profile",
     "pages/InterAct/InterAct",
     "pages/lawArticles/lawItem",
+    "pages/tabbar/study/favorite/favorite",
     "pages/tabbar/profile/profile",
     "pages/tabbar/study/random/random",
     "pages/tabbar/study/special/special",
