@@ -11,6 +11,9 @@
   </view>
 </view>
 <view class="container">
+  <!-- <view class="headloading" hidden="{{startLoadingComplete}}">
+    <image src="../../../image/loading.png"></image>
+  </view> -->
   <swiper autoplay="true" indicator-active-color="white" indicator-color="#C0C0C0" indicator-dots="true" circular="true" interval="5000" duration="500" class="swiper">
     <block wx:for="{{HOTS}}" wx:for-index="idx" wx:key="item.id">
       <navigator url="newsItem?id={{item.INFO_HOST_ID}}&txt={{item.INFO_TITLE}}&url={{item.INFO_IMG_URL}}">
@@ -34,8 +37,8 @@
       </view>
     </navigator>
   </block>
-  <view class="loading" hidden="{{!moreLoading}}">正在载入更多...</view>
-  <view class="loading complete" hidden="{{!moreLoadingComplete}}">- 已加载全部 -</view>
+  <view class="loading" hidden="{{!moreLoading}}"><image src="../../../image/loading.png"></image>正在载入更多...</view>
+  <view class="loading complete" hidden="{{!moreLoadingComplete}}">- 到底了 -</view>
 </view>
 <scroll-view scroll-y="{{true}}" style="height:{{height}}px;width:{{width*0.6}}px;" class="lawSub1 {{menuhide?'menuhide':'menushow'}}">
   <view class="Sub1item">

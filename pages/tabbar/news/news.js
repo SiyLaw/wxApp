@@ -19,6 +19,7 @@ Page({
     menuKey: '', //内容分类浏览关键字
     moreLoading: false,
     moreLoadingComplete: false,
+    //startLoadingComplete: false,
     currenttime: 0,
   },
   onPullDownRefresh() {
@@ -41,6 +42,7 @@ Page({
         rpxrate: Math.floor(SysInfo.screenWidth / 750 * 100) / 100,
         HOTS: data.HOTS,
         menu: data.MENU,
+       // startLoadingComplete: true,
         bseurl: app.globalData.bseurl
       })
     });
@@ -62,13 +64,18 @@ Page({
     });
   },
   onPullDownRefresh() {
+    // this.setData({
+    //   startLoadingComplete: false
+    // })
     var jsPost = new util.jsonRow()
-    jsPost.AddCell("RCNT", this.data.HOTS.length)
+    jsPost.AddCell("RCNT", this.data.HOTS.length < 10 ? 10 : this.data.HOTS.length)
     jsPost.AddCell("CCNT", 0)
     Post.call(this, this, "LOAD", jsPost, function (that, data) {
       that.setData({
         HOTS: data.HOTS,
-        moreLoadingComplete: false
+        moreLoading: false,
+        moreLoadingComplete: false,
+        //startLoadingComplete: true,
       })
     });
     wx.stopPullDownRefresh()

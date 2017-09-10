@@ -22,7 +22,7 @@ Page({
 
 function Post(that, action, data) {
   //数据请求执行方法
-  util.Post(that,action, jsPost, function (that,res) {
+  util.Post(that, action, data, function (that,res) {
     if (res) {
       //更新数据
       wx.getSystemInfo({
