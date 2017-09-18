@@ -6,6 +6,9 @@
       <image src="/image/{{finished?'voice':'voiced'}}.png" bindlongtap="startRecord" bindtouchend="endRecord" style="background-color: #{{finished?'228B22':'8FBC8F'}};"></image>
       <text>{{vt}}</text>
     </view>
+    <view class="voice">
+      <video bindtap='onvideo' ></video>
+    </view>
     <view class="voiceText"></view>
   </view>
 </view>

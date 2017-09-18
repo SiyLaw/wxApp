@@ -4,7 +4,7 @@ var sUtil = require('../sutil.js')
 var app = getApp()
 Page({
   data: {
-    userInfo: {},
+    userInfo: { avatarUrl: '/image/log60.png', nickName: '' },
     week: ["", "", ""],
     summaryValues: [],
     summaryItems: [{
