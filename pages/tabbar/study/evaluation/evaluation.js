@@ -35,7 +35,7 @@ Page({
           filePath: tempFilePath,
           name: 'file',
           formData: {
-            'OPEN_ID': user.openid
+            "OPEN_KEY": app.globalData.openData.OPEN_KEY
             , 'F_UPLOAD': 'sss'
             , 's': '2'
           },
@@ -65,6 +65,33 @@ Page({
       second: 0,
       finished: true
     });
+  },
+  onvideo:function(){
+    wx.chooseVideo({
+      sourceType: ['camera'],
+      maxDuration: 60,
+      camera: 'back',
+      success: function (res) {
+        that.setData({
+          src: res.tempFilePath
+        })
+        wx.uploadFile({
+          url: app.globalData.uploadurl, //仅为示例，非真实的接口地址
+          filePath: res.tempFilePath,
+          name: 'file',
+          formData: {
+            'OPEN_ID': user.openid
+            , 'F_UPLOAD': 'sss'
+            , 's': '2'
+          },
+          success: function (res) {
+            that.setData({
+              vt: res.data
+            })
+          }
+        })
+      }
+    })
   },
   onReady: function () {
     // 页面渲染完成
