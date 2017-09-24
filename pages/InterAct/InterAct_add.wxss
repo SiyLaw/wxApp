@@ -1,0 +1,60 @@
+/* pages/InterAct/InterAct_add.wxss */
+@import "../../common/lib/weui.wxss";
+
+label {
+  display: inline-block;
+  min-width: 130rpx;
+  margin-top: 0rpx;
+  margin-right: 20rpx;
+}
+
+form {
+  width: 100%;
+}
+
+.ref-content {
+  color: #666;
+  font-size: 28rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.create {
+  position: fixed;
+  bottom: 20rpx;
+  right: 20rpx;
+  background-color: #8FBC8F;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 10rpx #8FBC8F;
+}
+.act-create {
+  box-shadow: 0 0 10rpx #555;
+}
+
+.cmts_content {
+  font-size: 28rpx;
+  height: 330rpx;
+  width: 100%;
+  padding: 5rpx 5rpx;
+  border-left: none;
+  border-right: none;
+}
+.create image {
+  width: 110rpx;
+  height: 110rpx;
+}
+.custBtn{
+  border: none;
+  background-color:inherit;
+  border-radius: 100%;
+  line-height: normal;
+  padding: 0;
+  height: 110rpx;
+  width: 110rpx;
+}
+.custBtn::after{
+  content: none;
+}

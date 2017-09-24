@@ -1,0 +1,86 @@
+/* pages/lawArticles/lawContent.wxss */
+/* lawItem.wxss */
+@import "../../common/lib/weui.wxss";
+
+/* 法条内容*/
+
+.lawContent {
+  position: fixed;
+  top: 0rpx;
+  right: 0;
+  background-color: #eee;
+  box-shadow: 2rpx 0 12rpx 0 #d3d3d3;
+  display: flex;
+  flex-direction: column;
+  border-right: 1rpx solid #c0c0c0;
+  align-items: center;
+  color: #444;
+}
+
+.lawContent .title {
+  font-size: 40rpx;
+  font-weight: bolder;
+  text-align: center;
+  text-shadow: 1px 1px 0 #ddd;
+  padding-top: 80rpx;
+  padding-bottom: 30rpx;
+  padding-right: 40rpx;
+}
+
+.lawContent .subtitle {
+  display: block;
+  padding-top: 30rpx;
+  padding-bottom: 0rpx;
+  padding-right: 40rpx;
+  font-size: 36rpx;
+  text-align: center;
+  text-shadow: 1px 1px 0 #ddd;
+}
+
+.lawContent .subtitlename {
+  display: block;
+  text-align: center;
+  font-size: 30rpx;
+  font-weight: bolder;
+  text-shadow: 1px 1px 0 #ddd;
+  padding-top: 0rpx;
+  padding-bottom: 10rpx;
+  padding-right: 40rpx;
+}
+
+.lawContent .termitem {
+  font-size: 30rpx;
+  padding-top: 5rpx;
+  padding-bottom: 5rpx;
+  padding-left: 20rpx;
+  padding-right: 40rpx;
+  text-align: justify;
+}
+
+.lawContent .act-termitem {
+  background-color:#d3d3d3;
+}
+
+.termitem .lino {
+  color: #2186e0;
+}
+
+.scrollsearchbar {
+  width: 40rpx;
+  position: fixed;
+  top: 0rpx;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  font-size: 22rpx;
+  justify-content: space-between;
+  text-align: center;
+  background: linear-gradient(to right, #eee, #ddd, #eee);
+  color: #444;
+  opacity: 0.8;
+}
+
+.scrollsearchbar label {
+  flex-grow: 1;
+}

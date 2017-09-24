@@ -1,22 +1,27 @@
 <!--InterAct.wxml-->
-<VIEW>
-  <view wx:for="{{TOPIC}}" wx:for-index="idx" wx:key="item.qid" data-qid="{{item.qid}}"  bindtap="navtoview" >
-    <view class="titem" data-qid="{{item.qid}}" style="border: 1rpx solid {{COLOR[idx%COLOR.length]}};" >
+<view>
+  <view wx:for="{{TOPIC}}" wx:for-index="idx" wx:key="item.INTERACT_ID" data-qid="{{item.INTERACT_ID}}" bindtap="navtoview">
+    <view class="titem" data-qid="{{item.INTERACT_ID}}" style="border: 1rpx solid {{COLOR[idx%COLOR.length]}};">
       <view class="head" style="background-color:{{COLOR[idx%COLOR.length]}};">
         <view class="hi">
           <image src="{{item.hi}}"></image>
-          <text>{{item.dun}}</text>
+          <text>{{item.INTERACT_USER_NME}}</text>
         </view>
-        <text>{{item.qde}}</text>
+        <text>{{item.INTERACT_NME}}</text>
       </view>
       <view class="body">
-        <text>{{item.dc}}</text>
+        <text>{{item.INTERACT_CONTENT}}</text>
       </view>
       <view class="foot">
         <text>{{item.dnt}}评论</text>
-        <text>{{item.pd}}</text>
+        <text>{{item.INTERACT_SUBJECT}}</text>
       </view>
     </view>
   </view>
-  <view class="load" hidden="{{hideLoad}}" ><button size="mini" loading="{{isLoad}}"  plain="true"  bindtap="loadmore">点击加载更多</button> </view>
-</VIEW>
+
+  <view class="loading" hidden="{{!moreLoading}}"><image src="../../image/loading.png"></image>正在载入更多...</view>
+  <view class="loading" hidden="{{!moreLoadingComplete}}">- 到底了 -</view>
+  <view class="create" hover-class="act-create" bindtap='createAct' >
+    <image src="/image/plus.png"></image>
+  </view>
+</view>

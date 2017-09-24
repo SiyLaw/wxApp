@@ -5,11 +5,11 @@
     <view class="page-section">
       <picker mode="selector" value="{{date}}" range="{{quickmenu}}" bindchange="bindDateChange">
         <view class="item">
-          <view class="item-image">
-            <image src="/image/Search.png"></image>
+          <view class="item-image" style="background-color:#8B4513;">
+            <image src="/image/menu_white.png"></image>
           </view>
           <view class="item-content">
-            <text>法条搜索</text>
+            <text>教材搜索</text>
             <text>{{quickmenu[date]}}</text>
           </view>
         </view>
@@ -30,7 +30,7 @@
           </view>
         </view>
         <block wx:for="{{menu[idx].item}}" wx:for-item="it" wx:for-index="itdx" wx:key="it.id">
-          <navigator url="lawContent?id={{it.id}}&nme={{it.txt}}">
+          <!-- <navigator url="lawContent?id={{it.id}}&nme={{it.txt}}"> -->
             <view class="cpt-main-item">
               <view class="cpt-item" style="{{itdx==menu[idx].item.length-1?'border-bottom:none;':''}}">
                 <view class="cpt-content">
@@ -46,7 +46,7 @@
                 </view>
               </view>
             </view>
-          </navigator>
+          <!-- </navigator> -->
         </block>
       </view>
     </block>

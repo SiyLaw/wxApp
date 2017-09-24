@@ -17,7 +17,11 @@
     "pages/tabbar/study/realsimulate/realsimulate_exe",
     "pages/tabbar/news/newsItem",
     "pages/InterAct/InterAct_view",
-    "pages/lawArticles/lawList"
+    "pages/lawArticles/lawList",
+    "pages/lawArticles/lawContent",
+    "pages/books/bookList",
+    "pages/class/classList",
+    "pages/InterAct/InterAct_add"
   ],
   "window": {
     "backgroundTextStyle": "light",

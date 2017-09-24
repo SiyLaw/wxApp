@@ -61,3 +61,48 @@
 .load button {
   border: 1rpx solid #999;
 }
+
+
+.loading{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.loading  image{
+  width: 34rpx;
+  height: 34rpx;
+  border-radius: 100%;
+  margin-right: 10rpx; 
+  box-shadow: 0 0 1rpx 1rpx #999;
+  animation: rotation 1s linear infinite;
+  background-color: white;
+}
+
+.create {
+  position: fixed;
+  bottom: 10rpx;
+  left: 10rpx;
+  background-color: #8FBC8F;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 10rpx #8FBC8F;
+}
+.act-create {
+  position: fixed;
+  bottom: 20rpx;
+  left: 20rpx;
+  background-color: #8FBC8F;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 10rpx #555;
+}
+
+.act-create image,.create image {
+  width: 110rpx;
+  height: 110rpx;
+}

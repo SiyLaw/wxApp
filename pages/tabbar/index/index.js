@@ -34,11 +34,19 @@ Page({
   },
   navtolaw: function (e) {
     wx.navigateTo({
-      url: '/pages/lawArticles/lawItem'//?id=RID0H4A0NTXAT63J&nme=中华人民共和国刑法&tid=RID0H6U0XVRB63S4'
+      url: '/pages/lawArticles/lawList'//?id=RID0H4A0NTXAT63J&nme=中华人民共和国刑法&tid=RID0H6U0XVRB63S4'
     })
   }, navtointeract: function (e) {
     wx.navigateTo({
       url: '/pages/InterAct/InterAct',
+    })
+  }, navtoclass: function (e) {
+    wx.navigateTo({
+      url: '/pages/class/classList',
+    })
+  }, navtobooks: function (e) {
+    wx.navigateTo({
+      url: '/pages/books/bookList',
     })
   }, navtosubject: function (e) {
     wx.showToast({

@@ -232,6 +232,22 @@ jsonRow.prototype = {
   }
 };
 
+function updateArr(bseobj,fromobj,key){
+  for (var i = 0; i < fromobj.length; i++) {
+    var isRepeat = false;
+    for(var j = 0;j<bseobj.length;j++){
+      if (fromobj[i][key] == bseobj[j][key]){
+        bseobj[j] = fromobj[i]
+        isRepeat = true;
+        break
+      }
+    }
+    if (!isRepeat){
+      bseobj.push(fromobj[i]);
+    }
+  }
+  return bseobj
+}
 
 //服务器请求数据
 function Post(that, action, data, doAfter) {
@@ -307,6 +323,7 @@ module.exports = {
   formatTimeString: formatTimeString,
   formatString: formatString,
   currentWeekInfo: currentWeekInfo,
+  updateArr: updateArr,
   imageUtil: imageUtil,
   Post: Post,
   jsonRow: jsonRow,

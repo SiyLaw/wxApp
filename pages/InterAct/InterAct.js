@@ -10,82 +10,72 @@ Page({
     PAGE: "INTERACT",
     COLOR: ['#6699cc', '#778899', '#99cc66', '#5F9EA0', '#8FBC8F', '#BDB76B'],
     TOPIC: [],
-    QID: '',
-    DID: '',
-    isLoad: false,
-    hideLoad: true
+    RCNT: 1,
+    moreLoading: false,
+    moreLoadingComplete: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this
     wx.showLoading({
       title: '加载中...',
       mask: true
     })
-    Post.call(this, this, "LOAD", null, function (that, data) {
+    var jsPost = new util.jsonRow()
+    jsPost.AddCell("RCNT", that.data.RCNT)
+    util.Post(this, "LOAD", jsPost, function (that, data) {
       if (data.lt.length > 0) {
         that.setData({
           TOPIC: data.lt,
-          QID: data.lt[data.lt.length - 1].qid,
-          DID: data.lt[data.lt.length - 1].did,
           hideLoad: false
         })
       }
       wx.hideLoading()
     });
   },
-  loadmore: function (e) {
-    Post.call(this, this, "MORE", null, function (that, data) {
-      if (data.lt.length > 0) {
-        let vTopic = that.data.TOPIC.concat(data.lt)
+  onReachBottom: function (e) {
+    if (!this.data.moreLoadingComplete) {
+      this.setData({
+        moreLoading: true
+      })
+      var jsPost = new util.jsonRow()
+      jsPost.AddCell("RCNT", this.data.RCNT)
+      util.Post(this, "MORE", jsPost, function (that, data) {
+        let loadComplete = false;
+        if (data.lt.length < 1)
+          loadComplete = true;
         that.setData({
-          TOPIC: vTopic,
-          QID: vTopic[vTopic.length - 1].qid,
-          DID: vTopic[vTopic.length - 1].did
+          TOPIC: util.updateArr(that.data.TOPIC, data.lt, "qid"),
+          moreLoading: false,
+          moreLoadingComplete: true
         })
-      } else {
-        wx.showToast({
-          title: '无更多数据!',
-        })
-      }
-    });
+      })
+    }
+  },
+  createAct:function(e){
+    wx.navigateTo({
+      url: '/pages/InterAct/InterAct_add'
+    })
   },
   navtoview: function (e) {
     wx.navigateTo({
       url: '/pages/InterAct/InterAct_view?qid=' + e.currentTarget.dataset.qid
     })
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
+  onPullDownRefresh() {
+    var jsPost = new util.jsonRow()
+    jsPost.AddCell("RCNT", this.data.TOPIC.length < 10 ? 10 : this.data.TOPIC.length)
+    jsPost.AddCell("CCNT", 0)
+    util.Post(this, "LOAD", jsPost, function (that, data) {
+      that.setData({
+        TOPIC: util.updateArr(that.data.TOPIC, data.lt,"qid"),
+        moreLoading: false,
+        moreLoadingComplete: false
+      })
+    });
+    wx.stopPullDownRefresh()
   }
 })
-
-//服务器请求数据
-function Post(that, action, data, doAfter) {
-  //数据请求执行方法
-  var jsPost = data || new util.jsonRow()
-  jsPost.AddCell("QID", that.data.QID)
-  jsPost.AddCell("DID", that.data.DID)
-  util.Post(that,action, jsPost, function (that,res) {
-    if (res) {
-      //回调
-      typeof doAfter == "function" && doAfter(that, res)
-    }
-    else {
-      // console.log('error')
-    }
-  })
-}

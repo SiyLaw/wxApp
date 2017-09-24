@@ -17,7 +17,7 @@
   <view class="page-section page-section-gap">
     <view class="flex-wrp" style="flex-direction:row;">
       <view class="flex-item">
-        <view class="item-desc" bindtap="navtosubject" >
+        <view class="item-desc" bindtap="navtoclass" >
           <view class="item-desc-img lightBlue">
             <image src="../../../image/Literature_50px.png"></image>
           </view>
@@ -26,7 +26,7 @@
         </view>
       </view>
       <view class="flex-item">
-        <view class="item-desc" bindtap="navtosubject" >
+        <view class="item-desc" bindtap="navtobooks" >
           <view class="item-desc-img lightBlue2">
             <image src="../../../image/Book.png"></image>
           </view>

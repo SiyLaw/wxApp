@@ -1,0 +1,58 @@
+<!--pages/InterAct/InterAct_add.wxml-->
+<form catchsubmit="formSubmit">
+  <view class="page-section">
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">标 题</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view class="weui-input">
+            <input class="weui-input" placeholder="请输入标题..." name="INTERACT_NME" value="{{INTERACT_NME}}" auto-focus />
+          </view>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">类 别</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view class="weui-input">
+            <input class="weui-input" placeholder="请选择类别..." name="INTERACT_SUBJECT" value="{{INTERACT_SUBJECT}}" />
+          </view>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">内 容</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view class="weui-input">
+          </view>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <textarea placeholder="请输入互动内容..." name="INTERACT_CONTENT" value="{{INTERACT_CONTENT}}" class="cmts_content" />
+      </view>
+      <view class="weui-cell weui-cell_input" wx:if="{{REF_CONTENT_ID!=''}}">
+        <view class="weui-cell__hd">
+          <view class="weui-label">引 用</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view class="weui-input">
+          </view>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input ref-content" wx:if="{{REF_CONTENT_ID!=''}}">
+        <text>{{REF_A}}</text>
+        <text>{{REF_B}}</text>
+        <text>{{REF_C}}</text>
+      </view>
+    </view>
+  </view>
+  <view class="create" hover-class="act-create">
+    <button formType="submit" class="custBtn" disabled='{{btnable}}'>
+      <image src="/image/{{btnable?'right':'checked'}}.png"></image>
+    </button>
+  </view>
+</form>

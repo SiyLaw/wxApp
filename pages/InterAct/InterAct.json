@@ -1,3 +1,4 @@
 {
-  "navigationBarTitleText": "试题互动"
+  "navigationBarTitleText": "试题互动",
+  "enablePullDownRefresh": true
 }
