@@ -104,7 +104,7 @@ Page({
   showlawitemAction: function (e) {
     var that = this
     wx.showActionSheet({
-      itemList: ['创建互动', '复制法条'],
+      itemList: ['创建互动', '复制法条', '纠错法条', '修订记录'],
       success: function (res) {
         if (res.tapIndex == 0) {
           wx.navigateTo({
@@ -119,6 +119,14 @@ Page({
                 title: '复制成功',
               })
             }
+          })
+        } else if (res.tapIndex == 2) {
+          wx.navigateTo({
+            url: '/pages/lawArticles/lawmakeright?t=term&id=' + e.currentTarget.id
+          })
+        } else if (res.tapIndex == 3) {
+          wx.navigateTo({
+            url: '/pages/lawArticles/lawTermHistory?t=term&id=' + e.currentTarget.id
           })
         }
       }

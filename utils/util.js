@@ -233,20 +233,19 @@ jsonRow.prototype = {
 };
 
 function updateArr(bseobj,fromobj,key){
-  for (var i = 0; i < fromobj.length; i++) {
-    var isRepeat = false;
-    for(var j = 0;j<bseobj.length;j++){
-      if (fromobj[i][key] == bseobj[j][key]){
-        bseobj[j] = fromobj[i]
-        isRepeat = true;
-        break
+  var arr = bseobj.concat(fromobj.filter(function (item) {
+    var isneed = true
+    bseobj.forEach(function(e){
+      if(e[key] == item[key]){
+        isneed = false
+        return
       }
-    }
-    if (!isRepeat){
-      bseobj.push(fromobj[i]);
-    }
-  }
-  return bseobj
+    })
+    return isneed
+  })).sort(function(a,b){
+    return b[key].localeCompare(a[key])
+  });
+  return arr
 }
 
 //服务器请求数据

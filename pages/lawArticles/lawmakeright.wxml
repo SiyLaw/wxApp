@@ -1,0 +1,25 @@
+<!--pages/lawArticles/lawmakeright.wxml-->
+<form catchsubmit="formSubmit">
+  <view class="page-section">
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">法条</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view class="weui-input">
+            <input class="weui-input" name="TERM_NO" value="{{TERM_NO}}" disabled='true'/>
+          </view>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <textarea placeholder="请输入互动内容.最大300字符.." auto-focus maxlength="1000" name="TERM_CONTENT" value="{{TERM_CONTENT}}" class="cmts_content" />
+      </view>
+    </view>
+  </view>
+  <view class="create" hover-class="act-create">
+    <button formType="submit" class="custBtn" disabled='{{btnable}}'>
+      <image src="/image/{{btnable?'right':'checked'}}.png"></image>
+    </button>
+  </view>
+</form>

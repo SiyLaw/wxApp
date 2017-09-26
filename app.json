@@ -21,7 +21,10 @@
     "pages/lawArticles/lawContent",
     "pages/books/bookList",
     "pages/class/classList",
-    "pages/InterAct/InterAct_add"
+    "pages/InterAct/InterAct_add",
+    "pages/lawArticles/lawmakeright",
+    "pages/lawArticles/lawmakerightlist",
+    "pages/lawArticles/lawTermHistory"
   ],
   "window": {
     "backgroundTextStyle": "light",

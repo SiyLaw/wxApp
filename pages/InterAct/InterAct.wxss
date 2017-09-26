@@ -40,6 +40,10 @@
   padding: 10rpx 20rpx;
 }
 
+.titem .body text{
+  word-break: break-all;
+}
+
 .titem .foot {
   display: flex;
   flex-direction: row;
@@ -81,24 +85,16 @@
 
 .create {
   position: fixed;
-  bottom: 10rpx;
-  left: 10rpx;
-  background-color: #8FBC8F;
-  border-radius: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 0 10rpx #8FBC8F;
-}
-.act-create {
-  position: fixed;
   bottom: 20rpx;
   left: 20rpx;
-  background-color: #8FBC8F;
+  background-color: #DAA520;
   border-radius: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  box-shadow: 0 0 10rpx #DAA520;
+}
+.act-create {
   box-shadow: 0 0 10rpx #555;
 }
 

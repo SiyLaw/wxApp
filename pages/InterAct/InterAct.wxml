@@ -4,7 +4,7 @@
     <view class="titem" data-qid="{{item.INTERACT_ID}}" style="border: 1rpx solid {{COLOR[idx%COLOR.length]}};">
       <view class="head" style="background-color:{{COLOR[idx%COLOR.length]}};">
         <view class="hi">
-          <image src="{{item.hi}}"></image>
+          <image src="{{item.HEAD_IMG}}"></image>
           <text>{{item.INTERACT_USER_NME}}</text>
         </view>
         <text>{{item.INTERACT_NME}}</text>
@@ -19,9 +19,10 @@
     </view>
   </view>
 
-  <view class="loading" hidden="{{!moreLoading}}"><image src="../../image/loading.png"></image>正在载入更多...</view>
+  <view class="loading" hidden="{{!moreLoading}}">
+    <image src="../../image/loading.png"></image>正在载入更多...</view>
   <view class="loading" hidden="{{!moreLoadingComplete}}">- 到底了 -</view>
-  <view class="create" hover-class="act-create" bindtap='createAct' >
+  <view class="create" hover-class="act-create" bindtap='createAct'>
     <image src="/image/plus.png"></image>
   </view>
 </view>

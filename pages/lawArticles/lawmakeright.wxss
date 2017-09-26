@@ -1,3 +1,4 @@
+/* pages/lawArticles/lawmakeright.wxss */
 /* pages/InterAct/InterAct_add.wxss */
 @import "../../common/lib/weui.wxss";
 
@@ -10,13 +11,6 @@ label {
 
 form {
   width: 100%;
-}
-
-.ref-content {
-  color: #666;
-  font-size: 28rpx;
-  display: flex;
-  flex-direction: column;
 }
 
 .create {
@@ -36,7 +30,7 @@ form {
 
 .cmts_content {
   font-size: 28rpx;
-  height: 530rpx;
+  height: 630rpx;
   width: 100%;
   padding: 5rpx 5rpx;
   border-left: none;
