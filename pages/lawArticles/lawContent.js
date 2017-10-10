@@ -108,7 +108,7 @@ Page({
       success: function (res) {
         if (res.tapIndex == 0) {
           wx.navigateTo({
-            url: '/pages/InterAct/InterAct_add?t=term&id=' + e.currentTarget.id
+            url: '/pages/InterAct/InterAct_add?t=1&id=' + e.currentTarget.id
           })
         } else if (res.tapIndex == 1) {
           var objTxt = that.data.alllcts[that.data.Index].lcts[e.currentTarget.dataset.childno].item[e.currentTarget.dataset.termno]
@@ -122,11 +122,11 @@ Page({
           })
         } else if (res.tapIndex == 2) {
           wx.navigateTo({
-            url: '/pages/lawArticles/lawmakeright?t=term&id=' + e.currentTarget.id
+            url: '/pages/lawArticles/lawmakeright?t=1&id=' + e.currentTarget.id
           })
         } else if (res.tapIndex == 3) {
           wx.navigateTo({
-            url: '/pages/lawArticles/lawTermHistory?t=term&id=' + e.currentTarget.id
+            url: '/pages/lawArticles/lawTermHistory?t=1&id=' + e.currentTarget.id
           })
         }
       }

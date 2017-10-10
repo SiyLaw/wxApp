@@ -3,57 +3,20 @@
   <!--题目-->
   <view class="page-section">
     <view class="weui-cells weui-cells_after-title">
-      <view wx:if="{{exerises[index].type}}" class="weui-cell">
+      <view class="weui-cell">
         <label>
-          <label class="text_label">{{q_type[exerises[index].type]}}</label>
-        <label class="text32">{{exerises[index].title}}</label>
+          <label class="text_label">{{q_type[content[index].REF_CONTENT_TYPE]}}</label>
+        <label class="text32">{{content[index].INTERACT_NME}}</label>
         </label>
       </view>
-      <block wx:if="{{exerises[index].type == '0'}}">
-        <radio-group name="rg{{exerises[index].id}}" bindchange="selected">
-          <label class="weui-cell weui-check__label" wx:for="{{exerises[index].options}}" wx:for-index="idx" wx:key="{{item.op}}">
-            <view class="weui-cell__hd">
-              <radio value="{{item.op}}" checked="{{item.check}}" disabled="{{exerises[index].is_answered}}" />
-            </view>
-            <view class="weui-cell__bd text28">{{item.op}}、{{item.text}}</view>
-          </label>
-        </radio-group>
-      </block>
-      <block wx:elif="{{exerises[index].type != '0' && exerises[index].type}}}}">
-        <checkbox-group name="cg{{exerises[index].id}}" bindchange="selected">
-          <label class="weui-cell weui-check__label" wx:for="{{exerises[index].options}}" wx:for-index="idx" wx:key="{{item.op}}">
-            <view class="weui-cell__hd">
-              <checkbox value="{{item.op}}" checked="{{item.check}}" disabled="{{exerises[index].is_answered}}" />
-            </view>
-            <view class="weui-cell__bd text28">{{item.op}}、{{item.text}}</view>
-          </label>
-        </checkbox-group>
-      </block>
+      <view class="weui-cell">
+        <label class="text32">{{content[index].INTERACT_CONTENT}}</label>
+      </view>
     </view>
   </view>
-  <!--析题 解析-->
-  <view class="page-section">
-    <view wx:if="{{exerises[index].tag.length > 0}}" class="que-tag">
-      <text wx:for="{{exerises[index].tag}}" wx:key="*this" class="tag text24">{{item.op}}</text>
-    </view>
-    <view class="padding10">
-      <label class="text_label">解析</label>
-      <label class="text24">{{exerises[index].desc}}</label>
-    </view>
-    <view wx:if="{{exerises[index].rlaw.length > 0}}" class="padding10">
-      <label class="text_label">关联法条</label>
-      <label wx:for="{{exerises[index].rlaw}}" wx:key="*this" class="text24 textblock">{{(index+1)+'、'+item.op+':'+item.co}}</label>
-    </view>
-    <view wx:if="{{exerises[index].rsub.length > 0}}" class="padding10">
-      <label class="text_label">关联考纲</label>
-      <label wx:for="{{exerises[index].rsub}}" wx:key="*this" class="text24 textblock">{{(index+1)+'、'+item.year+':'+item.op}}</label>
-    </view>
-  </view>
+
   <!--讨论-->
   <view class="page-section" id="topic" >
-    <view class="section_head">
-      <label class="section_title">讨论</label>
-    </view>
     <view wx:for="{{exerises[index].feeds}}" wx:for-index="idx" wx:key="{{id}}" class="exerises-feed">
       <view class="feed-item">
         <view class="feed-source">

@@ -66,7 +66,7 @@ Page({
   },
   navtoview: function (e) {
     wx.navigateTo({
-      url: '/pages/InterAct/InterAct_view?id=' + e.currentTarget.dataset.INTERACT_ID
+      url: '/pages/InterAct/InterAct_view?id=' + e.currentTarget.dataset.qid
     })
   },
   onPullDownRefresh() {
