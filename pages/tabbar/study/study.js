@@ -11,7 +11,7 @@ Page({
         selectBkImg: "../../../image/Trademark.png",
         text: "历年真题",
         page: "real"
-      },{
+      }, {
         id: "t2",
         open: false,
         bkImg: "../../../image/SheriffSelected.png",
@@ -32,7 +32,7 @@ Page({
         selectBkImg: "../../../image/External.png",
         text: "专项训练",
         page: "special"
-      },  {
+      }, {
         id: "t5",
         open: false,
         bkImg: "../../../image/Amnesty.png",
@@ -80,5 +80,8 @@ Page({
   },
   onUnload: function () {
     // 页面关闭
+  },
+  onPullDownRefresh: function () {
+    wx.stopPullDownRefresh();
   }
 })

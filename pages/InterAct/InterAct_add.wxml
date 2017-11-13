@@ -12,16 +12,18 @@
           </view>
         </view>
       </view>
-      <view class="weui-cell weui-cell_input">
-        <view class="weui-cell__hd">
-          <view class="weui-label">类 别</view>
-        </view>
-        <view class="weui-cell__bd">
-          <view class="weui-input">
-            <input class="weui-input" placeholder="请选择类别..." name="INTERACT_SUBJECT" value="{{INTERACT_SUBJECT}}" />
+      <picker mode="selector" value="{{date}}" range="{{q_type}}" bindchange="bindDateChange">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">类 别</view>
+          </view>
+          <view class="weui-cell__bd">
+            <view class="weui-input">
+              <text>{{q_type[date]}}</text>
+            </view>
           </view>
         </view>
-      </view>
+      </picker>
       <view class="weui-cell weui-cell_input">
         <textarea placeholder="请输入互动内容.最大300字符.." maxlength="300" name="INTERACT_CONTENT" value="{{INTERACT_CONTENT}}" class="cmts_content" />
       </view>

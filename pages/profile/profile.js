@@ -30,9 +30,9 @@ Page({
       for (var m in e.detail.value) {
         jsPost.AddCell(m, e.detail.value[m])
       }
-      util.Post(that,e.detail.target.id, jsPost, function (that,res) {
+      util.Post(that,e.detail.target.id, jsPost, function (that,res,mod) {
         that.setData({
-          MODE: res,
+          MODE: mod,
           BTN_STATUS: false
         })
       })

@@ -50,7 +50,10 @@
     </view>
     <view wx:if="{{exerises[index].rlaw.length > 0}}" class="padding10">
       <label class="text_label">关联法条</label>
-      <label wx:for="{{exerises[index].rlaw}}" wx:key="*this" class="text24 textblock">{{(index+1)+'、'+item.op+':'+item.co}}</label>
+      <block wx:for="{{exerises[index].rlaw}}" wx:key="{{item.id}}" wx:for-index="idx">
+        <label class="text24 textblock" data-idx="{{index}}" data-ridx="{{idx}}" bindtap='showRlaw' >{{(idx+1)+'、'+item.op}}</label>
+        <label class="text24 textblock" wx:if="{{item.show}}">{{item.co}}</label>
+      </block>
     </view>
     <view wx:if="{{exerises[index].rsub.length > 0}}" class="padding10">
       <label class="text_label">关联考纲</label>

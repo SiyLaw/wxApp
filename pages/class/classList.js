@@ -79,7 +79,24 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    util.Post(this, "LOAD", null, function (that, data) {
+      if (data) {
+        var quickmenu = that.data.quickmenu
+        for (var i = 0; i < data.menu.length; i++) {
+          if (quickmenu.indexOf(data.menu[i].txt) == -1) {
+            quickmenu.push(data.menu[i].txt)
+          }
+        }
+        that.setData({
+          menu: data.menu,
+          quickmenu: quickmenu
+        })
+      }
+      else {
+        // console.log('error')
+      }
+      wx.hideNavigationBarLoading();
+    })
   },
 
   /**

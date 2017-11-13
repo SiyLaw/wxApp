@@ -86,4 +86,8 @@
   overflow: hidden;
   width: 98%;
   margin: 5rpx auto;
+  font-size: 28rpx;
+  color: #555;
+  letter-spacing: 8rpx;
+  line-height: 60rpx;
 }

@@ -16,7 +16,14 @@ Page({
     REF_A: '',
     REF_B: '',
     REF_C: '',
-    btnable: false
+    btnable: false,
+    q_type: ["题目", "法条", "课堂", "教材", "资讯", "其它"],
+    date: 5
+  },
+  bindDateChange: function (e) {
+    this.setData({
+      date: e.detail.value
+    })
   },
 
   /**

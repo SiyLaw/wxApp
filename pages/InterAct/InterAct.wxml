@@ -1,6 +1,6 @@
 <!--InterAct.wxml-->
 <view>
-  <view wx:for="{{TOPIC}}" wx:for-index="idx" wx:key="item.INTERACT_ID" data-qid="{{item.INTERACT_ID}}" bindtap="navtoview">
+  <view wx:for="{{TOPIC}}" wx:for-index="idx" wx:key="{{item.INTERACT_ID}}}" data-qid="{{item.INTERACT_ID}}" bindtap="navtoview">
     <view class="titem" data-qid="{{item.INTERACT_ID}}" style="border: 1rpx solid {{COLOR[idx%COLOR.length]}};">
       <view class="head" style="background-color:{{COLOR[idx%COLOR.length]}};">
         <view class="hi">

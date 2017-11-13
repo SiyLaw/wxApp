@@ -196,6 +196,16 @@ Page({
     }
   },
   onReachBottom: function () { }
+  , showRlaw(e){
+    var tidx = e.currentTarget.dataset.idx
+    var ridx = e.currentTarget.dataset.ridx
+    let sExe = this.data.exerises
+    var tmpRlaw = sExe[tidx].rlaw[ridx]
+    tmpRlaw.show = !tmpRlaw.show || false
+    this.setData({
+      exerises: sExe
+    })
+  }
 })
 
 function Post(that, action, data) {

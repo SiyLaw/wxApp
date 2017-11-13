@@ -17,7 +17,7 @@
 
   <!--讨论-->
   <view class="page-section" id="topic" >
-    <view wx:for="{{exerises[index].feeds}}" wx:for-index="idx" wx:key="{{id}}" class="exerises-feed">
+    <view wx:for="{{feeds}}" wx:for-index="idx" wx:key="{{id}}" class="exerises-feed">
       <view class="feed-item">
         <view class="feed-source">
           <view class="avatar">
@@ -44,17 +44,17 @@
             </view>
           </view>
         </view>
-        <view class="feed-item" wx:if="{{exerises[index].feeds[idx].rel_feed}}">
+        <view class="feed-item" wx:if="{{feeds[idx].rel_feed}}">
           <view class="feed-source">
             <view class="avatar">
-              <image src="{{exerises[index].feeds[idx].rel_feed.head_img}}"></image>
-              <label class="slabel">{{exerises[index].feeds[idx].rel_feed.user}}</label>
+              <image src="{{feeds[idx].rel_feed.head_img}}"></image>
+              <label class="slabel">{{feeds[idx].rel_feed.user}}</label>
             </view>
           </view>
           <view class="feed-content">
             <view class="answer-body">
               <view>
-                <text class="answer-txt">{{exerises[index].feeds[idx].rel_feed.feed_txt}}</text>
+                <text class="answer-txt">{{feeds[idx].rel_feed.feed_txt}}</text>
               </view>
             </view>
           </view>

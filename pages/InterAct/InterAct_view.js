@@ -12,8 +12,7 @@ Page({
     QID: '', //话题ID
     content: [],//话题内容
     refer: [],//话题引用内容
-    msgs: [],//话题讨论内容
-    exerises: [],
+    feeds: [],//话题讨论内容
     q_type: ["题目","法条","课堂","教材","资讯","其它"],
     index: 0,
     isLoad: false,
@@ -40,6 +39,7 @@ Page({
           QID: options.id,
           content: data.lt,
           refer: data.rlt,
+          feeds: data.msgs.feeds,
           hideLoad: false
         })
       }
@@ -71,9 +71,9 @@ Page({
   doDisComm: function (e) {
     //评论-评论
     let iIndex = this.data.index
-    let sExe = this.data.exerises
+    let sExe = this.data.feeds
     let iFeedIndex = e.currentTarget.dataset.idx
-    let rid = sExe[iIndex].feeds[iFeedIndex].id
+    let rid = sExe[iFeedIndex].id
     this.setData({
       r_id: rid,
       show_comment_module: true
@@ -89,18 +89,15 @@ Page({
   SubmitComm: function (e) {
     //提交评论
     let iIndex = this.data.index
-    let sExe = this.data.exerises
-    let sId = sExe[iIndex].qid
+    let sId = this.data.QID
     var jsPost = new util.jsonRow()
     jsPost.AddCell("QID", sId)
     jsPost.AddCell("RID", this.data.r_id)
     jsPost.AddCell("TEXT", this.data.comm_text)
     Post.call(this, this, "COMMENT", jsPost, function (that, data) {
       //题目评论
-      let cExes = that.data.exerises
-      cExes[that.data.index].feeds = data.feeds
       that.setData({
-        exerises: cExes,
+        feeds: data.feeds,
         comm_text: '',
         comm_len: 0,
         r_id: '',
@@ -119,19 +116,19 @@ Page({
     //评论点赞
 
     let iIndex = this.data.index
-    let sExe = this.data.exerises
+    let sExe = this.data.feeds
     let iFeedIndex = e.currentTarget.dataset.idx
-    if (sExe[iIndex].feeds[iFeedIndex].is_agreed) {
-      sExe[iIndex].feeds[iFeedIndex].agree -= 1
+    if (sExe[iFeedIndex].is_agreed) {
+      sExe[iFeedIndex].agree -= 1
     } else {
-      sExe[iIndex].feeds[iFeedIndex].agree += 1
+      sExe[iFeedIndex].agree += 1
     }
-    sExe[iIndex].feeds[iFeedIndex].is_agreed = !sExe[iIndex].feeds[iFeedIndex].is_agreed
+    sExe[iFeedIndex].is_agreed = !sExe[iFeedIndex].is_agreed
     this.setData({
-      exerises: sExe
+      feeds: sExe
     })
     var jsPost = new util.jsonRow()
-    jsPost.AddCell("DID", sExe[iIndex].feeds[iFeedIndex].id)
+    jsPost.AddCell("DID", sExe[iFeedIndex].id)
     Post.call(this, this, "LIKE", jsPost)
   },
 

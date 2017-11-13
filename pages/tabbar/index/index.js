@@ -53,10 +53,24 @@ Page({
       title: '开发中',
     })
   },
+  onPullDownRefresh() {
+    var jsPost = new util.jsonRow()
+    jsPost.AddCell("RCNT", this.data.RCNT)
+    jsPost.AddCell("CCNT", 0)
+    util.Post(this, "LOAD", jsPost, function (that, data) {
+      if (data) {
+        that.setData({
+          HOTS: data.HOTS,
+          bseurl: app.globalData.bseurl
+        })
+      }
+      wx.stopPullDownRefresh()
+    });
+  },
   onLoad: function () {
     var jsPost = new util.jsonRow()
     jsPost.AddCell("RCNT", this.data.RCNT)
-    jsPost.AddCell("CCNT", this.data.HOTS.length)
+    jsPost.AddCell("CCNT", 0)
     util.Post(this, "LOAD", jsPost, function (that, data) {
       that.setData({
         HOTS: data.HOTS,
