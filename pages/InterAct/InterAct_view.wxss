@@ -296,7 +296,7 @@ page {
   color: #000;
 }
 
-.page-section .feed-item {
+.feed-item {
   padding: 30rpx 30rpx 20rpx;
   margin: 7rpx 0 6rpx 0;
   background: #fff;
@@ -305,12 +305,12 @@ page {
   box-shadow: 0 2px 5px #eee;
 }
 
-.page-section .feed-item .feed-source .avatar {
+.feed-item .feed-source .avatar {
   position: relative;
   display: inline-block;
 }
 
-.page-section .feed-item .feed-source .avatar image {
+.feed-item .feed-source .avatar image {
   /*position: absolute;*/
   display: inline-block;
   width: 40rpx;
@@ -325,7 +325,7 @@ page {
   vertical-align: middle;
 }
 
-.page-section .feed-item .feed-source {
+.feed-item .feed-source {
   /*position: absolute;*/
   display: inline-block;
   height: 40rpx;
@@ -335,17 +335,17 @@ page {
   font-size: 26rpx;
 }
 
-.page-section .feed-item .feed-content {
+.feed-item .feed-content {
   padding: 10rpx 0 0 0;
 }
 
-.page-section .feed-item .feed-content .question text {
+.feed-item .feed-content .question text {
   font-size: 28rpx;
   font-weight: 600px;
   line-height: 40rpx;
 }
 
-.page-section .feed-item .feed-content .answer-body {
+.feed-item .feed-content .answer-body {
   padding: 10rpx 0 0 0;
   /*height: 10rpx;*/
   font-size: 24rpx;
@@ -353,25 +353,25 @@ page {
   color: #5b5b5b;
 }
 
-.page-section .feed-item .feed-content .answer-actions {
+.feed-item .feed-content .answer-actions {
   width: 690rpx;
   padding: 10rpx 0 0;
   color: #666;
 }
 
-.page-section .feed-item .feed-content .answer-actions view {
+.feed-item .feed-content .answer-actions view {
   display: inline-block;
   vertical-align: text-bottom;
   padding: 0 10rpx 0 0;
   font-size: 24rpx;
 }
 
-.page-section .feed-item .feed-content .answer-actions .dot ::after {
+.feed-item .feed-content .answer-actions .dot ::after {
   padding: 0 0 0 10rpx;
   content: "•";
 }
 
-.page-section .feed-item .feed-content .answer-actions image {
+.feed-item .feed-content .answer-actions image {
   width: 36rpx;
   height: 36rpx;
   margin-bottom: -10rpx;

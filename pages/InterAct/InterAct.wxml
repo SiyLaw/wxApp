@@ -13,7 +13,7 @@
         <text>{{item.INTERACT_CONTENT}}</text>
       </view>
       <view class="foot">
-        <text>{{item.dnt}}评论</text>
+        <text>评论({{item.CNT}})</text>
         <text>{{item.INTERACT_SUBJECT}}</text>
       </view>
     </view>

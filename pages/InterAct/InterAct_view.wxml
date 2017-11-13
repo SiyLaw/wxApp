@@ -6,7 +6,7 @@
       <view class="weui-cell">
         <label>
           <label class="text_label">{{q_type[content[index].REF_CONTENT_TYPE]}}</label>
-        <label class="text32">{{content[index].INTERACT_NME}}</label>
+          <label class="text32">{{content[index].INTERACT_NME}}</label>
         </label>
       </view>
       <view class="weui-cell">
@@ -16,7 +16,7 @@
   </view>
 
   <!--讨论-->
-  <view class="page-section" id="topic" >
+  <view id="topic">
     <view wx:for="{{feeds}}" wx:for-index="idx" wx:key="{{id}}" class="exerises-feed">
       <view class="feed-item">
         <view class="feed-source">

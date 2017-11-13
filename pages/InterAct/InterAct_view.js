@@ -15,8 +15,6 @@ Page({
     feeds: [],//话题讨论内容
     q_type: ["题目","法条","课堂","教材","资讯","其它"],
     index: 0,
-    isLoad: false,
-    hideLoad: true,
     r_id: '',
     comm_len: 0,
     comm_text: '',
@@ -39,8 +37,7 @@ Page({
           QID: options.id,
           content: data.lt,
           refer: data.rlt,
-          feeds: data.msgs.feeds,
-          hideLoad: false
+          feeds: data.msgs.feeds
         })
       }
       wx.hideLoading()
@@ -114,7 +111,6 @@ Page({
   },
   doLike: function (e) {
     //评论点赞
-
     let iIndex = this.data.index
     let sExe = this.data.feeds
     let iFeedIndex = e.currentTarget.dataset.idx
@@ -136,7 +132,18 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    var jsPost = new util.jsonRow()
+    jsPost.AddCell("ID", this.data.QID)
+    util.Post(this, "LOAD", jsPost, function (that, data) {
+      if (data && data.lt.length > 0) {
+        that.setData({
+          content: data.lt,
+          refer: data.rlt,
+          feeds: data.msgs.feeds
+        })
+      }
+      wx.stopPullDownRefresh()
+    })
   },
 
   /**
