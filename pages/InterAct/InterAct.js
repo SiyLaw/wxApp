@@ -70,16 +70,19 @@ Page({
     })
   },
   onPullDownRefresh() {
+    var that = this
     var jsPost = new util.jsonRow()
-    jsPost.AddCell("RCNT", this.data.TOPIC.length < 10 ? 10 : this.data.TOPIC.length)
+    let idx = that.data.IDX
+    jsPost.AddCell("RCNT", that.data.RCNT + that.data.IDX)
     jsPost.AddCell("IDX", 1)
     util.Post(this, "LOAD", jsPost, function (that, data) {
-      that.setData({
-        TOPIC: util.updateArr(that.data.TOPIC, data.lt, "INTERACT_ID"),
-        moreLoading: false,
-        moreLoadingComplete: false
-      })
+      if (data.lt.length > 0) {
+        that.setData({
+          TOPIC: data.lt,
+          IDX: idx
+        })
+      }
+      wx.stopPullDownRefresh()
     });
-    wx.stopPullDownRefresh()
   }
 })
