@@ -53,7 +53,7 @@
 }
 
 .hot-item .hot-content .hot-source .hotmate {
-  flex: 1;
+  flex: 6;
   font-size: 24rpx;
   color: #000;
   text-align: left;

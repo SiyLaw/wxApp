@@ -10,7 +10,7 @@ Page({
     hothide: true,
     background: [{
       id: "item-1",
-      text: "法律学习有何难点?",
+      text: "学习法律专业重点难点是什么?",
       color: "#800000",
       url: "https://www.yondo.cc/wx/images/101.png"
     }, {
@@ -49,8 +49,12 @@ Page({
       url: '/pages/books/bookList',
     })
   }, navtosubject: function (e) {
-    wx.showToast({
-      title: '开发中',
+    wx.navigateTo({
+      url: '/pages/InterAct/InterAct_view?id=' + e.currentTarget.dataset.qid
+    })
+  }, navtodoc: function (e) {
+    wx.navigateTo({
+      url: '/pages/docs/doc_view?id=' + e.currentTarget.dataset.id + '&txt=' + e.currentTarget.dataset.txt
     })
   },
   onPullDownRefresh() {

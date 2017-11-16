@@ -24,7 +24,8 @@
     "pages/InterAct/InterAct_add",
     "pages/lawArticles/lawmakeright",
     "pages/lawArticles/lawmakerightlist",
-    "pages/lawArticles/lawTermHistory"
+    "pages/lawArticles/lawTermHistory",
+    "pages/docs/doc_view"
   ],
   "window": {
     "backgroundTextStyle": "dark",

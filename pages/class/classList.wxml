@@ -5,7 +5,7 @@
     <view class="page-section">
       <picker mode="selector" value="{{date}}" range="{{quickmenu}}" bindchange="bindDateChange">
         <view class="item">
-          <view class="item-image" style="background-color:#8B4513;">
+          <view class="item-image" style="background-color:#4682b4;">
             <image src="/image/menu_white.png"></image>
           </view>
           <view class="item-content">

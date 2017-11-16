@@ -37,7 +37,7 @@ Page({
           height: SysInfo.windowHeight,
           width: SysInfo.screenWidth,
           rpxrate: Math.floor(SysInfo.screenWidth / 750 * 100) / 100,
-          menu: data.menu,
+          //menu: data.menu,
           quickmenu: quickmenu
         })
       }
